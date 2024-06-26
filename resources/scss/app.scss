@@ -1,0 +1,12 @@
+@use "./partials/variables" as *;
+
+$fa-font-path: "../webfonts" !default;
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+@import "~bootstrap/scss/bootstrap";
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Antonio:wght@100..700&display=swap");
