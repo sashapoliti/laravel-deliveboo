@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePlateRequest;
 use App\Http\Requests\UpdatePlateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PlateController extends Controller
 {
@@ -15,7 +16,8 @@ class PlateController extends Controller
      */
     public function index()
     {
-        $plates = Plate::all();
+        $restaurant = Auth::user()->restaurant;
+        $plates = Plate::where('restaurant_id', $restaurant->id)->get();
         return view('admin.plates.index', compact('plates'));
     }
 
