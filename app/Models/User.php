@@ -43,8 +43,8 @@ class User extends Authenticatable
     ];
 
     /* RELATIONS - ONE TO ONE */
-    // public function restaurant()
-    // {
-    //     return $this->hasOne(Restaurant::class);
-    // }
+     public function restaurant()
+     {
+         return $this->hasOne(Restaurant::class);
+     }
 }

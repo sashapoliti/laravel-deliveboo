@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade'); // UNIQUE foreign key for one-to-one relationship, CONSTRAINED for integrity check
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade'); // UNIQUE foreign key for one-to-one relationship, CONSTRAINED for integrity check
             $table->string('address', 255);
             $table->string('vat_number', 255);
             $table->string('name',255);
