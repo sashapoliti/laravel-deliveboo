@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -16,6 +16,7 @@
           <th scope="col">description</th>
           <th scope="col">logo</th>
           <th scope="col">slug</th>
+          <th scope="col">piatto</th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +31,7 @@
             <td>{{$restaurant->description}}</td>
             <td>{{$restaurant->logo}}</td>
             <td>{{$restaurant->slug}}</td>
+            <td>{{$restaurant->plates[0]->name}}</td>
         </tr>
         @endforeach
       </tbody>
