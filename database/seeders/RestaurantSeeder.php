@@ -26,7 +26,6 @@ class RestaurantSeeder extends Seeder
             $new_restaurant->logo = $restaurant['logo'];
             $new_restaurant->slug = Restaurant::generateSlug($new_restaurant->name);
             $new_restaurant->save();
-
         }
     }
 }

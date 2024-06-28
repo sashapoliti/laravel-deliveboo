@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Str;
 
-class Restaurant extends Model
+class Plate extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
 
     public static function generateSlug($title){
@@ -24,15 +23,9 @@ class Restaurant extends Model
 
     }
 
-    /* RELATIONS - ONE TO ONE */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     /* RELATIONS - ONE TO MANY */
-    public function plates()
+    public function restaurant()
     {
-        return $this->hasMany(Plate::class);
+        return $this->belongsTo(Restaurant::class);
     }
 }
