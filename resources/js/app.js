@@ -17,3 +17,17 @@ but.addEventListener('click', () => {
   icon.classList.toggle('fa-chevron-left'); // Toggle between left and right icons
   icon.classList.toggle('fa-chevron-right'); // Toggle between left and right icons
 });
+
+
+const image = document.getElementById("cover_image");
+if(image) {
+    image.addEventListener("change", function () {
+
+        const preview = document.getElementById("uploadPreview");
+        const reader = new FileReader();
+        reader.readAsDataURL(image.files[0]);
+        reader.onload = function (reader){
+            preview.src = reader.target.result;
+        };
+    });
+}
