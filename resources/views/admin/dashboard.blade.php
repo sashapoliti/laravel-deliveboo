@@ -1,26 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Dashboard') }}
-    </h2>
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('User Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
+  <table class="tb-glass">
+    <thead>
+        <tr>
+          <th scope="col" class="d-none d-lg-table-cell">Id</th>
+          <th scope="col" class="d-none d-lg-table-cell">Id-user</th>
+          <th scope="col">address</th>
+          <th scope="col" class="d-none d-xl-table-cell">vat number</th>
+          <th scope="col">name</th>
+          <th scope="col">image</th>
+          <th scope="col">description</th>
+          <th scope="col">logo</th>
+          <th scope="col">slug</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($restaurants as $restaurant)
+        <tr>
+            <td class="d-none d-lg-table-cell">{{$restaurant->id}}</td>
+            <td>{{$restaurant->user->name}}</td>
+            <td>{{$restaurant->address}}</td>
+            <td class="d-none d-xl-table-cell">{{$restaurant->vat_number}}</td>
+            <td>{{$restaurant->name}}</td>
+            <td>{{$restaurant->image}}</td>
+            <td>{{$restaurant->description}}</td>
+            <td>{{$restaurant->logo}}</td>
+            <td>{{$restaurant->slug}}</td>
+        </tr>
+        @endforeach
+      </tbody>
+  </table>
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-@endsection
+
+
+  @endsection
