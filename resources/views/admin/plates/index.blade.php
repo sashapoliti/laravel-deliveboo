@@ -8,7 +8,7 @@
             <div class="col-12 col-md-6 col-lg-3 my-3">
                
                     <div class="card">
-                        <img src="{{ $plate->image }}" class="card-img-top" alt="Immagine di {{ $plate->name }}">
+                        <img src="{{asset('storage/'. $plate->image)}}" class="card-img-top" alt="Immagine di {{ $plate->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $plate->name }}</h5>
                             <p class="card-text">{{ $plate->description }}</p>

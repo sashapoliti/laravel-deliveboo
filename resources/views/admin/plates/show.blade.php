@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="card my-3">
-        <img src="{{ $plate->image }}"
+        <img src="{{asset('storage/'. $plate->image)}}"
             class="card-img-top" alt="{{ $plate->name }}">
         <div class="card-body">
             <h5 class="card-title">{{ $plate->name }}</h5>
