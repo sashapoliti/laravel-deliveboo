@@ -2,8 +2,9 @@
 
 @section('content')
 
+<div class="container">
 
-<table class="tb-glass">
+  <table class="tb-glass">
     <thead>
         <tr>
           <th scope="col" class="d-none d-lg-table-cell">Id</th>
@@ -22,7 +23,7 @@
         @foreach ($restaurants as $restaurant)
         <tr>
             <td class="d-none d-lg-table-cell">{{$restaurant->id}}</td>
-            <td>{{$restaurant->user_id}}</td>
+            <td>{{$restaurant->user->name}}</td>
             <td>{{$restaurant->address}}</td>
             <td class="d-none d-xl-table-cell">{{$restaurant->vat_number}}</td>
             <td>{{$restaurant->name}}</td>
@@ -34,5 +35,8 @@
         @endforeach
       </tbody>
   </table>
+
+</div>
+
 
   @endsection

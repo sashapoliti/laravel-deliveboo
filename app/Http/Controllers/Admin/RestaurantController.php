@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreReastaurantRequest;
@@ -15,7 +16,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
+        $user = Auth::user();
+        $restaurants = Restaurant::where('user_id', $user->id)->get();
         return view('admin.restaurants.index', compact('restaurants'));
     }
 

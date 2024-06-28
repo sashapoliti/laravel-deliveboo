@@ -14,7 +14,7 @@ class RestaurantSeeder extends Seeder
     public function run(): void
     {
         $restaurants = config('Restaurant_db.restaurants');
-        $count = 1;
+        $count = 15;
         foreach ($restaurants as $restaurant) {            
             $new_restaurant = new Restaurant();
             $new_restaurant->user_id = $count++;
