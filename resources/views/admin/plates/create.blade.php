@@ -35,19 +35,27 @@
             @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <div class="col-md-6">
-                <label for="image" class="form-label">Immagine</label>
-                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                    name="image" value="{{ old('image') }}">
 
+           <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" accept="image/*" class="form-control 
+                @error('image') is-invalid @enderror" id="upload_image"
+                name="image" value="{{ old('image') }}" maxlength="255">
+                @error('image')
+                    <div class ="alert alert-danger">{{$errors->first('image')}}</div>
+                @enderror 
+                <h4 class="mt-3">Your image</h4>
+                @if(old('image'))
+                    <img src="{{asset('storage/' . old('image'))}}" alt="{{old('title')}}" id="uploadPreview" class="shadow rounded-4 m-4">
+                @else 
+                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
+                @endif
             </div>
-            @error('image')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
             
             <div class="col-12">
                 <button type="submit" class="btn bg-bordeaux">Crea</button>
             </div>
         </form>
-
+        <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+        <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
     @endsection

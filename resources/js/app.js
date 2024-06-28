@@ -19,7 +19,7 @@ but.addEventListener('click', () => {
 });
 
 
-const image = document.getElementById("cover_image");
+const image = document.getElementById("upload_image");
 if(image) {
     image.addEventListener("change", function () {
 

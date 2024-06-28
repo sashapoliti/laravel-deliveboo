@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePlateRequest;
 use App\Http\Requests\UpdatePlateRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PlateController extends Controller
 {
@@ -32,12 +33,20 @@ class PlateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePlateRequest  $request)
+    public function store(Request $request)
     {
-        $from_data = $request->validated();
-        $from_data['slug'] = Plate::generateSlug($from_data['name']);
-        $newPlate = Plate::create($from_data);
-        return redirect()->route('admin.plates.index', $newPlate->slug)->with('message', $newPlate->name . ' è stato creato');
+        $form_data = $request->all();
+        $form_data['slug'] = Plate::generateSlug($form_data['name']);
+        $form_data['restaurant_id'] = Auth::user()->restaurant->id;
+
+        if ($request->hasFile('image')) {
+            $name = $request->image->getClientOriginalName(); 
+            $path = Storage::putFileAs('plate_images', $request->image, $name);
+            $form_data['image'] = $path;
+        }
+
+        $newPlate = Plate::create($form_data);
+        return redirect()->route('admin.plates.show', $newPlate->slug)->with('message', $newPlate->name . ' è stato creato');
     }
 
     /**
@@ -59,12 +68,22 @@ class PlateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlateRequest  $request, Plate $plate)
+    public function update(Request $request, Plate $plate)
     {
-        $from_data = $request->validated();
-        $from_data['slug'] = Plate::generateSlug($from_data['name']);
-        $plate->update($from_data);
-        return redirect()->route('admin.plates.index', $plate->slug)->with('message', $plate->name . ' è stato modificato');
+        $form_data = $request->all();
+        $form_data['slug'] = Plate::generateSlug($form_data['name']);
+
+        if ($request->hasFile('image')) {
+            if ($plate->image) {
+                Storage::delete($plate->image);
+            }
+            $name = $request->image->getClientOriginalName();
+            $path = Storage::putFileAs('plate_images', $request->image, $name);
+            $form_data['image'] = $path;
+        }
+
+        $plate->update($form_data);
+        return redirect()->route('admin.plates.show', $plate->slug)->with('message', $plate->name . ' è stato modificato');
     }
 
     /**
@@ -72,7 +91,10 @@ class PlateController extends Controller
      */
     public function destroy(Plate $plate)
     {
+        if ($plate->image) {
+            Storage::delete($plate->image);
+        }
         $plate->delete();
-        return redirect()->route('admin.plates.index')->with('message', $plate->name . ' è stato eliminato');
+        return redirect()->route('admin.plates.index')->with('message', $plate->name . ' è stato eliminato');
     }
 }
