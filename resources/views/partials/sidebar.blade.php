@@ -7,7 +7,7 @@
             <a class="nav-link d-flex align-items-center collapsed" href="#collapseExample" data-bs-toggle="collapse"
                 aria-expanded="false">
                 <img class="rounded-circle profile-picture me-2"
-                    src="{{ Auth::user() ? 'https://avatarfiles.alphacoders.com/373/373447.jpg' : 'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg' }}"
+                    src="{{ Auth::user() ? '' : '' }}"
                     alt="{{ Auth::user() ? Auth::user()->name : 'Default' }} profile picture">
                 <span>{{ Auth::user() ? Auth::user()->name : 'Guest' }}</span>
                 <i class="fa-solid fa-caret-down ms-auto"></i>

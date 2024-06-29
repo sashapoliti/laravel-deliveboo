@@ -41,7 +41,7 @@ class PlateController extends Controller
 
         if ($request->hasFile('image')) {
             $name = $request->image->getClientOriginalName(); 
-            $path = Storage::putFileAs('plate_images', $request->image, $name);
+            $path = Storage::putFileAs('post_images', $request->image, $name);
             $form_data['image'] = $path;
         }
 
@@ -78,7 +78,7 @@ class PlateController extends Controller
                 Storage::delete($plate->image);
             }
             $name = $request->image->getClientOriginalName();
-            $path = Storage::putFileAs('plate_images', $request->image, $name);
+            $path = Storage::putFileAs('post_images', $request->image, $name);
             $form_data['image'] = $path;
         }
 
