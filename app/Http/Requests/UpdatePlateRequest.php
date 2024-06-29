@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class UpdatePlateRequest extends FormRequest
 {
     /**
@@ -25,7 +26,7 @@ class UpdatePlateRequest extends FormRequest
             'name' => 'required|max:255|min:3|string',
             'description' => 'nullable|string|max:255|min:3',
             'visibility' => 'boolean',
-            'price' => 'required|numeric|unsigned',
+            'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|max:2048',
         ];
     }
@@ -46,7 +47,7 @@ class UpdatePlateRequest extends FormRequest
             
             'price.required' => 'Il prezzo è obbligatorio',
             'price.numeric' => 'Il prezzo deve essere un numero',
-            'price.unsigned' => 'Il prezzo deve essere positivo',
+            'price.min' => 'Il prezzo deve essere positivo',
 
         ];
     }

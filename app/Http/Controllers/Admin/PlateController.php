@@ -33,9 +33,9 @@ class PlateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePlateRequest $request)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
         $form_data['slug'] = Plate::generateSlug($form_data['name']);
         $form_data['restaurant_id'] = Auth::user()->restaurant->id;
 
@@ -68,9 +68,9 @@ class PlateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Plate $plate)
+    public function update(UpdatePlateRequest $request, Plate $plate)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
         $form_data['slug'] = Plate::generateSlug($form_data['name']);
 
         if ($request->hasFile('image')) {
