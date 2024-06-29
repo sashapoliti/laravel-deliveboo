@@ -544,48 +544,95 @@ a {
 
 }
 
-    // button-Edit
-    .button-edit {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100px;
-        height: 40px;
-        border: none;
-        padding: 0px 20px;
-        background-color: rgb(32, 212, 167) !important;
-        color: white;
-        font-weight: 500;
-        cursor: pointer;
-        border-radius: 10px;
-        box-shadow: 5px 5px 0px rgb(119, 247, 215);
-        transition-duration: .3s;
-    }
+// button-Edit
+.button-edit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100px;
+    height: 40px;
+    border: none;
+    padding: 0px 20px;
+    background-color: rgb(32, 212, 167) !important;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px rgb(119, 247, 215);
+    transition-duration: .3s;
+}
 
-    .svg-edit {
-        width: 13px;
-        position: absolute;
-        right: 0;
-        margin-right: 20px;
-        fill: white;
-        transition-duration: .3s;
-    }
+.svg-edit {
+    width: 13px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    fill: white;
+    transition-duration: .3s;
+}
 
-    .button-edit:hover {
-        color: transparent;
-    }
+.button-edit:hover {
+    color: transparent;
+}
 
-    .button-edit:hover svg {
-        right: 43%;
-        margin: 0;
-        padding: 0;
-        border: none;
-        transition-duration: .3s;
-    }
+.button-edit:hover svg {
+    right: 43%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition-duration: .3s;
+}
 
-    .button-edit:active {
-        transform: translate(3px, 3px);
-        transition-duration: .3s;
-        box-shadow: 2px 2px 0px rgb(32, 212, 167);
-    }
+.button-edit:active {
+    transform: translate(3px, 3px);
+    transition-duration: .3s;
+    box-shadow: 2px 2px 0px rgb(32, 212, 167);
+}
+
+
+// button-delete
+.button-delete {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100px;
+    height: 40px;
+    border: none;
+    padding: 0px 20px;
+    background-color: rgb(212, 52, 52);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px rgb(221, 85, 85);
+    transition-duration: .3s;
+}
+
+.svg-delete {
+    width: 13px;
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    fill: white;
+    transition-duration: .3s;
+}
+
+.button-delete:hover {
+    color: transparent;
+}
+
+.button-delete:hover svg {
+    right: 43%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition-duration: .3s;
+}
+
+.button-delete:active {
+    transform: translate(3px, 3px);
+    transition-duration: .3s;
+    box-shadow: 2px 2px 0px rgb(212, 52, 52);
+}
