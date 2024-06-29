@@ -100,28 +100,36 @@ a {
         width: 260px;
         color: $content-bg;
         background-color: $sidebar-bg;
+
         .logo {
             padding: 7px 12px;
+
             a {
                 padding: 11px 0;
             }
         }
+
         .user {
             padding-bottom: 20px;
+
             .profile {
                 padding: 20px 0;
                 margin: 0 15px;
                 border-top: 1px solid #f4f3ef86;
                 border-bottom: 1px solid #f4f3ef86;
+
                 a {
                     padding: 0 10px;
                 }
+
                 .profile-picture {
                     width: 35px;
                     height: 35px;
                 }
+
                 ul {
                     margin-top: 9px;
+
                     li {
                         a {
                             margin-top: 10px;
@@ -130,6 +138,7 @@ a {
                             font-size: 12px;
                             line-height: 30px;
                             opacity: 0.8;
+
                             i {
                                 width: 34px;
                                 text-align: center;
@@ -138,6 +147,7 @@ a {
                                 line-height: 20px;
                                 opacity: 0.5;
                             }
+
                             &:hover {
                                 transition: all 0.3s ease 0s;
                                 opacity: 1;
@@ -147,6 +157,7 @@ a {
                 }
             }
         }
+
         #routes-list {
             li {
                 a {
@@ -159,10 +170,12 @@ a {
                     line-height: 30px;
                     opacity: 0.8;
                     position: relative;
+
                     &:hover {
                         opacity: 1;
                         transition: all 0.3s ease 0s;
                     }
+
                     i {
                         font-size: 1.5rem;
                         margin-right: 12px;
@@ -171,12 +184,15 @@ a {
                         text-align: center;
                         opacity: 0.5;
                     }
+
                     &.active {
                         color: $active-link;
                         opacity: 1;
+
                         i {
                             opacity: 0.8;
                         }
+
                         &:after {
                             content: "";
                             position: absolute;
@@ -200,6 +216,7 @@ a {
         flex-grow: 1;
         overflow-y: scroll;
         margin-right: -10px; // for scrollbar
+
         main {
             height: 100%;
             padding: 0 16px;
@@ -211,6 +228,7 @@ a {
                 background-color: $content-bg;
                 border-bottom: 1px solid #dddddd;
                 padding: 10px 16px;
+
                 .minimize-button {
                     button {
                         background-color: $sidebar-bg;
@@ -219,29 +237,35 @@ a {
                         padding: 2px 12px;
                         border: none;
                         border-radius: 50px;
+
                         i {
                             width: 16px;
                         }
+
                         &:hover {
                             filter: brightness(0.8);
                             transition-duration: 0.3s;
                         }
                     }
                 }
+
                 .main-title {
                     color: $sidebar-bg;
                     font-size: 1.2rem;
                     font-weight: 400;
                 }
+
                 #navigation {
                     input {
                         border: none;
                         border-radius: 0;
                         background-color: #ededea;
+
                         &.form-control:focus {
                             box-shadow: none;
                         }
                     }
+
                     .input-group-text {
                         color: $sidebar-bg;
                         background-color: #ededea;
@@ -249,16 +273,19 @@ a {
                         border-radius: 0;
                         height: 100%;
                     }
+
                     ul.navbar-nav {
                         li.nav-item {
                             a.nav-link {
                                 color: $sidebar-bg;
+
                                 span {
                                     position: absolute;
                                     transform: scale(0.7);
                                     top: 0;
                                     right: calc(50% - 10px);
                                 }
+
                                 &:hover i {
                                     filter: brightness(0.8);
                                     transform: scale(1.4);
@@ -278,7 +305,7 @@ a {
 .card {
     border: none;
     border-radius: 12px;
-    box-shadow: 0 6px 10px -4px rgba(0,0,0,.15);
+    box-shadow: 0 6px 10px -4px rgba(0, 0, 0, .15);
     background-color: white;
     color: $text-cards;
 }
@@ -318,8 +345,7 @@ a {
             --r: calc(var(--position) - var(--offset));
             --abs: max(calc(var(--r) * -1), var(--r));
             transition: all 0.25s linear;
-            transform: rotateY(calc(-10deg * var(--r)))
-                translateX(calc(-300px * var(--r)));
+            transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-300px * var(--r)));
             z-index: calc((var(--position) - var(--abs)));
 
             img {
@@ -350,13 +376,11 @@ a {
             &:nth-of-type(5) {
                 --offset: 5;
                 background: rgb(0, 0, 255);
-                background: linear-gradient(
-                    207deg,
-                    rgba(0, 0, 255, 1) 0%,
-                    rgba(0, 128, 0, 1) 35%,
-                    rgba(255, 255, 0, 1) 55%,
-                    rgba(255, 0, 0, 1) 93%
-                );
+                background: linear-gradient(207deg,
+                        rgba(0, 0, 255, 1) 0%,
+                        rgba(0, 128, 0, 1) 35%,
+                        rgba(255, 255, 0, 1) 55%,
+                        rgba(255, 0, 0, 1) 93%);
             }
         }
     }
@@ -366,7 +390,7 @@ a {
         grid-row: 2 / 3;
     }
 
-    input:nth-of-type(1):checked ~ div#carousel {
+    input:nth-of-type(1):checked~div#carousel {
         --position: 1;
     }
 
@@ -375,7 +399,7 @@ a {
         grid-row: 2 / 3;
     }
 
-    input:nth-of-type(2):checked ~ div#carousel {
+    input:nth-of-type(2):checked~div#carousel {
         --position: 2;
     }
 
@@ -384,7 +408,7 @@ a {
         grid-row: 2 / 3;
     }
 
-    input:nth-of-type(3):checked ~ div#carousel {
+    input:nth-of-type(3):checked~div#carousel {
         --position: 3;
     }
 
@@ -393,7 +417,7 @@ a {
         grid-row: 2 / 3;
     }
 
-    input:nth-of-type(4):checked ~ div#carousel {
+    input:nth-of-type(4):checked~div#carousel {
         --position: 4;
     }
 
@@ -402,19 +426,166 @@ a {
         grid-row: 2 / 3;
     }
 
-    input:nth-of-type(5):checked ~ div#carousel {
+    input:nth-of-type(5):checked~div#carousel {
         --position: 5;
     }
 }
 
-.text-bordeaux{
+.text-bordeaux {
     color: $color-red;
 }
-.bg-bordeaux{
+
+.bg-bordeaux {
     background-color: $color-red;
-    
-    &:hover{
+
+    &:hover {
         filter: brightness(0.8);
         transition-duration: 0.3s;
     }
 }
+
+//back-button
+.back-button {
+    display: block;
+    position: relative;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+
+.back-button:before,
+.back-button:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+}
+
+.back-button:before {
+    border: 4px solid #747474;
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+        transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.back-button:after {
+    border: 4px solid #1b1b1b;
+    transform: scale(1.3);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+}
+
+.back-button:hover:before,
+.back-button:focus:before {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back-button:hover:after,
+.back-button:focus:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+        transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.back-button-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.back-button-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 21px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: #2e2e2e;
+}
+
+.back-button:hover .back-button-box,
+.back-button:focus .back-button-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+}
+
+
+@media screen and (max-width: 900px) {
+    #sidebar {
+        width: 70px;
+
+        span {
+            display: none;
+        }
+
+        #big-logo {
+            display: flex;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    }
+
+    #wrapper {
+        width: calc(100% - 70px);
+
+        header {
+            width: calc(100% - 70px);
+        }
+    }
+
+}
+
+    // button-Edit
+    .button-edit {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100px;
+        height: 40px;
+        border: none;
+        padding: 0px 20px;
+        background-color: rgb(32, 212, 167) !important;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: 5px 5px 0px rgb(119, 247, 215);
+        transition-duration: .3s;
+    }
+
+    .svg-edit {
+        width: 13px;
+        position: absolute;
+        right: 0;
+        margin-right: 20px;
+        fill: white;
+        transition-duration: .3s;
+    }
+
+    .button-edit:hover {
+        color: transparent;
+    }
+
+    .button-edit:hover svg {
+        right: 43%;
+        margin: 0;
+        padding: 0;
+        border: none;
+        transition-duration: .3s;
+    }
+
+    .button-edit:active {
+        transform: translate(3px, 3px);
+        transition-duration: .3s;
+        box-shadow: 2px 2px 0px rgb(32, 212, 167);
+    }

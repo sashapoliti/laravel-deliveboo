@@ -18,7 +18,10 @@ class PlateController extends Controller
     public function index()
     {
         $restaurant = Auth::user()->restaurant;
-        $plates = Plate::where('restaurant_id', $restaurant->id)->get();
+        $plates = Plate::where('restaurant_id', $restaurant->id)
+            ->orderBy('name', 'asc') // Ordina per il campo 'name' in ordine alfabetico ascendente
+            ->get();
+        
         return view('admin.plates.index', compact('plates'));
     }
 
