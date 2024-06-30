@@ -1,13 +1,15 @@
 <nav id="sidebar" class="navbar-dark">
     <div class="logo text-center">
-        <a href="http://localhost:5174" class="nav-link text-uppercase"><img class="img-fluid w-50" src="/images/logo.png" alt="logo"></a>
+        <a href="http://localhost:5174" class="nav-link text-uppercase">
+            <img class="img-fluid " src="../img/logo-nobg.png" alt="logo" style="width: 100px">
+        </a>
     </div>
     <div class="user">
         <div class="profile">
             <a class="nav-link d-flex align-items-center collapsed" href="#collapseExample" data-bs-toggle="collapse"
                 aria-expanded="false">
                 <img class="rounded-circle profile-picture me-2"
-                    src="{{ Auth::user() ? '' : '' }}"
+                    src="{{ Auth::user() ? 'https://media-assets.lacucinaitaliana.it/photos/61fa9709f0adc010b7251d76/16:9/w_2560%2Cc_limit/ristoranti-friuli.jpg' : '../img/user_placeholder.jpg' }}"
                     alt="{{ Auth::user() ? Auth::user()->name : 'Default' }} profile picture">
                 <span>{{ Auth::user() ? Auth::user()->name : 'Guest' }}</span>
                 <i class="fa-solid fa-caret-down ms-auto"></i>
@@ -59,12 +61,12 @@
     <ul id="routes-list" class="navbar-nav">
         <li>
             <a href="{{ route('admin.dashboard') }}" class="{{ Route::is('admin.dashboard') ? 'active' : '' }} nav-link d-flex align-items-center">
-                <i class="fa-solid fa-building-columns"></i> Dashboard
+                <i class="fa-solid fa-house"></i> Dashboard
             </a>
         </li>
         <li>
             <a href="{{ route('admin.plates.index') }}" class="{{ Route::is('admin.plates.*') ? 'active' : '' }} nav-link d-flex align-items-center">
-                <i class="fa-solid fa-film"></i> Plates
+                <i class="fa-solid fa-utensils"></i> Plates
             </a>
         </li>
         {{-- <li>
