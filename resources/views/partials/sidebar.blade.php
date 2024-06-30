@@ -65,15 +65,16 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('admin.restaurants.index') }}" class="{{ Route::is('admin.restaurants.*') ? 'active' : '' }} nav-link d-flex align-items-center">
+                <i class="fa-solid fa-shop"></i> My Restaurant
+            </a>
+        </li> 
+        <li>
             <a href="{{ route('admin.plates.index') }}" class="{{ Route::is('admin.plates.*') ? 'active' : '' }} nav-link d-flex align-items-center">
                 <i class="fa-solid fa-utensils"></i> Plates
             </a>
         </li>
-        {{-- <li>
-            <a href="{{ route('admin.rooms.index') }}" class="{{ Route::is('admin.rooms.*') ? 'active' : '' }} nav-link d-flex align-items-center">
-                <i class="fa-solid fa-person-booth"></i> Rooms
-            </a>
-        </li> --}}
+      
         {{-- <li>
             <a href="{{ route('admin.movie_rooms.index') }}" class="{{ Route::is('admin.movie_rooms.*') ? 'active' : '' }} nav-link d-flex align-items-center">
                 <i class="fa-solid fa-video"></i> Projections
