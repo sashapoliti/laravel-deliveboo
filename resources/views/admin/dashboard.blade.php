@@ -4,7 +4,7 @@
 
 <div class="container">
 
-  <table class="tb-glass">
+  {{-- <table class="tb-glass">
     <thead>
         <tr>
           <th scope="col" class="d-none d-lg-table-cell">Id</th>
@@ -35,9 +35,69 @@
         </tr>
         @endforeach
       </tbody>
-  </table>
+  </table> --}}
+
+  <div class="row mt-5">
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-title">
+          <h2 class="m-3">Total orders</h2>
+        </div>
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <h1 class="card-title">10</h1>
+          <div class="mx-2">
+            <i class="fa-solid fa-utensils" style="font-size: 40px ; color: rgb(0, 0, 0, 0.5)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-title">
+          <h2 class="m-3">Guadagni</h2>
+        </div>
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <h1 class="card-title">10 €</h1>
+          <div class="mx-2 d-flex mb-3">
+            <i class="fa-solid fa-hand-holding-dollar" style="font-size: 50px ; color: rgb(0, 0, 0, 0.5)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <div class="card-title">
+          <h2 class="m-3">Attività</h2>
+        </div>
+        <div class="card-body d-flex justify-content-between align-items-center ">
+          <h4 class="card-title d-flex flex-wrap">{{$restaurants[0]->name}}</h4>
+          <div class="mx-2">
+            <i class="fa-solid fa-shop" style="font-size: 40px ; color: rgb(0, 0, 0, 0.5)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5 ">
+    <div style="width: 900px"><canvas id="guadagni"></canvas></div>
+  </div>
 
 </div>
 
 
   @endsection
+
+
+
+
+
+
+
+
+
+
+
+

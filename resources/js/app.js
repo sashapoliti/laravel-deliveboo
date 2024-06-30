@@ -2,6 +2,7 @@ import './bootstrap';
 import '~resources/scss/app.scss';
 import '~icons/bootstrap-icons.scss';
 import * as bootstrap from 'bootstrap';
+import Chart from 'chart.js/auto'
 import.meta.glob([
     '../img/**'
 ])
@@ -57,3 +58,48 @@ deleteSubmitButtons.forEach((button) => {
         });
     });
 });
+
+
+
+(async function() {
+  const data = [
+    { year: 2010, count: 10 },
+    { year: 2011, count: 40 },
+    { year: 2012, count: 15 },
+    { year: 2013, count: 25 },
+    { year: 2014, count: 22 },
+    { year: 2015, count: 30 },
+    { year: 2016, count: 28 },
+  ];
+  
+  new Chart(
+    document.getElementById('guadagni'),
+    {
+      type: 'line',
+      options: {
+        animation: false,
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: false
+          }
+        }
+      },
+      data: {
+        labels: data.map(row => row.year),
+        datasets: [
+          {
+            label: 'guadagni',
+            data: data.map(row => row.count),
+            borderColor: '#69BB01',
+          }
+        ]
+      }
+    }
+  );
+  
+})();
+

@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="main-title">
-                    <p>50s Dream Drive-in</p>
+                    <p>Hello {{ Auth::user()->name }}</p>
                 </div>
             </div>
             {{-- Right buttons --}}
