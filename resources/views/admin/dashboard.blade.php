@@ -39,7 +39,7 @@
 
   <div class="row mt-5">
     <div class="col-12 col-md-6 col-lg-3">
-      <div class="card">
+      <div class="card " style="height: 200px">
         <div class="card-title">
           <h2 class="m-3">Total orders</h2>
         </div>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <div class="card">
+      <div class="card" style="height: 200px">
         <div class="card-title">
           <h2 class="m-3">Guadagni</h2>
         </div>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="col-12 col-md-6 col-lg-3">
-      <div class="card">
+      <div class="card" style="height: 200px">
         <div class="card-title">
           <h2 class="m-3">Attività</h2>
         </div>
@@ -88,7 +88,7 @@
 </div>
 
 
-  @endsection
+@endsection
 
 
 
