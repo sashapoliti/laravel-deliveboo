@@ -34,6 +34,20 @@ if(image) {
 }
 
 
+
+const logo = document.getElementById("upload_logo");
+if(logo) {
+    logo.addEventListener("change", function () {
+
+        const preview = document.getElementById("uploadPreviewLogo");
+        const reader = new FileReader();
+        reader.readAsDataURL(logo.files[0]);
+        reader.onload = function (reader){
+            preview.src = reader.target.result;
+        };
+    });
+}
+
 // colletction di array di bottoni delete
 const deleteSubmitButtons = document.querySelectorAll(".delete-button");
 // tramite il forEach prendiamo tutti i bottoni delete e aggiungiamo l'event listener

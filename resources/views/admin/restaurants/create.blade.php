@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="container m-auto">
-
+        
         <div class="d-flex align-items-center mt-3">
-            <a href="{{ route('admin.restaurants.index') }}" class="my-2">
+            <a href="{{ route('admin.dashboard') }}" class="my-2">
                 <button class="back-button">
                     <div class="back-button-box">
                       <span class="back-button-elem">
@@ -28,7 +28,7 @@
         </div>
         
         <h2 class="text-center tet-uppercase">Inserisci un nuovo ristorante</h2>
-        <form class="row g-3" action="{{ route('admin.restaurant.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="row g-3" action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
                 <label for="address" class="form-label">Address</label>
@@ -57,27 +57,13 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-            <!--<div class="col-md-6">
+            <div class="col-md-6">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
             </div>
             @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <div class="col-12">
-                <label for="visibility" class="form-label">Visibilitá</label>
-                <input type="checkbox" name="visibility" id="visibility">
-
-            </div>
-            <div class="col-12">
-                <label for="price" class="form-label">Prezzo</label>
-                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
-                    name="price" value="{{ old('price') }}" step="0.01" placeholder="0.01">
-
-            </div>
-            @error('price')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror-->
 
            <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
@@ -96,18 +82,18 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Logo</label>
+                <label for="logo" class="form-label">Logo</label>
                 <input type="file" accept="image/*" class="form-control 
-                @error('image') is-invalid @enderror" id="upload_image"
+                @error('logo') is-invalid @enderror" id="upload_logo"
                 name="logo" value="{{ old('logo') }}" maxlength="255">
                 @error('logo')
                     <div class ="alert alert-danger">{{$errors->first('logo')}}</div>
                 @enderror 
                 <h4 class="mt-3">Your logo</h4>
                 @if(old('logo'))
-                    <img src="{{asset('storage/' . old('logo'))}}" alt="{{old('logo')}}" id="uploadPreview" class="shadow rounded-4 m-4">
+                    <img src="{{asset('storage/' . old('logo'))}}" alt="{{old('logo')}}" id="uploadPreviewLogo" class="shadow rounded-4 m-4">
                 @else 
-                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
+                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreviewLogo" class="shadow rounded-4 m-4">
                 @endif
             </div>
             

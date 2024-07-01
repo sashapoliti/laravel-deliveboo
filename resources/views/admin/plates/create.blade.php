@@ -71,7 +71,7 @@
                 @enderror 
                 <h4 class="mt-3">Your image</h4>
                 @if(old('image'))
-                    <img src="{{asset('storage/' . old('image'))}}" alt="{{old('title')}}" id="uploadPreview" class="shadow rounded-4 m-4">
+                    <img src="{{asset('storage/' . old('image'))}}" alt="{{old('name')}}" id="uploadPreview" class="shadow rounded-4 m-4">
                 @else 
                     <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
                 @endif

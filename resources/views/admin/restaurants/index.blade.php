@@ -3,15 +3,18 @@
 @section('content')
 
 <div class="container">
+
+
   @foreach ($restaurants as $restaurant)
     <div class="card mt-5"> 
-      <div class="card-header d-flex align-items-center" style=" background-image: url({{$restaurant->image}}) ; height: 400px">
+      <div class="card-header d-flex align-items-center" style="height: 500px; background-image: url({{asset('storage/'. $restaurant->image)}})">
         
       </div>
       <div class="card-body">
         <div class="d-flex align-items-center my-4">
           <div class="overflow-hidden">
-            <img src="{{$restaurant->logo }}" alt="{{ $restaurant->name }}" class="rounded-circle" style="width: 100px">
+            {{-- .'post_images/'.'carbonara.jpeg' --}}
+            <img src="{{asset('storage/'. $restaurant->logo)}}" alt="{{ $restaurant->name }}" class="rounded-circle" style="width: 100px">
           </div>
           <h2 class="m-3">{{$restaurant->name}}</h2>
         </div>

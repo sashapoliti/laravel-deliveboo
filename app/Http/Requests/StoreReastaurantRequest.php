@@ -28,7 +28,6 @@ class StoreReastaurantRequest extends FormRequest
             'image' => 'nullable|image|max:2048',
             'description' => 'nullable|string|max:255|min:3',
             'logo' => 'nullable|image|max:2048',
-            'slug' => 'required|max:255|min:3|string',
         ];
     }
     public function messages()
@@ -59,12 +58,6 @@ class StoreReastaurantRequest extends FormRequest
     
             'logo.image' => 'Il logo deve essere un\'immagine',
             'logo.max' => 'Il logo deve avere massimo 2048 kilobyte',
-    
-            'slug.required' => 'Lo slug è obbligatorio',
-            'slug.min' => 'Lo slug deve avere almeno 3 caratteri',
-            'slug.max' => 'Lo slug deve avere massimo 255 caratteri',
-            'slug.string' => 'Lo slug deve essere una stringa',
-
         ];
     }
 }
