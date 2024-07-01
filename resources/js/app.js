@@ -91,7 +91,7 @@ deleteSubmitButtons.forEach((button) => {
     {
       type: 'line',
       options: {
-        animation: false,
+        animation: true,
         responsive: true,
         plugins: {
           legend: {

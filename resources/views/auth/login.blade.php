@@ -33,19 +33,19 @@
                         </label>
                     
                         <div class="form-check d-flex justify-content-center">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                    
-                            <label class="form-check-label mx-2" for="remember" >
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                        
+                          <input class="form-check-input custom-checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                          <label class="form-check-label mx-2" for="remember">
+                              {{ __('Remember Me') }}
+                          </label>
+                      </div>
+                      
+                      
                         <button type="submit" class="submit">
                             {{ __('Login') }}
                         </button>
                     
                         @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                        <a class="btn  btn-link link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                         @endif
@@ -62,7 +62,50 @@
 
 
 <style lang="scss" scoped>
+   .custom-checkbox:checked {
+      background-color: #67BA02 !important;
+      border-color: #67BA02 !important;
+    }
 
+    .custom-checkbox:checked::before {
+        content: '';
+        display: inline-block;
+        position: relative;
+        width: 1em;
+        height: 1em;
+        background-color: #67BA02 !important;
+        border-radius: 0.25em;
+        border: 2px solid #67BA02 !important;
+    }
+
+    .custom-checkbox {
+        appearance: none;
+        width: 1.5em;
+        height: 1.5em;
+        border: 2px solid #ccc;
+        border-radius: 0.25em;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .custom-checkbox:checked::after {
+        content: '\2713';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1em;
+    }
+   
+    .link {
+      color: #67BA02 !important;
+    }
     .form {
       display: flex;
       flex-direction: column;
@@ -76,7 +119,7 @@
     
     .title {
       font-size: 28px;
-      color:  #0C7CEC;
+      color:  #67BA02;
       font-weight: 600;
       letter-spacing: -1px;
       position: relative;
@@ -92,13 +135,13 @@
       width: 16px;
       border-radius: 50%;
       left: 0px;
-      background-color:  #0C7CEC;
+      background-color:  #70ca02;
     }
     
     .title::before {
       width: 18px;
       height: 18px;
-      background-color:  #0C7CEC;
+      background-color:  #7bdb05;
     }
     
     .title::after {
@@ -117,11 +160,11 @@
     }
     
     .signin a {
-      color: #0C7CEC;
+      color: #68BA01;
     }
     
     .signin a:hover {
-      text-decoration: underline #0C7CEC;
+      text-decoration: underline #5ca700;
     }
     
     .flex {
@@ -170,7 +213,7 @@
     .submit {
       border: none;
       outline: none;
-      background-color: #0C7CEC;
+      background-color: #68BA01;
       padding: 10px;
       border-radius: 10px;
       color: #fff;
@@ -179,7 +222,7 @@
     }
     
     .submit:hover {
-      background-color: #2883df;
+      background-color: #5ca700;
     }
     
     @keyframes pulse {
