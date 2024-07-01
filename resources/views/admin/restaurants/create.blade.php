@@ -33,38 +33,42 @@
 
             <div class="col-md-6">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required maxlength="255" minlength="3"
                     value="{{ old('name') }}">
+                <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 255</div> 
+
             </div>
             @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
             <div class="col-md-6">
                 <label for="vat_number" class="form-label">Vat number</label>
                 <input type="text" class="form-control @error('vat_number') is-invalid @enderror" id="vat_number" name="vat_number"
+                    maxlength="11" minlength="11" required
                     value="{{ old('vat_number') }}">
             </div>
             @error('vat_number')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
             <div class="col-12">
                 <label for="address" class="form-label">Address</label>
                 <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-                    value="{{ old('address') }}">
+                    value="{{ old('address') }}" maxlength="255" minlength="3" required>
             </div>
             @error('address')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
 
             <div class="col-12">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
+                <textarea maxlength="255" minlength="3" class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                >{{ old('description') }}</textarea>
             </div>
             @error('description')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
             
@@ -74,11 +78,11 @@
                         Restaurant image
                     </h4>
                 </label>
-                <input type="file" accept="image/*" class="form-control 
+                <input type="file" accept="image/*" class="form-control  
                 @error('image') is-invalid @enderror" id="upload_image"
-                name="image" value="{{ old('image') }}" maxlength="255">
+                name="image" value="{{ old('image') }}" maxlength="2048">
                 @error('image')
-                    <div class ="alert alert-danger">{{$errors->first('image')}}</div>
+                    <div class ="invalid-feedback">{{$errors->first('image')}}</div>
                 @enderror 
                 <h4 class="mt-3">Restaurant image</h4>
                 @if(old('image'))
@@ -100,9 +104,9 @@
                 </label>
                 <input type="file" accept="image/*" class="form-control 
                 @error('logo') is-invalid @enderror" id="upload_logo"
-                name="logo" value="{{ old('logo') }}" maxlength="255">
+                name="logo" value="{{ old('logo') }}" maxlength="2048">
                 @error('logo')
-                    <div class ="alert alert-danger">{{$errors->first('logo')}}</div>
+                    <div class ="invalid-feedback">{{$errors->first('logo')}}</div>
                 @enderror 
                 <h4 class="mt-3">Your logo</h4>
                 @if(old('logo'))

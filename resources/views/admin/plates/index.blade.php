@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+@if(session('message'))
+<div class="alert alert-success mt-3">
+    {{ session('message') }}
+</div>
+@endif
+
     <div class="container">
         <div class="my-5 d-flex justify-content-center align-items-center">
             <h1>Create a new plate</h1>

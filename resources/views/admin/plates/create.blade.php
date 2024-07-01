@@ -32,29 +32,32 @@
             @csrf
             <div class="col-6">
                 <label for="name" class="form-label">Nome</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" maxlength="255" minlength="3" required
                     value="{{ old('name') }}">
+            <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 255</div> 
+                
             </div>
             @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
             <div class="col-6">
                 <label for="price" class="form-label">Prezzo</label>
                 <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
-                name="price" value="{{ old('price') }}" step="0.01" >
+                name="price" value="{{ old('price') }}" step="0.01" maxlength="6" minlength="0.01" required>
 
             </div>
             @error('price')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
             <div class="col-12">
                 <label for="description" class="form-label">Descrizione</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
+                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                maxlength="255" minlength="3">{{ old('description') }}</textarea>
             </div>
             @error('description')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             <div class="col-12">
                 <div>
@@ -77,9 +80,9 @@
                 <label for="image" class="form-label">Image</label>
                 <input type="file" accept="image/*" class="form-control 
                 @error('image') is-invalid @enderror" id="upload_image"
-                name="image" value="{{ old('image') }}" maxlength="255">
+                name="image" value="{{ old('image') }}" maxlength="2048">
                 @error('image')
-                    <div class ="alert alert-danger">{{$errors->first('image')}}</div>
+                    <div class ="invalid-feedback">{{$errors->first('image')}}</div>
                 @enderror 
                 <h4 class="mt-3">Your image</h4>
                 @if(old('image'))

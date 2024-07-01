@@ -28,27 +28,27 @@
         @csrf  
         @method('PUT')  
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+            <label for="name" class="form-label">Name</label> 
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" maxlength="255" minlength="3" required
                 value="{{ old('name', $plate->name) }}">
             @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror  
-            <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 200</div> 
+            <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 255</div> 
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description', $plate->description) }}</textarea>
+            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" maxlength="255" minlength="3">{{ old('description', $plate->description) }}</textarea>
             @error('description')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror 
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" maxlength="5" minlength="0.01" required
                 name="price" value="{{ old('price', $plate->price) }}">
             @error('price')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
             @enderror 
         </div>
         <div class="mb-3">
@@ -64,7 +64,7 @@
             <label for="image" class="form-label">Image</label>
             <input type="file" accept="image/*" 
             class="form-control @error('image') is-invalid @enderror" id="upload_image"
-            name="image">
+            name="image" maxlength="2048">
             @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror 

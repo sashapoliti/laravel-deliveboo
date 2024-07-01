@@ -23,8 +23,8 @@ class StoreReastaurantRequest extends FormRequest
     {
         return [
             'address' => 'required|string|max:255|min:3',
-            'vat_number' => 'required|string|max:255|min:3',
-            'name' => 'required|max:255|min:3|string',
+            'vat_number' => 'required|string|max:11|min:11',
+            'name' => 'required|max:255|min:3|string|max:255',
             'image' => 'nullable|image|max:2048',
             'description' => 'nullable|string|max:255|min:3',
             'logo' => 'nullable|image|max:2048',
@@ -40,8 +40,8 @@ class StoreReastaurantRequest extends FormRequest
             'address.string' => 'L\'indirizzo deve essere una stringa',
     
             'vat_number.required' => 'Il numero di partita IVA è obbligatorio',
-            'vat_number.min' => 'Il numero di partita IVA deve avere almeno 3 caratteri',
-            'vat_number.max' => 'Il numero di partita IVA deve avere massimo 255 caratteri',
+            'vat_number.min' => 'Il numero di partita IVA deve avere almeno 11 caratteri',
+            'vat_number.max' => 'Il numero di partita IVA deve avere massimo 11 caratteri',
             'vat_number.string' => 'Il numero di partita IVA deve essere una stringa',
     
             'name.required' => 'Il nome è obbligatorio',
