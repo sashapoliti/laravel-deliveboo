@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use Illuminate\Support\Str;
 
@@ -35,4 +36,10 @@ class Restaurant extends Model
     {
         return $this->hasMany(Plate::class);
     }
+
+    public function types(): BelongsToMany
+    {
+        return $this->belongsToMany(Type::class);
+    }
+    
 }
