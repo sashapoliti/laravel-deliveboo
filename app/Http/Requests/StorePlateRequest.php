@@ -25,7 +25,7 @@ class StorePlateRequest extends FormRequest
             'name' => 'required|max:255|min:3|string',
             'description' => 'nullable|string|max:255|min:3',
             'visibility' => 'boolean',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:99999',
             'image' => 'nullable|image|max:2048',
         ];
     }
@@ -47,6 +47,7 @@ class StorePlateRequest extends FormRequest
             'price.required' => 'Il prezzo è obbligatorio',
             'price.numeric' => 'Il prezzo deve essere un numero',
             'price.min' => 'Il prezzo deve essere positivo',
+            'price.max' => 'Il prezzo deve essere inferiore a 99999',
 
         ];
     }
