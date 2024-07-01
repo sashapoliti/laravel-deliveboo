@@ -76,11 +76,6 @@
                     <i class="fa-solid fa-utensils"></i> Plates
                 </a>
             </li>
-            <li>
-                <a href="{{ route('admin.types.index') }}" class="{{ Route::is('admin.types.*') ? 'active' : '' }} nav-link d-flex align-items-center">
-                    <i class="fa-solid fa-utensils"></i> Types
-                </a>
-            </li>
         @endif
      
       
