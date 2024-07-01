@@ -44,11 +44,11 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-3">
-                  <div class="card" style="height: 200px">
+                  <div class="card " style="height: 200px; margin-right: -15px">
                       <div class="card-title">
                           <h2 class="m-3">Attività</h2>
                       </div>
-                      <div class="card-body d-flex justify-content-between align-items-center ">
+                      <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
                           @if (count($restaurants) > 0)
                               <h4 class="card-title">{{ $restaurants[0]->name }}</h4>
                           @else

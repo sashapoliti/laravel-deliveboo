@@ -71,4 +71,4 @@
             @endforeach
         </div>
         @include('partials.modal-delete')
-    @endsection
+@endsection

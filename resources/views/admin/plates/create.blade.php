@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+ @extends('layouts.admin')
 
 @section('content')
     <section class="container m-auto">
@@ -28,9 +28,9 @@
         </div>
         
         <h2 class="text-center tet-uppercase">Inserisci un nuovo piatto</h2>
-        <form class="row g-3" action="{{ route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="row g-3 mt-3" action="{{ route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="col-md-6">
+            <div class="col-6">
                 <label for="name" class="form-label">Nome</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                     value="{{ old('name') }}">
@@ -39,7 +39,17 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-            <div class="col-md-6">
+            <div class="col-6">
+                <label for="price" class="form-label">Prezzo</label>
+                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+                name="price" value="{{ old('price') }}" step="0.01" >
+
+            </div>
+            @error('price')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            <div class="col-12">
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
             </div>
@@ -47,19 +57,21 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <div class="col-12">
-                <label for="visibility" class="form-label">Visibilitá</label>
-                <input type="checkbox" name="visibility" id="visibility">
+                <div>
+                    <h5>Seleziona se il prodotto è visibile o meno</h5>
 
+                    <div class="my-2">
+                        <input type="radio" name="visibility" id="visibility" value="1" checked class="mx-2" >
+                        <label for="visibility">Visibile</label>
+                    </div>
+                    <div class="my-2">
+                        <input type="radio" name="visibility" id="visibility" value="0" class="mx-2">
+                        <label for="visibility">Non visibile</label>
+                    </div>
+                   
+                </div>
             </div>
-            <div class="col-12">
-                <label for="price" class="form-label">Prezzo</label>
-                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
-                    name="price" value="{{ old('price') }}" step="0.01" placeholder="0.01">
-
-            </div>
-            @error('price')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+           
 
            <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
@@ -71,16 +83,22 @@
                 @enderror 
                 <h4 class="mt-3">Your image</h4>
                 @if(old('image'))
-                    <img src="{{asset('storage/' . old('image'))}}" alt="{{old('name')}}" id="uploadPreview" class="shadow rounded-4 m-4">
+                    <div class="container-img">
+                        <img src="{{asset('storage/' . old('image'))}}" alt="{{old('name')}}" id="uploadPreview" class="shadow rounded-4 m-4">
+                    </div>
                 @else 
-                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
+                    <div class="container-img">
+                        <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
+                    </div>
                 @endif
             </div>
             
-            <div class="col-12">
-                <button type="submit" class="btn bg-bordeaux">Crea</button>
+            <div class="col-12 mb-5">
+                <button type="submit" class="btn btn-primary">Crea</button>
             </div>
+
         </form>
+
         <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
         <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
     @endsection

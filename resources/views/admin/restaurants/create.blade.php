@@ -27,15 +27,16 @@
             <h1 class="mx-2 mt-1">Create</h1>
         </div>
         
-        <h2 class="text-center tet-uppercase">Inserisci un nuovo ristorante</h2>
+        <h2 class="text-center tet-uppercase my-4">Inserisci un nuovo ristorante</h2>
         <form class="row g-3" action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
             <div class="col-md-6">
-                <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-                    value="{{ old('address') }}">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                    value="{{ old('name') }}">
             </div>
-            @error('address')
+            @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
@@ -48,16 +49,17 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-            <div class="col-md-6">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                    value="{{ old('name') }}">
+            <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
+                    value="{{ old('address') }}">
             </div>
-            @error('name')
+            @error('address')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-            <div class="col-md-6">
+
+            <div class="col-12">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
             </div>
@@ -65,24 +67,37 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-           <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
+            
+           <div class="mb-3 col-6 my-3 mt-3">
+                <label for="image" class="form-label">
+                    <h4>
+                        Restaurant image
+                    </h4>
+                </label>
                 <input type="file" accept="image/*" class="form-control 
                 @error('image') is-invalid @enderror" id="upload_image"
                 name="image" value="{{ old('image') }}" maxlength="255">
                 @error('image')
                     <div class ="alert alert-danger">{{$errors->first('image')}}</div>
                 @enderror 
-                <h4 class="mt-3">Your image</h4>
+                <h4 class="mt-3">Restaurant image</h4>
                 @if(old('image'))
-                    <img src="{{asset('storage/' . old('image'))}}" alt="{{old('name')}}" id="uploadPreview" class="shadow rounded-4 m-4">
+                    <div class="container-img">
+                        <img src="{{asset('storage/' . old('image'))}}" alt="{{old('name')}}" id="uploadPreview" class="shadow rounded-4 m-4">
+                    </div>
                 @else 
-                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
+                    <div class="container-img">
+                        <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
+                    </div>
                 @endif
             </div>
 
-            <div class="mb-3">
-                <label for="logo" class="form-label">Logo</label>
+            <div class="mb-3 col-6  my-3 mt-3">
+                <label for="logo" class="form-label">
+                    <h4>
+                        Logo
+                    </h4>
+                </label>
                 <input type="file" accept="image/*" class="form-control 
                 @error('logo') is-invalid @enderror" id="upload_logo"
                 name="logo" value="{{ old('logo') }}" maxlength="255">
@@ -91,14 +106,18 @@
                 @enderror 
                 <h4 class="mt-3">Your logo</h4>
                 @if(old('logo'))
-                    <img src="{{asset('storage/' . old('logo'))}}" alt="{{old('logo')}}" id="uploadPreviewLogo" class="shadow rounded-4 m-4">
+                    <div class="container-img">
+                        <img src="{{asset('storage/' . old('logo'))}}" alt="{{old('logo')}}" id="uploadPreviewLogo" class="shadow rounded-4 m-4" >
+                    </div>
                 @else 
-                    <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreviewLogo" class="shadow rounded-4 m-4">
+                    <div class="container-img">
+                        <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreviewLogo" class="shadow rounded-4 m-4" >
+                    </div>
                 @endif
             </div>
             
             <div class="col-12">
-                <button type="submit" class="btn bg-bordeaux">Crea</button>
+                <button type="submit" class="btn btn-primary mb-5">Crea</button>
             </div>
         </form>
         <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>

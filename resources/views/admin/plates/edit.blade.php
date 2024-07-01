@@ -70,9 +70,9 @@
             @enderror 
             <h4 class="mt-3">Your image</h4>
             @if($plate->image)
-                <img class="shadow rounded-3 mt-3" width="150" src="{{ asset('storage/' . $plate->image) }}" alt="{{ $plate->name }}" id="uploadPreview">
+                <img class="shadow rounded-3 mt-3" width="300" src="{{ asset('storage/' . $plate->image) }}" alt="{{ $plate->name }}" id="uploadPreview">
             @else
-                <img class="shadow rounded-3 mt-3" width="150" src="{{ old('image', $plate->image) }}" alt="{{ $plate->name }}" id="uploadPreview">
+                <img class="shadow rounded-3 mt-3" width="300" src="{{ old('image', $plate->image) }}" alt="{{ $plate->name }}" id="uploadPreview">
             @endif
         </div>
 
