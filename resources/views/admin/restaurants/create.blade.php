@@ -62,16 +62,23 @@
             @enderror
 
            
-            <div class="col-6">
-                <label for="type" class="form-label">Type</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    @foreach($types as $type)
-                        <option value="{{$type->id}}">{{$type->name}}</option>
-                    @endforeach
-                </select>
+            
+
+            <div class="form-group">
+                <p>Select  Type:</p>
+                @foreach ($types as $type)
+                    <div>
+                        <input class="form-check-input" type="checkbox" value="{{$type->id}}"  name="types[]"
+                        {{in_array($type->id, old('types', [])) ? 'checked' : ''}}>
+                        <label class="form-check-label" for="">
+                            {{$type->name}}
+                        </label>
+                    </div>
+                @endforeach
+                @error('types')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
             </div>
-          
 
 
             <div class="col-12">

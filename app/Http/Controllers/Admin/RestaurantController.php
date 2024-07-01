@@ -10,7 +10,6 @@ use App\Http\Requests\StoreReastaurantRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
-
 class RestaurantController extends Controller
 {
     /**
@@ -19,9 +18,8 @@ class RestaurantController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $types = Type::all();
         $restaurants = Restaurant::where('user_id', $user->id)->get();
-        return view('admin.restaurants.index', compact('restaurants', 'types'));
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -38,45 +36,48 @@ class RestaurantController extends Controller
      */
     public function store(StoreReastaurantRequest $request)
     {
-        // Valida i dati e li assegna a $from_data
-        $from_data = $request->validated();
-        
+        // Valida i dati e li assegna a $form_data
+        $form_data = $request->validated();
+
         // Genera lo slug e lo aggiunge ai dati
-        $from_data['slug'] = Restaurant::generateSlug($from_data['name']);
-        
+        $form_data['slug'] = Restaurant::generateSlug($form_data['name']);
+
         // Assegna l'ID dell'utente autenticato ai dati del ristorante
-        $from_data['user_id'] = Auth::user()->id;
-        $from_data['type_id'] = $request->type_id;
-    
+        $form_data['user_id'] = Auth::user()->id;
+
         // Gestisce il caricamento dell'immagine
         if ($request->hasFile('image')) {
-            $name = $request->image->getClientOriginalName(); 
+            $name = $request->image->getClientOriginalName();
             $path = Storage::putFileAs('post_images', $request->image, $name);
-            $from_data['image'] = $path;
+            $form_data['image'] = $path;
         }
-    
+
         // Gestisce il caricamento del logo
         if ($request->hasFile('logo')) {
-            $name = $request->logo->getClientOriginalName(); 
+            $name = $request->logo->getClientOriginalName();
             $path = Storage::putFileAs('post_images', $request->logo, $name);
-            $from_data['logo'] = $path;
+            $form_data['logo'] = $path;
         }
-    
+
         // Crea il nuovo ristorante
-        $newRestaurant = Restaurant::create($from_data);
-        
+        $newRestaurant = Restaurant::create($form_data);
+
+         // se c' è la request dei tag 
+         if($request->has('types')) {
+            //con attach passiamo l' array dei tag 
+            $newRestaurant->types()->attach($request->types);
+        }
+
         // Reindirizza alla lista dei ristoranti con un messaggio di successo
         return redirect()->route('admin.restaurants.index')->with('message', $newRestaurant->name . ' è stato creato');
     }
-    
-    
 
     /**
      * Display the specified resource.
      */
     public function show(Restaurant $restaurant)
     {
-        //no!
+        // Implementazione di visualizzazione, se necessario
     }
 
     /**
@@ -84,7 +85,7 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //no!
+        // Implementazione di modifica, se necessario
     }
 
     /**
@@ -92,18 +93,21 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //no!
+        // Implementazione di aggiornamento, se necessario
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Restaurant $restaurant)
-    {   
+    {
         if ($restaurant->image) {
             Storage::delete($restaurant->image);
         }
+        if ($restaurant->logo) {
+            Storage::delete($restaurant->logo);
+        }
         $restaurant->delete();
-        return redirect()->route('admin.restaurants.index')->with('message', $restaurant->name . ' è stato eliminato');
+        return redirect()->route('admin.restaurants.index')->with('message', $restaurant->name . ' è stato eliminato');
     }
 }
