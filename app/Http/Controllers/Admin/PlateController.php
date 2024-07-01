@@ -42,10 +42,10 @@ class PlateController extends Controller
         $form_data['slug'] = Plate::generateSlug($form_data['name']);
         $form_data['restaurant_id'] = Auth::user()->restaurant->id;
 
+        // Gestisce il caricamento dell'immagine
         if ($request->hasFile('image')) {
-            $name = $request->image->getClientOriginalName(); 
-            $path = Storage::putFileAs('post_images', $request->image, $name);
-            $form_data['image'] = $path;
+            $imagePath = $this->handleFileUpload($request->file('image'), 'plate_images');
+            $form_data['image'] = $imagePath;
         }
 
         $newPlate = Plate::create($form_data);
@@ -76,13 +76,16 @@ class PlateController extends Controller
         $form_data = $request->validated();
         $form_data['slug'] = Plate::generateSlug($form_data['name']);
 
+        // Gestisce il caricamento dell'immagine
         if ($request->hasFile('image')) {
+            // Rimuove l'immagine precedente se presente
             if ($plate->image) {
                 Storage::delete($plate->image);
             }
-            $name = $request->image->getClientOriginalName();
-            $path = Storage::putFileAs('post_images', $request->image, $name);
-            $form_data['image'] = $path;
+
+            // Carica la nuova immagine
+            $imagePath = $this->handleFileUpload($request->file('image'), 'plate_images');
+            $form_data['image'] = $imagePath;
         }
 
         $plate->update($form_data);
@@ -94,10 +97,35 @@ class PlateController extends Controller
      */
     public function destroy(Plate $plate)
     {
+        // Rimuove l'immagine associata al piatto se presente
         if ($plate->image) {
             Storage::delete($plate->image);
         }
+
         $plate->delete();
         return redirect()->route('admin.plates.index')->with('message', $plate->name . ' è stato eliminato');
+    }
+
+    /**
+     * Gestisce il caricamento del file e restituisce il percorso del file caricato.
+     *
+     * @param \Illuminate\Http\UploadedFile $file
+     * @param string $directory
+     * @return string
+     */
+    private function handleFileUpload($file, $directory)
+    {
+        // Genera un nome di file unico
+        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        
+        // Carica il file nella directory specificata
+        try {
+            $path = Storage::putFileAs($directory, $file, $filename);
+        } catch (\Exception $e) {
+            // Gestisce eventuali errori durante il caricamento
+            throw new \Exception('Errore durante il caricamento del file: ' . $e->getMessage());
+        }
+
+        return $path;
     }
 }
