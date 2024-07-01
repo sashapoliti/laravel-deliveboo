@@ -25,6 +25,8 @@
           <p class="card-text mx-5 my-2">{{$restaurant->address}}</p>
           <h5>VAT number</h5>
           <p class="card-text mx-5 my-2">{{$restaurant->vat_number}}</p>
+          <h5>Type</h5>
+          <p class="card-text mx-5 my-2">{{$restaurant->type->name}}</p>
         </div>
       </div>
     </div>

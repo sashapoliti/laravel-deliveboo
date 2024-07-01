@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Restaurant;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreReastaurantRequest;
 use App\Http\Controllers\Controller;
@@ -18,8 +19,9 @@ class RestaurantController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $types = Type::all();
         $restaurants = Restaurant::where('user_id', $user->id)->get();
-        return view('admin.restaurants.index', compact('restaurants'));
+        return view('admin.restaurants.index', compact('restaurants', 'types'));
     }
 
     /**
@@ -27,7 +29,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurants.create');
+        $types = Type::all();
+        return view('admin.restaurants.create', compact('types'));
     }
 
     /**
@@ -43,6 +46,7 @@ class RestaurantController extends Controller
         
         // Assegna l'ID dell'utente autenticato ai dati del ristorante
         $from_data['user_id'] = Auth::user()->id;
+        $from_data['type_id'] = $request->type_id;
     
         // Gestisce il caricamento dell'immagine
         if ($request->hasFile('image')) {

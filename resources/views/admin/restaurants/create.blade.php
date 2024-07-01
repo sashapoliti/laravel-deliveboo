@@ -52,7 +52,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            <div class="col-12">
+            <div class="col-6">
                 <label for="address" class="form-label">Address</label>
                 <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
                     value="{{ old('address') }}" maxlength="255" minlength="3" required>
@@ -60,6 +60,18 @@
             @error('address')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+
+           
+            <div class="col-6">
+                <label for="type" class="form-label">Type</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    @foreach($types as $type)
+                        <option value="{{$type->id}}">{{$type->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+          
 
 
             <div class="col-12">
