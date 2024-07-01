@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="container">
-
+        <div class="my-5 d-flex justify-content-center align-items-center">
+            <h1>Create a new plate</h1>
+            <div class="mx-3 bg-secondary rounded-circle d-flex align-items-center justify-content-center" id="plus">
+                <a href="{{ route('admin.plates.create') }}"><i class="fa-solid fa-plus text-white"></i></a>
+            </div>
+        </div>
         <div class="row">
             @foreach ($plates as $plate)
                 <div class="col-12 col-md-6 col-lg-3 my-3">

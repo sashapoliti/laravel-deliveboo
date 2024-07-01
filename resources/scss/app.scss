@@ -689,3 +689,21 @@ a {
     transform-origin: bottom left;
   }
   
+
+  //plus
+
+  #plus {
+    width: 40px;
+    height: 40px;
+    border: 2px solid black;
+    aspect-ratio: 1;
+  }
+  #plus:hover {
+    filter: brightness(0.9);
+    transition-duration: 0.3s;
+    a{
+        transform: rotate(45deg); 
+    transition: transform 0.1s ease-in-out;
+    color: rgb(255, 255, 255);
+    }
+  }
