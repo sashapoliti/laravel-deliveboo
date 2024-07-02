@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
+use App\Models\User;
 
-class StoreReastaurantRequest extends FormRequest
+class StoreRegisterUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +24,12 @@ class StoreReastaurantRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => ['required', 'string', 'max:255', 'min:3'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Password::defaults() , 'min:8' , 'max:255'],
             'address' => 'required|string|max:255|min:3',
             'vat_number' => 'required|string|max:11|min:11',
-            'name' => 'required|max:255|min:3|string|max:255',
+            'restaurant_name' => 'required|max:255|min:3|string',
             'image' => 'nullable|image|max:2048',
             'description' => 'nullable|string|max:255|min:3',
             'logo' => 'nullable|image|max:2048',
@@ -32,10 +37,15 @@ class StoreReastaurantRequest extends FormRequest
             'types.*' => 'exists:types,id',
         ];
     }
-    public function messages()
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
     {
         return [
-            
             'address.required' => 'L\'indirizzo è obbligatorio',
             'address.min' => 'L\'indirizzo deve avere almeno 3 caratteri',
             'address.max' => 'L\'indirizzo deve avere massimo 255 caratteri',
@@ -61,8 +71,17 @@ class StoreReastaurantRequest extends FormRequest
             'logo.image' => 'Il logo deve essere un\'immagine',
             'logo.max' => 'Il logo deve avere massimo 2048 kilobyte',
 
-            'types' => 'seleziona almeno un tipo di ristorante',
-            'types.*' => 'seleziona almeno un tipo di ristorante',
+            'types.required' => 'Seleziona almeno un tipo di ristorante',
+            'types.*.exists' => 'Il tipo di ristorante selezionato non è valido',
+
+            'restaurant_name.required' => 'Il nome del ristorante è obbligatorio',
+            'restaurant_name.min' => 'Il nome del ristorante deve avere almeno 3 caratteri',
+            'restaurant_name.max' => 'Il nome del ristorante deve avere massimo 255 caratteri',
+            
+            'password.confirmed' => 'La conferma della password non corrisponde',
+            'password.required' => 'La password è obbligatoria',
+            'password.min' => 'La password deve avere almeno 8 caratteri',
+            'password.max' => 'La password deve avere massimo 255 caratteri',
         ];
     }
 }

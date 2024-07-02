@@ -13,7 +13,7 @@
 
                         <!-- User fields -->
                         <label for="name">
-                            <input id="name" type="text" class="input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <input id="name" type="text" class="input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus required minlength="3" maxlength="255">
                             <span>Name</span>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
                         </label>
 
                         <label for="email">
-                            <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" required>
                             <span>Email</span>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                         </label>
 
                         <label for="password">
-                            <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" required  minlength="8" maxlength="50">
                             <span>Password</span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -43,13 +43,14 @@
                         </label>
 
                         <label for="password-confirm">
-                            <input id="password-confirm" type="password" class="input" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="input" name="password_confirmation" required autocomplete="new-password" required minlength="8" maxlength="50">
                             <span>Confirm password</span>
                         </label>
 
                         <!-- Restaurant fields -->
                         <label for="restaurant_name">
-                            <input id="restaurant_name" type="text" class="input @error('restaurant_name') is-invalid @enderror" name="restaurant_name" value="{{ old('restaurant_name') }}" required autocomplete="restaurant_name">
+                            <input id="restaurant_name" type="text" class="input @error('restaurant_name') is-invalid @enderror" name="restaurant_name" value="{{ old('restaurant_name') }}" required 
+                            autocomplete="restaurant_name" minlength="3" maxlength="255">
                             <span>Restaurant Name</span>
                             @error('restaurant_name')
                             <span class="invalid-feedback" role="alert">
@@ -59,7 +60,8 @@
                         </label>
 
                         <label for="address">
-                            <input id="address" type="text" class="input @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                            <input id="address" type="text" class="input @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" 
+                            required minlength="3" maxlength="255" autocomplete="address">
                             <span>Address</span>
                             @error('address')
                             <span class="invalid-feedback" role="alert">
@@ -69,7 +71,8 @@
                         </label>
 
                         <label for="vat_number">
-                            <input id="vat_number" type="text" class="input @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" required autocomplete="vat_number">
+                            <input id="vat_number" type="text" class="input @error('vat_number') is-invalid @enderror" name="vat_number" 
+                            value="{{ old('vat_number') }}" required  minlength="11" maxlength="11" autocomplete="vat_number">
                             <span>VAT Number</span>
                             @error('vat_number')
                             <span class="invalid-feedback" role="alert">
@@ -89,7 +92,7 @@
                         </label>
 
                         <label for="logo">
-                            <input id="logo" type="file" class="input @error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}">
+                            <input id="logo" type="file" class="input @error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}" >
                             <span>Restaurant Logo</span>
                             @error('logo')
                             <span class="invalid-feedback" role="alert">
