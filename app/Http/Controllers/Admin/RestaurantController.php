@@ -33,44 +33,50 @@ class RestaurantController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     */
+    */
     public function store(StoreReastaurantRequest $request)
     {
         // Valida i dati e li assegna a $form_data
         $form_data = $request->validated();
-
+    
         // Genera lo slug e lo aggiunge ai dati
         $form_data['slug'] = Restaurant::generateSlug($form_data['name']);
-
+    
         // Assegna l'ID dell'utente autenticato ai dati del ristorante
         $form_data['user_id'] = Auth::user()->id;
-
+    
         // Gestisce il caricamento dell'immagine
         if ($request->hasFile('image')) {
             $name = $request->image->getClientOriginalName();
             $path = Storage::putFileAs('post_images', $request->image, $name);
             $form_data['image'] = $path;
         }
-
+    
         // Gestisce il caricamento del logo
         if ($request->hasFile('logo')) {
             $name = $request->logo->getClientOriginalName();
             $path = Storage::putFileAs('post_images', $request->logo, $name);
             $form_data['logo'] = $path;
         }
-
+        
         // Crea il nuovo ristorante
-        $newRestaurant = Restaurant::create($form_data);
-
-         // se c' è la request dei tag 
-         if($request->has('types')) {
-            //con attach passiamo l' array dei tag 
+        $newRestaurant = Restaurant::create([
+            'name' => $form_data['name'],
+            'slug' => $form_data['slug'],
+            'address' => $form_data['address'],
+            'vat_number' => $form_data['vat_number'],
+            'user_id' => $form_data['user_id'],
+        ]);
+    
+        // Gestisce l'associazione con i tipi di ristorante selezionati
+        if ($request->has('types')) {
             $newRestaurant->types()->attach($request->types);
         }
-
+    
         // Reindirizza alla lista dei ristoranti con un messaggio di successo
         return redirect()->route('admin.restaurants.index')->with('message', $newRestaurant->name . ' è stato creato');
     }
+    
 
     /**
      * Display the specified resource.

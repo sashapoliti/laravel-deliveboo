@@ -32,7 +32,7 @@
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" maxlength="255" minlength="3" required
                 value="{{ old('name', $plate->name) }}">
             @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <span class="text-danger">{{ $message }}</span>
             @enderror  
             <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 255</div> 
         </div>
@@ -40,7 +40,7 @@
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" maxlength="255" minlength="3">{{ old('description', $plate->description) }}</textarea>
             @error('description')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <span class="text-danger">{{ $message }}</span>
             @enderror 
         </div>
         <div class="mb-3">
@@ -48,7 +48,7 @@
             <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" maxlength="5" minlength="0.01" required
                 name="price" value="{{ old('price', $plate->price) }}">
             @error('price')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <span class="text-danger">{{ $message }}</span>
             @enderror 
         </div>
         <div class="mb-3">
@@ -66,7 +66,7 @@
             class="form-control @error('image') is-invalid @enderror" id="upload_image"
             name="image" maxlength="2048">
             @error('image')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
             @enderror 
             <h4 class="mt-3">Your image</h4>
             @if($plate->image)
@@ -76,9 +76,6 @@
             @endif
         </div>
 
-
-
-        
         <div class="mb-3">
             <button type="submit" class="btn btn-primary text-white">Modifica</button>
             <button type="reset"  class="btn btn-danger mx-4">Svuota campi</button>

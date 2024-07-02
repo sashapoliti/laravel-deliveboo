@@ -34,31 +34,31 @@
                 <label for="name" class="form-label">Nome</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" maxlength="255" minlength="3" required
                     value="{{ old('name') }}">
-            <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 255</div> 
+                <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 255</div> 
+                @error('name')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
                 
             </div>
-            @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
 
             <div class="col-6">
                 <label for="price" class="form-label">Prezzo</label>
                 <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
                 name="price" value="{{ old('price') }}" step="0.01" maxlength="6" minlength="0.01" required>
-
+                @error('price')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
-            @error('price')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
 
             <div class="col-12">
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
                 maxlength="255" minlength="3">{{ old('description') }}</textarea>
+                @error('description')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
-            @error('description')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+
             <div class="col-12">
                 <div>
                     <h5>Seleziona se il prodotto è visibile o meno</h5>
@@ -71,7 +71,6 @@
                         <input type="radio" name="visibility" id="visibility" value="0" class="mx-2">
                         <label for="visibility">Non visibile</label>
                     </div>
-                   
                 </div>
             </div>
            
@@ -82,7 +81,7 @@
                 @error('image') is-invalid @enderror" id="upload_image"
                 name="image" value="{{ old('image') }}" maxlength="2048">
                 @error('image')
-                    <div class ="invalid-feedback">{{$errors->first('image')}}</div>
+                    <div class ="text-danger">{{$errors->first('image')}}</div>
                 @enderror 
                 <h4 class="mt-3">Your image</h4>
                 @if(old('image'))

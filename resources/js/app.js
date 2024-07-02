@@ -117,3 +117,29 @@ deleteSubmitButtons.forEach((button) => {
   
 })();
 
+document.addEventListener('DOMContentLoaded', function() {
+  const checkboxes = document.querySelectorAll('input[name="types[]"]');
+  const typeHelp = document.getElementById('typeHelp');
+
+  function validateCheckbox() {
+      let isChecked = false;
+      checkboxes.forEach(function(checkbox) {
+          if (checkbox.checked) {
+              isChecked = true;
+          }
+      });
+
+      if (!isChecked) {
+          typeHelp.textContent = 'Seleziona almeno un tipo';
+      } else {
+          typeHelp.textContent = '';
+      }
+  }
+
+  checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', validateCheckbox);
+  });
+
+  // Validazione iniziale
+  validateCheckbox();
+});

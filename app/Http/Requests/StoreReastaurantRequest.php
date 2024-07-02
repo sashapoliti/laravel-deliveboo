@@ -28,6 +28,8 @@ class StoreReastaurantRequest extends FormRequest
             'image' => 'nullable|image|max:2048',
             'description' => 'nullable|string|max:255|min:3',
             'logo' => 'nullable|image|max:2048',
+            'types' => 'required|array|min:1',
+            'types.*' => 'exists:types,id',
         ];
     }
     public function messages()
@@ -58,6 +60,9 @@ class StoreReastaurantRequest extends FormRequest
     
             'logo.image' => 'Il logo deve essere un\'immagine',
             'logo.max' => 'Il logo deve avere massimo 2048 kilobyte',
+
+            'types' => 'seleziona almeno un tipo di ristorante',
+            'types.*' => 'seleziona almeno un tipo di ristorante',
         ];
     }
 }

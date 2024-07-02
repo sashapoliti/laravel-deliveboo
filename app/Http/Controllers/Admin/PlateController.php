@@ -85,7 +85,6 @@ class PlateController extends Controller
         if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
             abort(403, 'Unauthorized action.');
         }
-
        
         return view('admin.plates.show', compact('plate'));
     }
