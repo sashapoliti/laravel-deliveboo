@@ -1,17 +1,30 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Plate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePlateRequest;
-use App\Http\Requests\UpdatePlateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StorePlateRequest;
+use App\Http\Requests\UpdatePlateRequest;
 
 class PlateController extends Controller
 {
+    public function __construct()
+    {
+        // Middleware per verificare se l'utente ha un ristorante
+        $this->middleware(function ($request, $next) {
+            if (!Auth::user()->restaurant) {
+                // Reindirizza l'utente alla creazione del ristorante se sta accedendo a funzioni di gestione piatti
+                if (in_array($request->route()->getActionMethod(), ['create', 'store', 'edit', 'update', 'destroy'])) {
+                    return redirect()->route('admin.restaurants.create')->with('message', 'Devi creare un ristorante prima di poter gestire i piatti.');
+                }
+            }
+            return $next($request);
+        })->except(['index', 'show']); // Eccezione per index e show, dove non è richiesto un ristorante
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -30,6 +43,11 @@ class PlateController extends Controller
      */
     public function create()
     {
+        // Verifica se l'utente ha un ristorante
+        if (!Auth::user()->restaurant) {
+            return redirect()->route('admin.restaurants.create')->with('message', 'Devi creare un ristorante prima di poter aggiungere un piatto.');
+        }
+
         return view('admin.plates.create');
     }
 
@@ -57,6 +75,18 @@ class PlateController extends Controller
      */
     public function show(Plate $plate)
     {
+
+         // Verifica se l'utente ha creato un ristorante
+         if (!Auth::user()->restaurant) {
+            return redirect()->route('admin.restaurants.create')->with('message', 'Devi creare un ristorante prima di poter visualizzare i dettagli di questo piatto.');
+        }
+
+        // Verifica se il piatto appartiene al ristorante dell'utente
+        if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+       
         return view('admin.plates.show', compact('plate'));
     }
 
@@ -65,6 +95,17 @@ class PlateController extends Controller
      */
     public function edit(Plate $plate)
     {
+
+        // Verifica se l'utente ha creato un ristorante
+        if (!Auth::user()->restaurant) {
+            return redirect()->route('admin.restaurants.create')->with('message', 'Devi creare un ristorante prima di poter modificare questo piatto.');
+        }
+
+        // Verifica se il piatto appartiene al ristorante dell'utente
+        if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('admin.plates.edit', compact('plate'));
     }
 
@@ -97,6 +138,11 @@ class PlateController extends Controller
      */
     public function destroy(Plate $plate)
     {
+        // Verifica se il piatto appartiene al ristorante dell'utente
+        if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
         // Rimuove l'immagine associata al piatto se presente
         if ($plate->image) {
             Storage::delete($plate->image);
