@@ -12,9 +12,24 @@ class RestaurantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Restaurant::all();
+        $types = $request->input('type', []);
+
+        $restaurants = Restaurant::whereHas('types', function ($query) use ($types) {
+            $query->whereIn('type_id', $types);
+        })
+        ->withCount(['types' => function ($query) use ($types) {
+            $query->whereIn('type_id', $types);
+        }])
+        ->having('types_count', '=', count($types))
+        ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Movies retrieved successfully',
+            'results' => $restaurants,
+        ], 200);
     }
 
     /**
