@@ -36,8 +36,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item" >
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                        <li class="nav-item">
+                            <span class="nav-link">Benvenuto</span> 
                         </li>
                     </ul>
 
@@ -85,3 +85,15 @@
 </body>
 
 </html>
+
+
+<style lang="scss" scoped>
+ul{
+    .nav-item:hover{
+        .nav-link{
+            color: #67BA02;
+            cursor: pointer;
+        }
+    }
+}
+</style>
