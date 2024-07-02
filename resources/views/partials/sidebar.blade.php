@@ -65,7 +65,6 @@
                 <i class="fa-solid fa-house"></i> Dashboard
             </a>
         </li>
-        @if(Auth::user()->restaurant)
             <li>
                 <a href="{{ route('admin.restaurants.index') }}" class="{{ Route::is('admin.restaurants.*') ? 'active' : '' }} nav-link d-flex align-items-center">
                     <i class="fa-solid fa-shop"></i> My Restaurant
@@ -76,7 +75,6 @@
                     <i class="fa-solid fa-utensils"></i> Plates
                 </a>
             </li>
-        @endif
      
       
         {{-- <li>

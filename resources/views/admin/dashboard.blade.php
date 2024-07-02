@@ -2,16 +2,7 @@
 
 @section('content')
     <div class="container">
-        @if($restaurants->count() < 1)
-      <div class="my-5 d-flex justify-content-center align-items-center">
-        <h1>Create a new restaurant</h1>
-        <div class="mx-3 bg-secondary rounded-circle d-flex align-items-center justify-content-center" id="plus">
-            <a href="{{ route('admin.restaurants.create') }}"><i class="fa-solid fa-plus text-white"></i></a>
-        </div>
-      </div>
-      @endif
 
-      @if ($restaurants->count() > 0)
       <div class="container">
           <div class="row mt-5">
               <div class="col-12 col-md-6 col-lg-3">
@@ -66,6 +57,5 @@
               <div style="width: 900px"><canvas id="guadagni"></canvas></div>
           </div>
       </div>
-      @endif
   </div>
 @endsection
