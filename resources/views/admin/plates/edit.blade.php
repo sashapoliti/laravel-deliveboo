@@ -24,10 +24,10 @@
         </a>
         <h1 class="mx-2 mt-1">Edit</h1>
     </div>
-    <form action="{{route('admin.plates.update', $plate->slug)}}" method="POST" enctype="multipart/form-data">
+    <form class="row g-3 mt-3" action="{{route('admin.plates.update', $plate->slug)}}" method="POST" enctype="multipart/form-data">
         @csrf  
         @method('PUT')  
-        <div class="mb-3">
+        <div class="mb-3 col-6">
             <label for="name" class="form-label">Name</label> 
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" maxlength="255" minlength="3" required
                 value="{{ old('name', $plate->name) }}">
@@ -36,14 +36,8 @@
             @enderror  
             <div id="nameHelp" class="form-text">Inserire minimo 3 caratteri e massimo 255</div> 
         </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" maxlength="255" minlength="3">{{ old('description', $plate->description) }}</textarea>
-            @error('description')
-                <span class="text-danger">{{ $message }}</span>
-            @enderror 
-        </div>
-        <div class="mb-3">
+
+        <div class="mb-3 col-6">
             <label for="price" class="form-label">Price</label>
             <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" maxlength="5" minlength="0.01" required
                 name="price" value="{{ old('price', $plate->price) }}">
@@ -51,15 +45,29 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror 
         </div>
-        <div class="mb-3">
-            <div>Disponibile?</div>
-            <label class="form-label">
-                <input type="radio" name="visibility" value="1" {{ old('visibility', $plate->visibility) == 1 ? 'checked' : '' }}> Yes
-            </label>
-            <label class="form-label">
-                <input type="radio" name="visibility" value="0" {{ old('visibility', $plate->visibility) == 0 ? 'checked' : '' }}> No
-            </label>
+
+        <div class="mb-3 col-12">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" maxlength="255" minlength="3">{{ old('description', $plate->description) }}</textarea>
+            @error('description')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror 
         </div>
+       
+        <div class="mb-3">
+            <div>
+                <h5>Seleziona se il prodotto è visibile o meno</h5>
+                <div class="my-2">
+                    <input type="radio" class="mx-2" name="visibility" value="1" {{ old('visibility', $plate->visibility) == 1 ? 'checked' : '' }}> 
+                    <label for="visibility">Visibile</label>
+                </div>
+                <div class="my-2">
+                    <input class="mx-2" type="radio" name="visibility" value="0" {{ old('visibility', $plate->visibility) == 0 ? 'checked' : '' }}>
+                    <label for="visibility">Non visibile</label>
+                </div>
+            </div>
+        </div>
+
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input type="file" accept="image/*" 
@@ -78,7 +86,6 @@
 
         <div class="mb-3">
             <button type="submit" class="btn btn-primary text-white">Modifica</button>
-            <button type="reset"  class="btn btn-danger mx-4">Svuota campi</button>
         </div>
     </form>   
 </div>
