@@ -19,34 +19,32 @@ but.addEventListener('click', () => {
   icon.classList.toggle('fa-chevron-right'); // Toggle between left and right icons
 });
 
-
-const image = document.getElementById("upload_image");
-if(image) {
-    image.addEventListener("change", function () {
-
+  
+const imageInput = document.getElementById("upload_image");
+if (imageInput) {
+    imageInput.addEventListener("change", function () {
         const preview = document.getElementById("uploadPreview");
         const reader = new FileReader();
-        reader.readAsDataURL(image.files[0]);
-        reader.onload = function (reader){
-            preview.src = reader.target.result;
+        reader.onload = function (e) {
+            preview.src = e.target.result;
         };
+        reader.readAsDataURL(imageInput.files[0]);
     });
 }
 
-
-
-const logo = document.getElementById("upload_logo");
-if(logo) {
-    logo.addEventListener("change", function () {
-
+const logoInput = document.getElementById("upload_logo");
+if (logoInput) {
+    logoInput.addEventListener("change", function () {
         const preview = document.getElementById("uploadPreviewLogo");
         const reader = new FileReader();
-        reader.readAsDataURL(logo.files[0]);
-        reader.onload = function (reader){
-            preview.src = reader.target.result;
+        reader.onload = function (e) {
+            preview.src = e.target.result;
         };
+        reader.readAsDataURL(logoInput.files[0]);
     });
 }
+
+
 
 // colletction di array di bottoni delete
 const deleteSubmitButtons = document.querySelectorAll(".delete-button");
