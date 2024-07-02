@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
+                        <li>
                             <span class="nav-link">Benvenuto</span> 
                         </li>
                     </ul>
@@ -94,6 +94,11 @@ ul{
             color: #67BA02;
             cursor: pointer;
         }
+    }
+}
+.navbar-nav{
+    li:hover{
+        cursor: pointer;
     }
 }
 </style>
