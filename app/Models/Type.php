@@ -26,6 +26,6 @@ class Type extends Model
     }
     public function restaurants(): BelongsToMany
     {
-        return $this->belongsToMany(Restaurant::class);
+        return $this->belongsToMany(Restaurant::class, 'restaurant_type', 'type_id', 'restaurant_id');
     }
 }
