@@ -110,38 +110,44 @@
                                     <strong id="error_description" class="text-danger" style="font-size: 12px"></strong>
                                 </label>
 
-                                <label for="image" class="mb-3">
-                                    <input id="upload_image" type="file" accept="image/*" class="input @error('image') is-invalid @enderror" name="image" maxlength="2048">
-                                    <span class="mx-3">Restaurant Image</span>
+                                <label for="image" class="mb-3 mt-2">
+                                    <h5 class="mb-2">Restaurant Image</h5>
+                                    <input id="upload_image" type="file" accept="image/*" class="input py-2  @error('image') is-invalid @enderror" name="image" maxlength="2048"  style="display: none;">
+                                    <label for="upload_image" class="custom-file-upload" id="upload_file" >
+                                        Choose Restaurant Image
+                                    </label>
                                     @error('image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong >{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </label>
-                                <div class="container-img my-3">
+                                <div class="container-img mb-3 mt-2">
                                     <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreview" class="shadow rounded-4 m-4">
                                 </div>
 
-                                <label for="logo" class="mb-3">
-                                    <input id="upload_logo" type="file" accept="image/*" class="input @error('logo') is-invalid @enderror" name="logo" maxlength="2048">
-                                    <span class="mx-3">Restaurant Logo</span>
+                                <label for="upload_logo" class="mb-3 mt-2">
+                                    <h5 class="mb-2">Restaurant Logo</h5>
+                                    <input id="upload_logo" type="file" accept="image/*" class="input py-2 @error('logo') is-invalid @enderror" name="logo" maxlength="2048" style="display: none;">
+                                    <label for="upload_logo" class="custom-file-upload" id="upload_file" >
+                                        Choose Restaurant Logo
+                                    </label>
                                     @error('logo')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </label>
-                                <div class="container-img my-3">
+                                <div class="container-img mb-3 mt-2">
                                     <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg" alt="" id="uploadPreviewLogo" class="shadow rounded-4 m-4">
                                 </div>
-
+                                
                                 <!-- Checkbox for restaurant types -->
                                 <div class="col-12 mb-3" id="checkboxContainer">
                                     <p>Select Type:</p>
                                     @foreach ($types as $type)
                                         <div>
-                                            <input class="form-check-input @error('types') is-invalid @enderror" type="checkbox" value="{{ $type->id }}" name="types[]" id="type_{{ $type->id }}">
+                                            <input class="form-check-input custom-checkbox @error('types') is-invalid @enderror" type="checkbox" value="{{ $type->id }}" name="types[]" id="type_{{ $type->id }}">
                                             <label class="form-check-label" for="type_{{ $type->id }}">{{ $type->name }}</label>
                                         </div>
                                     @endforeach
@@ -350,6 +356,21 @@ checkboxes.forEach(function(checkbox) {
 
 
 <style lang="scss" scoped>
+    #upload_file {
+        background-color: #67BA02; 
+        color: white; 
+        padding: 8px 12px; 
+        cursor: pointer; 
+        border-radius: 4px; 
+        display: inline-block;
+        &:hover {
+            background-color: #5ca700;
+        }
+    }
+    .custom-checkbox:checked {
+      background-color: #67BA02 !important;
+      border-color: #67BA02 !important;
+    }
     .form {
         display: flex;
         flex-direction: column;
