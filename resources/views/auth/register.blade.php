@@ -23,6 +23,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <strong id="error_name" class="text-danger" style="font-size: 12px"></strong>
                                 </label>
 
                                 <label for="email" class="mb-3">
@@ -33,6 +34,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <strong id="error_email" class="text-danger" style="font-size: 12px"></strong>
                                 </label>
 
                                 <div class="col-6 mb-3">
@@ -46,6 +48,7 @@
                                           </span>
                                       @enderror
                                   </label>
+                                  <strong id="error_password" class="text-danger" style="font-size: 12px"></strong>
                               </div>
                               
                               <div class="col-6 mb-3">
@@ -54,7 +57,7 @@
                                        required autocomplete="new-password" minlength="8" maxlength="50" oninput="validatePassword()">
                                       <span>Confirm password</span>
                                   </label>
-                                  <strong id="message" class="text-danger" style="font-size: 12px"></strong>
+                                  <strong id="error_password_confirm" class="text-danger" style="font-size: 12px"></strong>
                               </div>
                               
 
@@ -69,11 +72,12 @@
                                             </span>
                                         @enderror
                                     </label>
+                                    <strong id="error_restaurant_name" class="text-danger" style="font-size: 12px"></strong>
                                 </div>
 
                                 <div class="col-6 mb-3">
                                     <label for="vat_number">
-                                        <input id="vat_number" type="text" class="input @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" required minlength="11" maxlength="11" autocomplete="vat_number">
+                                        <input id="vat_number" type="number" class="input @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" required minlength="11" maxlength="11" autocomplete="vat_number">
                                         <span>VAT Number</span>
                                         @error('vat_number')
                                             <span class="invalid-feedback" role="alert">
@@ -81,6 +85,7 @@
                                             </span>
                                         @enderror
                                     </label>
+                                    <strong id="error_vat_number" class="text-danger" style="font-size: 12px"></strong>
                                 </div>
 
                                 <label for="address" class="mb-3">
@@ -91,16 +96,18 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <strong id="error_address" class="text-danger" style="font-size: 12px"></strong>
                                 </label>
 
                                 <label for="description" class="mb-3">
-                                    <textarea id="description" class="input @error('description') is-invalid @enderror" name="description" required 
+                                    <textarea id="description" class="input @error('description') is-invalid @enderror" name="description" 
                                     minlength="3" maxlength="255" autocomplete="description">{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <strong id="error_description" class="text-danger" style="font-size: 12px"></strong>
                                 </label>
 
                                 <label for="image" class="mb-3">
@@ -130,12 +137,12 @@
                                 </div>
 
                                 <!-- Checkbox for restaurant types -->
-                                <div class="col-12 mb-3">
+                                <div class="col-12 mb-3" id="checkboxContainer">
                                     <p>Select Type:</p>
                                     @foreach ($types as $type)
                                         <div>
-                                            <input class="form-check-input @error('types') is-invalid @enderror" type="checkbox" value="{{ $type->id }}" name="types[]">
-                                            <label class="form-check-label" for="types[]">{{ $type->name }}</label>
+                                            <input class="form-check-input @error('types') is-invalid @enderror" type="checkbox" value="{{ $type->id }}" name="types[]" id="type_{{ $type->id }}">
+                                            <label class="form-check-label" for="type_{{ $type->id }}">{{ $type->name }}</label>
                                         </div>
                                     @endforeach
                                     @error('types')
@@ -143,6 +150,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <strong id="error_types" class="text-danger" style="font-size: 12px"></strong>
                                 </div>
                             </div>
                         </div>
@@ -159,23 +167,152 @@
 </div>
 
 <script>
+ 
+
+  let name = document.getElementById("name");
+  let error_name = document.getElementById("error_name");
+
+  let email = document.getElementById("email");
+  let error_email = document.getElementById("error_email");
+
   let password = document.getElementById("password");
+  let error_password = document.getElementById("error_password");
+
   let confirm_password = document.getElementById("password-confirm");
-  let message = document.getElementById("message");
+  let error_password_confirm = document.getElementById("error_password_confirm");
+
+  let restaurant_name = document.getElementById("restaurant_name");
+  let error_restaurant_name = document.getElementById("error_restaurant_name");
+
+  let vat_number = document.getElementById("vat_number");
+  let error_vat_number = document.getElementById("error_vat_number");
+
+  let address = document.getElementById("address");
+  let error_address = document.getElementById("error_address");
+
+  let description = document.getElementById("description");
+  let error_description = document.getElementById("error_description");
+
+  let type = document.getElementById("types");
+  let error_type = document.getElementById("error_types");
+
+   // Funzione per la validazione delle checkbox
+   let checkboxes = document.querySelectorAll('#checkboxContainer input[type="checkbox"]');
+    let checkedCount = 0;
 
 
   // Ensure the validation is checked on form submit as well
   document.getElementById('button').addEventListener('click', function (event) {
-    if (password.value !== confirm_password.value && confirm_password.value !== "") {
-        message.innerHTML = "Passwords don't match";
-      } else {
-        message.innerHTML = "";
-      }
+
+
+  // Name field
+if (name.value === "") {
+    error_name.innerHTML = "Name is required";
+} else if (name.value.length < 3) {
+    error_name.innerHTML = "Name must be at least 3 characters";
+} else if (name.value.length > 255) {
+    error_name.innerHTML = "Name must not exceed 255 characters";
+} else {
+    error_name.innerHTML = "";
+}
+
+// Email field
+if (email.value === "") {
+    error_email.innerHTML = "Email is required";
+} else if (!email.value.includes('@')) {
+    error_email.innerHTML = "Email must be valid (contain '@')";
+} else {
+    error_email.innerHTML = "";
+}
+
+
+// Password field
+if (password.value === "") {
+    error_password.innerHTML = "Password is required";
+} else if (password.value.length < 8) {
+    error_password.innerHTML = "Password must be at least 8 characters";
+} else if (name.value.length > 50) {
+    error_password.innerHTML = "Name must not exceed 50 characters";
+}else {
+    error_password.innerHTML = "";
+}
+
+// Confirm Password field
+if (confirm_password.value === "") {
+    error_password_confirm.innerHTML = "Confirm Password is required";
+} else if (password.value !== confirm_password.value) {
+    error_password_confirm.innerHTML = "Passwords don't match";
+} else {
+    error_password_confirm.innerHTML = "";
+}
+
+// Restaurant name field
+if (restaurant_name.value === "") {
+    error_restaurant_name.innerHTML = "Restaurant name is required";
+}else if (restaurant_name.value.length < 3) {
+    error_restaurant_name.innerHTML = "Restaurant name must be at least 3 characters";
+}else if (restaurant_name.value.length > 255) {
+    error_restaurant_name.innerHTML = "Restaurant name must not exceed 255 characters";
+}else {
+    error_restaurant_name.innerHTML = "";
+}
+
+// VAT number field
+if (vat_number.value === "") {
+    error_vat_number.innerHTML = "VAT number is required";
+} else if (vat_number.value.length !== 11) {
+    error_vat_number.innerHTML = "VAT number must be exactly 11 characters";
+} else {
+    error_vat_number.innerHTML = "";
+}
+
+// Address field
+if (address.value === "") {
+    error_address.innerHTML = "Address is required";
+} else if (address.value.length < 3 || address.value.length > 255) {
+    error_address.innerHTML = "Address must be between 3 and 255 characters";
+} else {
+    error_address.innerHTML = "";
+}
+ 
+// Description field (optional)
+if (description.value !== "" && description.value.length < 3) {
+    error_description.innerHTML = "Description minimum 3 characters";
+}else if (description.value !== "" && description.value.length > 255) {
+    error_description.innerHTML = "Description maximum 255 characters";
+}else {
+    error_description.innerHTML = "";
+}
+
+
+checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            checkedCount++;
+        }
+    });
+
+    if(checkedCount < 1) {
+        document.getElementById('error_types').innerHTML = "Please select at least one type.";
+        return false;
+
+    } else if (checkedCount > 5) {
+        document.getElementById('error_types').innerHTML = "Please select maximum 5 types.";
+        return false; // Blocca l'invio del modulo se più di 5 checkbox sono selezionate
+    } else {
+        document.getElementById('error_types').innerHTML = "";
+        return true; // Consente l'invio del modulo se 5 o meno checkbox sono selezionate
+    }
+   
+    // Aggiungi un ascoltatore per il submit del modulo
+    document.getElementById('yourFormId').addEventListener('submit', function(event) {
+        if (!validateCheckbox()) {
+            event.preventDefault(); // Blocca l'invio del modulo se la validazione non è superata
+        }
+    });
       
-      
-      if (!this.checkValidity()) {
-          event.preventDefault();
-      }
+    if (!this.checkValidity()) {
+        event.preventDefault();
+    }
   });
 
     
