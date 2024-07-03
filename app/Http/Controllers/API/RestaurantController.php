@@ -51,10 +51,16 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show(string $slug)
+{
+    $restaurant = Restaurant::where('slug', $slug)->first();
+
+    if (!$restaurant) {
+        return response()->json(['message' => 'Restaurant not found'], 404);
     }
+
+    return response()->json($restaurant);
+}
 
     /**
      * Show the form for editing the specified resource.

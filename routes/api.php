@@ -18,6 +18,7 @@ use App\Http\Controllers\API\TypeController;
 */
 
 Route::post('restaurants', [RestaurantController::class, 'index']);
+Route::get('restaurants/{slug}', 'RestaurantController@show');
 Route::get('types', [TypeController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
