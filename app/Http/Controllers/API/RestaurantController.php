@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Restaurant;
 
 class RestaurantController extends Controller
@@ -15,24 +14,29 @@ class RestaurantController extends Controller
     public function index(Request $request)
     {
         $types = $request->input('type', []);
-
-        $restaurants = Restaurant::whereHas('types', function ($query) use ($types) {
-            $query->whereIn('type_id', $types);
-        })
-            ->withCount([
-                'types' => function ($query) use ($types) {
-                    $query->whereIn('type_id', $types);
-                }
-            ])
-            ->having('types_count', '=', count($types))
-            ->get();
-
+    
+        $restaurants = Restaurant::with('plates')
+            ->whereHas('types', function ($query) use ($types) {
+                $query->whereIn('type_id', $types);
+            });
+    
+    
+        $restaurants = $restaurants->withCount([
+            'types' => function ($query) use ($types) {
+                $query->whereIn('type_id', $types);
+            }
+        ])->having('types_count', '=', count($types))
+        ->get();
+    
         return response()->json([
             'status' => 'success',
-            'message' => 'Movies retrieved successfully',
+            'message' => 'Restaurants retrieved successfully',
             'results' => $restaurants,
         ], 200);
     }
+
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -55,7 +59,7 @@ class RestaurantController extends Controller
      */
     public function show(string $slug)
     {
-        $restaurant = Restaurant::where('slug', $slug)->first();
+        $restaurant = Restaurant::where('slug', $slug)->with('plates')->first();
 
         if (!$restaurant) {
             return response()->json(['message' => 'Restaurant not found'], 404);
