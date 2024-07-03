@@ -19,11 +19,13 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::whereHas('types', function ($query) use ($types) {
             $query->whereIn('type_id', $types);
         })
-        ->withCount(['types' => function ($query) use ($types) {
-            $query->whereIn('type_id', $types);
-        }])
-        ->having('types_count', '=', count($types))
-        ->get();
+            ->withCount([
+                'types' => function ($query) use ($types) {
+                    $query->whereIn('type_id', $types);
+                }
+            ])
+            ->having('types_count', '=', count($types))
+            ->get();
 
         return response()->json([
             'status' => 'success',
@@ -52,15 +54,15 @@ class RestaurantController extends Controller
      * Display the specified resource.
      */
     public function show(string $slug)
-{
-    $restaurant = Restaurant::where('slug', $slug)->first();
+    {
+        $restaurant = Restaurant::where('slug', $slug)->first();
 
-    if (!$restaurant) {
-        return response()->json(['message' => 'Restaurant not found'], 404);
+        if (!$restaurant) {
+            return response()->json(['message' => 'Restaurant not found'], 404);
+        }
+
+        return response()->json($restaurant);
     }
-
-    return response()->json($restaurant);
-}
 
     /**
      * Show the form for editing the specified resource.
