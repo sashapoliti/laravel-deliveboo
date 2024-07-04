@@ -14,7 +14,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return Type::all();
+        $types = Type::orderBy('name', 'asc')->get();
+        return response()->json($types);
     }
 
     /**
