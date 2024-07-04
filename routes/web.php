@@ -11,6 +11,8 @@ use App\Http\Controllers\PaymentController;
 
 
 use Illuminate\Support\Facades\Route;
+Route::get('/payment', [PaymentController::class, 'index']);
+Route::post('/payment', [PaymentController::class, 'processPayment']);
 
 
 
@@ -32,9 +34,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug'])->except('show', 'edit', 'update');
     Route::resource('plates', PlateController::class)->parameters(['plates' => 'plate:slug']);
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
-    Route::get('payment', [PaymentController::class, 'index']);
-    Route::post('payment', [PaymentController::class, 'processPayment']);
-
+  
 });
 
 Route::middleware('auth')->group(function () {
