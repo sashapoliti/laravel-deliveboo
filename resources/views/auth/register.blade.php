@@ -41,7 +41,7 @@
                                   <label for="password">
                                       <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" 
                                       required autocomplete="new-password" minlength="8" maxlength="50" oninput="validatePassword()">
-                                      <span>Password</span>
+                                      <span>Password <span class="text-danger">*</span></span>
                                       @error('password')
                                           <span class="invalid-feedback" role="alert">
                                               <strong>{{ $message }}</strong>
@@ -160,7 +160,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="text-center">
+                            I campi con <span class="text-danger">*</span> sono obbligatori
+                        </div>
                         <button type="submit" class="submit" id="button">
                             {{ __('Register') }}
                         </button>
