@@ -5,44 +5,63 @@ return [
     'types' => [
         [
             "name" => "Pizzeria",
-            "image" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi3gZONNRMhQ1-gJeX-Rbp0IauOUlmgCeuaM02Ln1WEUTNL2AX2k3ACMvnyy9b3-BCQyw&usqp=CAU"
+            "image" => "/images/img_types/pizzeria.png"
         ],
         [
-            "name" => "Trattoria",
-            "image" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXirQlITtMKsDZOvsJNHY3s8YPtnN2dO7CCb-ikI0rNHl1A8e3XMS7g1GHMH4knNMZDWc&usqp=CAU"
+            "name" => "Italiano",
+            "image" => "/images/img_types/italiano.jpg"
         ],
         [
-            "name" => "Osteria",
-            "image" => "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/L%E2%80%99Osteria_logo.svg/1200px-L%E2%80%99Osteria_logo.svg.png"
+            "name" => "Kebab",
+            "image" => "/images/img_types/kebab.png"
         ],
         [
-            "name" => "Ristorante di pesce",
-            "image" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBzbGRIhh0IpcH4Gb_uNXI-022lZ9ZrM__aJ-RRv8hxooKWmKX30ZZ6WtuZR_2olx3q28&usqp=CAU"
+            "name" => "Americano",
+            "image" => "/images/img_types/americano.png"
         ],
         [
-            "name" => "Steakhouse",
-            "image" => "https://static.vecteezy.com/ti/vettori-gratis/p3/5255408-steakhouse-e-bbq-logo-modello-emblemi-barbecue-vintage-emblemi-etichette-ristoranti-vettoriale.jpg"
+            "name" => "Hamburguer",
+            "image" => "/images/img_types/hamburguer.png"
         ],
         [
-            "name" => "Sushi",
-            "image" => "https://img.freepik.com/premium-vector/japanese-sushi-restaurant-logo-design-inspiration_500223-504.jpg?size=626&ext=jpg"
+            "name" => "Pub",
+            "image" => "/images/img_types/pub.png"
         ],
         [
-            "name" => "Ristorante vegetariano",
-            "image" => "https://previews.123rf.com/images/sundali/sundali1712/sundali171200027/91051487-progettazione-di-logo-di-caff%C3%A8-vegetariano-modello-di-logo-del-ristorante-vegano-concetto-di.jpg",
+            "name" => "Poke",
+            "image" => "/images/img_types/poke.png",
         ],
         [
-            "name" => "Ristorante vegano",
-            "image" => "https://static.vecteezy.com/ti/vettori-gratis/p3/6484073-vettore-logo-ristorante-vegano-su-sfondo-bianco-vettoriale.jpg"
+            "name" => "Vegetariano",
+            "image" => "/images/img_types/vegetariano.png"
         ],
         [
-            "name" => "Ristorante Americano",
-            "image" => "https://us.123rf.com/450wm/danishr2/danishr22201/danishr2220100003/180166667-logo-del-ristorante-di-cibo-americano-simbolo-della-bandiera-degli-stati-uniti-con-icone-cucchiaio.jpg?ver=6"
+            "name" => "Vegano",
+            "image" => "/images/img_types/vegano.png"
         ],
         [
-            "name" => "Bistrot",
-            "image" => "https://us.123rf.com/450wm/quatrovio/quatrovio2101/quatrovio210100009/163072066-bistrot-bar-bistrot-vintage-retr%C3%B2-bistro-con-forchetta-bicchiere-di-vino-con-design-a-nastro.jpg?ver=6"
+            "name" => "Giapponese",
+            "image" => "/images/img_types/giapponese.png"
+        ],
+        [
+            "name" => "Cinese",
+            "image" => "/images/img_types/cinese.png"
+        ],
+        [
+            "name" => "Carne",
+            "image" => "/images/img_types/carne.png"
+        ],
+        [
+            "name" => "Pesce",
+            "image" => "/images/img_types/pesce.png"
+        ],
+        [
+            "name" => "Messicano",
+            "image" => "/images/img_types/messicano.png"
+        ],
+        [
+            "name" => "Kosher",
+            "image" => "/images/img_types/kosher.png"
         ]
-
     ],
 ];
