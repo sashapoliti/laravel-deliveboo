@@ -17,7 +17,7 @@
                                 <label for="name" class="mb-3">
                                     <input id="name" type="text" class="input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" 
                                     required autocomplete="name" autofocus minlength="3" maxlength="255">
-                                    <span class="mx-3">Name</span>
+                                    <span class="mx-3">Name <span class="text-danger">*</span></span>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
 
                                 <label for="email" class="mb-3">
                                     <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                    <span class="mx-3">Email</span>
+                                    <span class="mx-3">Email <span class="text-danger">*</span></span>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
                                   <label for="password-confirm">
                                       <input id="password-confirm" type="password" class="input" name="password_confirmation"
                                        required autocomplete="new-password" minlength="8" maxlength="50" oninput="validatePassword()">
-                                      <span>Confirm password</span>
+                                      <span>Confirm password <span class="text-danger">*</span></span>
                                   </label>
                                   <strong id="error_password_confirm" class="text-danger" style="font-size: 12px"></strong>
                               </div>
@@ -65,7 +65,7 @@
                                 <div class="col-6 mb-3">
                                     <label for="restaurant_name">
                                         <input id="restaurant_name" type="text" class="input @error('restaurant_name') is-invalid @enderror" name="restaurant_name" value="{{ old('restaurant_name') }}" required autocomplete="restaurant_name" minlength="3" maxlength="255">
-                                        <span>Restaurant Name</span>
+                                        <span>Restaurant Name <span class="text-danger">*</span></span>
                                         @error('restaurant_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -78,7 +78,7 @@
                                 <div class="col-6 mb-3">
                                     <label for="vat_number">
                                         <input id="vat_number" type="number" class="input @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" required minlength="11" maxlength="11" autocomplete="vat_number">
-                                        <span>VAT Number</span>
+                                        <span>VAT Number <span class="text-danger">*</span></span>
                                         @error('vat_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
 
                                 <label for="address" class="mb-3">
                                     <input id="address" type="text" class="input @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required minlength="3" maxlength="255" autocomplete="address">
-                                    <span class="mx-3">Address</span>
+                                    <span class="mx-3">Address <span class="text-danger">*</span></span>
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -144,7 +144,7 @@
                                 
                                 <!-- Checkbox for restaurant types -->
                                 <div class="col-12 mb-3" id="checkboxContainer">
-                                    <p>Select Type:</p>
+                                    <p>Select Type  <span class="text-danger">*</span> :</p>
                                     @foreach ($types as $type)
                                         <div>
                                             <input class="form-check-input custom-checkbox @error('types') is-invalid @enderror" type="checkbox" value="{{ $type->id }}" name="types[]" id="type_{{ $type->id }}">
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            I campi con <span class="text-danger">*</span> sono obbligatori
+                            <em>I campi con <span class="text-danger">*</span> sono obbligatori</em>
                         </div>
                         <button type="submit" class="submit" id="button">
                             {{ __('Register') }}
