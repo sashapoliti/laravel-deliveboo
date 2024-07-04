@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\RestaurantController;
 use App\Http\Controllers\API\TypeController;
+use App\Http\Controllers\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,9 @@ use App\Http\Controllers\API\TypeController;
 Route::post('restaurants', [RestaurantController::class, 'index']);
 Route::get('restaurants/{slug}', [RestaurantController::class, 'show']);
 Route::get('types', [TypeController::class, 'index']);
+Route::get('/payment/token', [PaymentController::class, 'getToken']);
+Route::post('/payment/process', [PaymentController::class, 'processPayment']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

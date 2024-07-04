@@ -156,6 +156,7 @@ return [
 
     'providers' => [
 
+        App\Providers\BraintreeServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
