@@ -9,7 +9,7 @@ return [
         ],
         [
             "name" => "Italiano",
-            "image" => "/images/img_types/italiano.jpg"
+            "image" => "/images/img_types/italiano.png"
         ],
         [
             "name" => "Kebab",
@@ -21,7 +21,7 @@ return [
         ],
         [
             "name" => "Hamburguer",
-            "image" => "/images/img_types/hamburguer.png"
+            "image" => "/images/img_types/hamburger.png"
         ],
         [
             "name" => "Pub",
