@@ -8,9 +8,14 @@
         <div class="profile">
             <a class="nav-link d-flex align-items-center collapsed" href="#collapseExample" data-bs-toggle="collapse"
                 aria-expanded="false">
-                <img class="rounded-circle profile-picture me-2"
-                    src="{{ Auth::user()->restaurant->logo ? Auth::user()->restaurant->logo : '/img/user_placeholder.jpg' }}"
-                    alt="{{ Auth::user()->name ? Auth::user()->name : 'Default' }} profile picture">
+                @auth
+                    <img class="rounded-circle profile-picture me-2"
+                        src="{{ Auth::user()->restaurant->logo ? asset('storage/' . Auth::user()->restaurant->logo) : '/img/user_placeholder.jpg' }}"
+                        alt="{{ Auth::user()->name ? Auth::user()->name : 'Default' }} profile picture">
+                @else
+                    <img class="rounded-circle profile-picture me-2" src="/img/user_placeholder.jpg"
+                        alt="Default profile picture">
+                @endauth
                 <span>{{ Auth::user() ? Auth::user()->name : 'Ospite' }}</span>
                 <i class="fa-solid fa-caret-down ms-auto"></i>
             </a>
