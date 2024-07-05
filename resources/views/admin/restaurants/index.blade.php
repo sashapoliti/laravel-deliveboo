@@ -17,7 +17,7 @@
                     <h2 class="mx-3">{{ $restaurants[0]->name }}</h2>
                     @if ($restaurants[0]->types !== null)
                         @foreach ($restaurants[0]->types as $type)
-                            <span class="badge bg-primary mx-1">{{ $type->name }}</span>
+                            <span class="badge mx-1">{{ $type->name }}</span>
                         @endforeach
                     @endif
                 </div>
@@ -56,6 +56,9 @@
                     width: 100%;
                     height: 100%;
                 }
+            }
+            .badge {
+                background-color: #ef8157;
             }
         }
     }
