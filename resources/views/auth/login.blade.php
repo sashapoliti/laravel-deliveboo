@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Login')
+
 @section('content')
     <div class="container my-4">
         <form method="POST" action="{{ route('login') }}" class="form">
