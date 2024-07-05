@@ -52,7 +52,7 @@
                 border-radius: 50%;
                 overflow: hidden;
                 img {
-                    object-fit: contain;
+                    object-fit: cover;
                     width: 100%;
                     height: 100%;
                 }
