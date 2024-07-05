@@ -17,7 +17,7 @@
             <div class="collapse" id="collapseExample">
                 @if (Auth::user())
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" href="{{ url('profile') }}">
                                 <i class="fa-solid fa-user"></i> {{ __('Profilo') }}
                             </a>
@@ -26,7 +26,7 @@
                             <a class="nav-link d-flex align-items-center" href="#">
                                 <i class="fa-solid fa-gear"></i> Impostazioni
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

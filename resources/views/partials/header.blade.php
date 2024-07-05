@@ -10,11 +10,11 @@
                     </button>
                 </div>
                 <div class="main-title">
-                    <p>{{ Auth::check() ? 'Ciao, ' . Auth::user()->name : 'Ciao!' }}</p>
+                    <p>{{ Auth::check() ? 'Ciao, ' . Auth::user()->name . '!' : 'Ciao!' }}</p>
                 </div>
             </div>
             {{-- Right buttons --}}
-            @if (Auth::user())
+            {{-- @if (Auth::user())
             <div id="navigation" class="d-flex">
                 <form class="me-3">
                     <div class="input-group no-border h-100">
@@ -51,7 +51,7 @@
                     </li>
                 </ul>
             </div>
-            @endif
+            @endif --}}
         </div>
     </nav>
 </header>
