@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="main-title">
-                    <p>Hello {{ Auth::user()->name ?? '' }}</p>
+                    <p>{{ Auth::check() ? 'Ciao, ' . Auth::user()->name : 'Ciao!' }}</p>
                 </div>
             </div>
             {{-- Right buttons --}}
