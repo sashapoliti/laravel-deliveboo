@@ -18,7 +18,7 @@ class Order extends Model
     
     public function plates()
     {
-        return $this->belongsToMany(Plate::class, 'order_plate', 'order_id', 'plate_id');
+        return $this->belongsToMany(Plate::class, 'order_plate', 'order_id', 'plate_id')->withPivot('quantity', 'price');
     }
 }
 
