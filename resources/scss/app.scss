@@ -52,7 +52,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0px;
 }
 
 ::-webkit-scrollbar-track-piece {
@@ -214,13 +214,10 @@ a {
     /* main content */
     #content {
         flex-grow: 1;
-        overflow-y: scroll;
-        margin-right: -10px; // for scrollbar
 
         main {
-            // height: 100%;
-            padding: 0 16px;
-            overflow-y: auto;
+            height: calc(100% - 61px);
+            overflow-y: scroll;
         }
 
         /* header */
