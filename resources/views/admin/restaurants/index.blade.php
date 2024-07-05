@@ -6,12 +6,12 @@
     <div class="container">
         <div class="card mt-5">
             <div class="card-header"
-                style="background-image: url({{ $restaurants[0]->image ? asset('storage/' . $restaurants[0]->image) : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg' }})">
+                style="background-image: url({{ $restaurants[0]->image ? asset('storage/' . $restaurants[0]->image) : '/img/placeholder.svg' }})">
             </div>
             <div class="card-body">
                 <div class="d-flex align-items-center my-3">
                     <div class="logo">
-                        <img src="{{ $restaurants[0]->logo ? asset('storage/' . $restaurants[0]->logo) : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg' }}"
+                        <img src="{{ $restaurants[0]->logo ? asset('storage/' . $restaurants[0]->logo) : '/img/placeholder.svg' }}"
                             alt="{{ $restaurants[0]->name }}">
                     </div>
                     <h2 class="mx-3">{{ $restaurants[0]->name }}</h2>
@@ -52,6 +52,7 @@
                 border-radius: 50%;
                 overflow: hidden;
                 img {
+                    object-fit: contain;
                     width: 100%;
                     height: 100%;
                 }
