@@ -19,12 +19,12 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" href="{{ url('profile') }}">
-                                <i class="fa-solid fa-user"></i> {{ __('Profile') }}
+                                <i class="fa-solid fa-user"></i> {{ __('Profilo') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center" href="#">
-                                <i class="fa-solid fa-gear"></i> Settings
+                                <i class="fa-solid fa-gear"></i> Impostazioni
                             </a>
                         </li>
                         <li class="nav-item">
@@ -67,17 +67,17 @@
         </li>
         <li>
             <a href="{{ route('admin.restaurants.index') }}" class="{{ Route::is('admin.restaurants.*') ? 'active' : '' }} nav-link d-flex align-items-center">
-                <i class="fa-solid fa-shop"></i> My Restaurant
+                <i class="fa-solid fa-shop"></i> Il mio ristorante
             </a>
         </li>
         <li>
             <a href="{{ route('admin.plates.index') }}" class="{{ Route::is('admin.plates.*') ? 'active' : '' }} nav-link d-flex align-items-center">
-                <i class="fa-solid fa-utensils"></i> Plates
+                <i class="fa-solid fa-utensils"></i> Piatti
             </a>
         </li>
         <li>
             <a href="{{ route('admin.orders.index') }}" class="{{ Route::is('admin.orders.*') ? 'active' : '' }} nav-link d-flex align-items-center">
-                <i class="fa-solid fa-file-invoice"></i> Orders
+                <i class="fa-solid fa-file-invoice"></i> Ordini
             </a>
         </li>
     </ul>
