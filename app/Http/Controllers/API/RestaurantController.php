@@ -20,7 +20,6 @@ class RestaurantController extends Controller
                 $query->whereIn('type_id', $types);
             });
     
-    
         $restaurants = $restaurants->withCount([
             'types' => function ($query) use ($types) {
                 $query->whereIn('type_id', $types);
