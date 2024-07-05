@@ -9,8 +9,8 @@
             <a class="nav-link d-flex align-items-center collapsed" href="#collapseExample" data-bs-toggle="collapse"
                 aria-expanded="false">
                 <img class="rounded-circle profile-picture me-2"
-                    src="{{ Auth::user() ? 'https://media-assets.lacucinaitaliana.it/photos/61fa9709f0adc010b7251d76/16:9/w_2560%2Cc_limit/ristoranti-friuli.jpg' : '../img/user_placeholder.jpg' }}"
-                    alt="{{ Auth::user() ? Auth::user()->name : 'Default' }} profile picture">
+                    src="{{ Auth::user()->restaurant->logo ? Auth::user()->restaurant->logo : '/img/user_placeholder.jpg' }}"
+                    alt="{{ Auth::user()->name ? Auth::user()->name : 'Default' }} profile picture">
                 <span>{{ Auth::user() ? Auth::user()->name : 'Ospite' }}</span>
                 <i class="fa-solid fa-caret-down ms-auto"></i>
             </a>

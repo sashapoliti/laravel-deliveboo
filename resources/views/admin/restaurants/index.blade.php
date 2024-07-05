@@ -1,41 +1,62 @@
 @extends('layouts.admin')
 
+@section('title', $restaurants[0]->name)
+
 @section('content')
     <div class="container">
-
-
-        @foreach ($restaurants as $restaurant)
-            <div class="card mt-5">
-                <div class="card-header d-flex align-items-center"
-                    style="height: 500px; background-image: url({{ asset('storage/' . $restaurant->image) }})">
-
+        <div class="card mt-5">
+            <div class="card-header"
+                style="background-image: url({{ $restaurants[0]->image ? asset('storage/' . $restaurants[0]->image) : '/img/placeholder.svg' }})">
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center my-3">
+                    <div class="logo">
+                        <img src="{{ $restaurants[0]->logo ? asset('storage/' . $restaurants[0]->logo) : '/img/placeholder.svg' }}"
+                            alt="{{ $restaurants[0]->name }}">
+                    </div>
+                    <h2 class="mx-3">{{ $restaurants[0]->name }}</h2>
+                    @if ($restaurants[0]->types !== null)
+                        @foreach ($restaurants[0]->types as $type)
+                            <span class="badge bg-primary mx-1">{{ $type->name }}</span>
+                        @endforeach
+                    @endif
                 </div>
-                <div class="card-body">
-                    <div class="d-flex align-items-center my-4">
-                        <div class="overflow-hidden">
-                            {{-- .'post_images/'.'carbonara.jpeg' --}}
-                            <img src="{{ asset('storage/' . $restaurant->logo) }}" alt="{{ $restaurant->name }}"
-                                class="rounded-circle" style="width: 100px">
-                        </div>
-                        <h2 class="m-3">{{ $restaurant->name }}</h2>
-                    </div>
-                    <div class="mx-5 my-5">
-                        <h5>Description</h5>
-                        <p class="card-text mx-5 my-2">{{ $restaurant->description }}</p>
-                        <h5>Address</h5>
-                        <p class="card-text mx-5 my-2">{{ $restaurant->address }}</p>
-                        <h5>VAT number</h5>
-                        <p class="card-text mx-5 my-2">{{ $restaurant->vat_number }}</p>
-                       
-                        @if ($restaurant->types !== null)
-                            <h5>Type</h5>
-                            @foreach ($restaurant->types as $type)
-                              <span class="badge bg-primary">{{$type->name}}</span>
-                            @endforeach
-                        @endif
-                    </div>
+                <div>
+                    <h5>Description</h5>
+                    <p class="mb-2">{{ $restaurants[0]->description }}</p>
+                    <h5>Address</h5>
+                    <p class="mb-2">{{ $restaurants[0]->address }}</p>
+                    <h5>VAT number</h5>
+                    <p>{{ $restaurants[0]->vat_number }}</p>
                 </div>
             </div>
-        @endforeach
+        </div>
     </div>
 @endsection
+
+<style lang="scss" scoped>
+    .card {
+        background-color: transparent !important;
+        box-shadow: none !important;
+
+        .card-header {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-body {
+            .logo {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                overflow: hidden;
+                img {
+                    object-fit: contain;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+</style>
