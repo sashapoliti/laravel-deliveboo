@@ -303,12 +303,9 @@ checkboxes.forEach(function(checkbox) {
         document.getElementById('error_types').innerHTML = "Please select at least one type.";
         return false;
 
-    } else if (checkedCount > 5) {
-        document.getElementById('error_types').innerHTML = "Please select maximum 5 types.";
-        return false; // Blocca l'invio del modulo se più di 5 checkbox sono selezionate
     } else {
         document.getElementById('error_types').innerHTML = "";
-        return true; // Consente l'invio del modulo se 5 o meno checkbox sono selezionate
+        return true; 
     }
    
     // Aggiungi un ascoltatore per il submit del modulo
