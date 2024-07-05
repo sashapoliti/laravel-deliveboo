@@ -76,13 +76,14 @@ class PlateController extends Controller
     public function show(Plate $plate)
     {
 
-        
-
         // Verifica se il piatto appartiene al ristorante dell'utente
-        if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
-            abort(403, 'Unauthorized action.');
-        }
+        // if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
+        //     abort(403, 'Unauthorized action.');
+        // }
        
+        if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
+            abort(404);
+        }
         return view('admin.plates.show', compact('plate'));
     }
 

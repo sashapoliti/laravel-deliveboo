@@ -64,7 +64,6 @@
     </div>
     @if (Auth::user())
     <ul id="routes-list" class="navbar-nav">
-        
         <li>
             <a href="{{ route('admin.dashboard') }}" class="{{ Route::is('admin.dashboard') ? 'active' : '' }} nav-link d-flex align-items-center">
                 <i class="fa-solid fa-house"></i> Dashboard
@@ -86,5 +85,6 @@
             </a>
         </li>
     </ul>
+    
     @endif
 </nav>
