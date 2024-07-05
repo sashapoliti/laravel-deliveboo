@@ -30,7 +30,7 @@
                     <label for="email" class="w-100">
                         <input id="email" type="email" class="input @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email">
-                        <span class="mx-3">Email <span class="text-danger">*</span></span>
+                        <span class="mx-3">Indirizzo Email <span class="text-danger">*</span></span>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -394,7 +394,6 @@
         border-radius: 0.5em;
         overflow: hidden;
         z-index: 1;
-        box-shadow: 4px 8px 10px -3px rgba(0, 0, 0, 0.356);
         transition: all 250ms;
         cursor: pointer;
         width: 240px;
