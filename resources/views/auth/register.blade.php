@@ -111,9 +111,9 @@
                 </label>
 
                 <label for="description">
+                    <p class="message mx-3">Descrizione Ristorante</p>
                     <textarea id="description" class="input @error('description') is-invalid @enderror" name="description"
                         minlength="3" maxlength="255" autocomplete="description" required>{{ old('description') }}</textarea>
-                    <span class="mx-4">Descrizione</span>
                     @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -123,7 +123,7 @@
                 </label>
 
                 <div class="col-6">
-                    <div class="container-img text-center">
+                    <div class="container-img">
                         <img src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg"
                             alt="" id="uploadPreview" class="shadow rounded-4 m-4">
                     </div>
@@ -166,7 +166,7 @@
 
                 <!-- Checkbox for restaurant types -->
                 <div class="col-12 mb-3" id="checkboxContainer">
-                    <p>Seleziona le tipologie del ristorante<span class="text-danger">*</span> :</p>
+                    <p>Seleziona le tipologie del ristorante <span class="text-danger">*</span> :</p>
                     @foreach ($types as $type)
                         <div>
                             <input class="form-check-input custom-checkbox @error('types') is-invalid @enderror"
@@ -373,6 +373,15 @@
 
 
 <style lang="scss" scoped>
+
+    .container-img {
+        width: 350px !important;
+        height: 350px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .container-btn-file {
         display: flex;
         position: relative;
