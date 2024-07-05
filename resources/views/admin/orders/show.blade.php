@@ -29,5 +29,25 @@
                 </tr>
             </tbody>
         </table>
+
+        <h2 class="my-3">Dettagli ordine</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Quantita</th>
+                <th scope="col">Prezzo</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($order->plates as $plate)
+                    <tr>
+                        <td>{{ $plate->name }}</td>
+                        <td>{{ $plate->pivot->quantity }}</td>
+                        <td>{{ $plate->pivot->price }} €</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>   
 @endsection
