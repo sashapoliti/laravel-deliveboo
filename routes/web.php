@@ -7,7 +7,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\PlateController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\PaymentController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -34,7 +36,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug'])->except('show', 'edit', 'update');
     Route::resource('plates', PlateController::class)->parameters(['plates' => 'plate:slug']);
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
-  
+    Route::resource('orders', OrderController::class)->only(['index']);
 });
 
 Route::middleware('auth')->group(function () {

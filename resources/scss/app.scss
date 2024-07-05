@@ -218,8 +218,9 @@ a {
         margin-right: -10px; // for scrollbar
 
         main {
-            height: 100%;
+            // height: 100%;
             padding: 0 16px;
+            overflow-y: auto;
         }
 
         /* header */
