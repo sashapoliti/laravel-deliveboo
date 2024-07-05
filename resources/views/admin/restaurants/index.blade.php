@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', $restaurants[0]->name)
+
 @section('content')
     <div class="container">
 
