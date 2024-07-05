@@ -28,4 +28,9 @@ class Plate extends Model
     {
         return $this->belongsTo(Restaurant::class);
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_plate', 'plate_id', 'order_id');
+    }
 }
