@@ -76,10 +76,7 @@ class PlateController extends Controller
     public function show(Plate $plate)
     {
 
-         // Verifica se l'utente ha creato un ristorante
-         if (!Auth::user()->restaurant) {
-            return redirect()->route('admin.restaurants.create')->with('message', 'Devi creare un ristorante prima di poter visualizzare i dettagli di questo piatto.');
-        }
+        
 
         // Verifica se il piatto appartiene al ristorante dell'utente
         if ($plate->restaurant_id !== Auth::user()->restaurant->id) {

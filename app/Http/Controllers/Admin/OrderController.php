@@ -42,6 +42,12 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+          
+
+        // Verifica se il piatto appartiene al ristorante dell'utente
+        if ($order->restaurant_id !== Auth::user()->restaurant->id) {
+            abort(403, 'Unauthorized action.');
+        }
         return view('admin.orders.show', compact('order'));
     }
 
