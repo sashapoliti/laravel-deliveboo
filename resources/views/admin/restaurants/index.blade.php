@@ -22,11 +22,11 @@
                     @endif
                 </div>
                 <div>
-                    <h5>Description</h5>
+                    <h5>Descrizione</h5>
                     <p class="mb-2">{{ $restaurants[0]->description }}</p>
-                    <h5>Address</h5>
+                    <h5>Indirizzo</h5>
                     <p class="mb-2">{{ $restaurants[0]->address }}</p>
-                    <h5>VAT number</h5>
+                    <h5>Partita IVA</h5>
                     <p>{{ $restaurants[0]->vat_number }}</p>
                 </div>
             </div>
