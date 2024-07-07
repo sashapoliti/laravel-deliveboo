@@ -10,8 +10,8 @@
     <div class="container">
 
         @if ($plates->count() == 0)
-            <div>
-                <h1 class="text-center" style="margin-top: 290px">No plates found</h1>
+            <div class="d-flex justify-content-center mt-5">
+                <img src="/img/no-plate.png" alt="nessun piatti">
             </div>
         @else
             <div class="my-5 d-flex justify-content-center align-items-center">
