@@ -67,7 +67,7 @@ class PlateController extends Controller
         }
 
         $newPlate = Plate::create($form_data);
-        return redirect()->route('admin.plates.show', $newPlate->slug)->with('message', $newPlate->name . ' è stato creato');
+        return redirect()->route('admin.plates.index')->with('message', $newPlate->name . ' è stato creato');
     }
 
     /**
@@ -81,10 +81,10 @@ class PlateController extends Controller
         //     abort(403, 'Unauthorized action.');
         // }
        
-        if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
-            abort(404);
-        }
-        return view('admin.plates.show', compact('plate'));
+        // if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
+        //     abort(404);
+        // }
+        // return view('admin.plates.show', compact('plate'));
     }
 
     /**
@@ -127,7 +127,7 @@ class PlateController extends Controller
         }
 
         $plate->update($form_data);
-        return redirect()->route('admin.plates.show', $plate->slug)->with('message', $plate->name . ' è stato modificato');
+        return redirect()->route('admin.plates.index')->with('message', $plate->name . ' è stato modificato');
     }
 
     /**
@@ -135,10 +135,10 @@ class PlateController extends Controller
      */
     public function destroy(Plate $plate)
     {
-        // Verifica se il piatto appartiene al ristorante dell'utente
-        if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
-            abort(403, 'Unauthorized action.');
-        }
+        // // Verifica se il piatto appartiene al ristorante dell'utente
+        // if ($plate->restaurant_id !== Auth::user()->restaurant->id) {
+        //     abort(403, 'Unauthorized action.');
+        // }
 
         // Rimuove l'immagine associata al piatto se presente
         if ($plate->image) {

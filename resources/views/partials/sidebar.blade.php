@@ -11,7 +11,7 @@
                 @auth
                     <img class="rounded-circle profile-picture me-2"
                         src="{{ Auth::user()->restaurant->logo ? asset('storage/' . Auth::user()->restaurant->logo) : '/img/user_placeholder.jpg' }}"
-                        alt="{{ Auth::user()->name ? Auth::user()->name : 'Default' }} profile picture">
+                        alt="{{ Auth::user()->name ? Auth::user()->name : 'Default' }} profile picture" >
                 @else
                     <img class="rounded-circle profile-picture me-2" src="/img/user_placeholder.jpg"
                         alt="Default profile picture">

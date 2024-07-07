@@ -34,7 +34,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug'])->except('show', 'edit', 'update');
-    Route::resource('plates', PlateController::class)->parameters(['plates' => 'plate:slug']);
+    Route::resource('plates', PlateController::class)->parameters(['plates' => 'plate:slug'])->except('show');
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
     Route::resource('orders', OrderController::class)->parameters(['orders' => 'order:id'])->only(['index', 'show']);
 });

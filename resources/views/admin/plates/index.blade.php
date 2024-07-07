@@ -9,11 +9,11 @@
 
     <div class="container">
 
-        @if ($plates->count() == 0)
+        {{-- @if ($plates->count() == 0)
             <div class="d-flex justify-content-center mt-5">
                 <img src="/img/no-plate.png" alt="nessun piatti">
             </div>
-        @else
+        @else --}}
             <div class="my-5 d-flex justify-content-center align-items-center">
                 <h1>Create a new plate</h1>
                 <div class="mx-3 bg-secondary rounded-circle d-flex align-items-center justify-content-center" id="plus">
@@ -55,7 +55,7 @@
                                         class="d-inline-block ms-3">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="bin-button" type="submit" title="Cancella">
+                                        <button class="bin-button delete-button" type="submit" title="Cancella" data-item-title="{{ $plate->name }}">
                                             <svg class="bin-top" viewBox="0 0 39 7" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <line y1="5" x2="39" y2="5" stroke="white"
@@ -84,7 +84,7 @@
                         @endforeach
                     </tbody>
                 </table>
-        @endif
+        {{-- @endif --}}
     </div>
     @include('partials.modal-delete')
 @endsection
