@@ -24,7 +24,7 @@
                 </div>
             </button>
         </a>
-        <h1 class="mx-2 mt-1">Create</h1>
+        <h1 class="mx-2 mt-1">Crea</h1>
     </div>
 
     <h2 class="text-center tet-uppercase">Inserisci un nuovo piatto</h2>

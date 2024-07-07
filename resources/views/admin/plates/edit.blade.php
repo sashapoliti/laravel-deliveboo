@@ -22,7 +22,7 @@
                 </div>
             </button>
         </a>
-        <h1 class="mx-2 mt-1">Edit</h1>
+        <h1 class="mx-2 mt-1">Modifica</h1>
     </div>
     <form class="row g-3 mt-3" action="{{route('admin.plates.update', $plate->slug)}}" method="POST"
         enctype="multipart/form-data">
