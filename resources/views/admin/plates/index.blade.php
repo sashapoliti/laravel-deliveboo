@@ -10,19 +10,19 @@
     @endif
 
     <div class="container">
-
         @if ($plates->count() == 0)
             <div class="d-flex justify-content-center mt-5">
                 <img src="/img/no-plate.png" alt="nessun piatti">
             </div>
         @else
-            <div class="my-5 d-flex justify-content-center align-items-center">
+            {{-- <div class=" d-flex justify-content-center align-items-center">
                 <h1>Create a new plate</h1>
                 <div class="mx-3 bg-secondary rounded-circle d-flex align-items-center justify-content-center" id="plus">
                     <a href="{{ route('admin.plates.create') }}"><i class="fa-solid fa-plus text-white"></i></a>
                 </div>
-            </div>
-            <div>
+            </div> --}}
+            <div class="my-5">
+                <h1 class="my-3">Piatti</h1>
                 <table class="table text-center align-middle">
                     <thead class="text-center">
                         <tr>
@@ -35,7 +35,8 @@
                     <tbody>
                         @foreach ($plates as $plate)
                             <tr class="table-image">
-                                <td><img src="{{ $plate->image ? asset('storage/' . $plate->image) : '/img/placeholder.svg' }}" alt=""></td>
+                                <td><img src="{{ $plate->image ? asset('storage/' . $plate->image) : '/img/placeholder.svg' }}"
+                                        alt=""></td>
                                 <td><em>{{ $plate->name }}</em></td>
                                 <td>€ {{ $plate->price }} </td>
                                 <td class="d-flex justify-content-center">
@@ -55,7 +56,8 @@
                                         class="d-inline-block ms-3">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="bin-button delete-button" type="submit" title="Cancella" data-item-title="{{ $plate->name }}">
+                                        <button class="bin-button delete-button" type="submit" title="Cancella"
+                                            data-item-title="{{ $plate->name }}">
                                             <svg class="bin-top" viewBox="0 0 39 7" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <line y1="5" x2="39" y2="5" stroke="white"
@@ -85,5 +87,45 @@
                 </table>
         @endif
     </div>
+    <a href="{{ route('admin.plates.create') }}" class="float-button">
+        <i class="fa-solid fa-plus"></i>
+    </a>
     @include('partials.modal-delete')
 @endsection
+
+<style lang="scss" scoped>
+    .float-button {
+        display: flex;
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        justify-content: center;
+        align-items: center;
+        background-color: #307750;
+        color: #F4F3EF;
+        border-style: none;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 250ms;
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+        font-size: 1.7rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 0;
+            border-radius: 0.5em;
+            background-color: #469b61;
+            z-index: -1;
+            transition: all 350ms;
+        }
+
+        &:hover::before {
+            width: 100%;
+        }
+    }
+</style>

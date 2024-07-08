@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-<div class="container m-auto">
-    <div class="d-flex align-items-center mt-3">
+<div class="container mt-5 m-auto">
+    <div class="d-flex align-items-center">
         <a href="{{ route('admin.plates.index') }}" class="my-2">
             <button class="back-button">
                 <div class="back-button-box">

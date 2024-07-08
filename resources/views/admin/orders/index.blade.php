@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container my-5">
         <h1 class="my-3">Ordini</h1>
         <table class="table">
             <thead>

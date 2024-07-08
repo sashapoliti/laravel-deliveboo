@@ -3,7 +3,7 @@
 @section('title', 'Registrazione')
 
 @section('content')
-    <div class="container my-4">
+    <div class="container my-5">
         <form method="POST" action="{{ route('register') }}" class="form pb-5" enctype="multipart/form-data">
             @csrf
             <p class="title">Registrazione</p>
