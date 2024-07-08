@@ -4,7 +4,8 @@
 
 @section('content')
     <div class="container my-5">
-        <form method="POST" action="{{ route('register') }}" class="form pb-5" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('register') }}" class="form pb-5" enctype="multipart/form-data"
+            id="registrationForm">
             @csrf
             <p class="title">Registrazione</p>
             <p class="message">Iscriviti ora e ottieni l'accesso completo alla nostra app.</p>
@@ -14,7 +15,7 @@
                 <div class="col-6">
                     <label for="name" class="w-100">
                         <input id="name" type="text" class="input @error('name') is-invalid @enderror"
-                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus minlength="3"
+                            name="name" value="{{ old('name') }}"  autocomplete="name" autofocus minlength="3"
                             maxlength="255">
                         <span class="mx-3">Nome <span class="text-danger">*</span></span>
                         @error('name')
@@ -29,7 +30,8 @@
                 <div class="col-6">
                     <label for="email" class="w-100">
                         <input id="email" type="email" class="input @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autocomplete="email">
+                            name="email" value="{{ old('email') }}" 
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autocomplete="email">
                         <span class="mx-3">Indirizzo Email <span class="text-danger">*</span></span>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -43,7 +45,7 @@
                 <div class="col-6">
                     <label for="password" class="w-100">
                         <input id="password" type="password" class="input @error('password') is-invalid @enderror"
-                            name="password" required autocomplete="new-password" minlength="8" maxlength="50"
+                            name="password"  autocomplete="new-password" minlength="8" maxlength="50"
                             oninput="validatePassword()">
                         <span class="mx-3">Password <span class="text-danger">*</span></span>
                         @error('password')
@@ -57,20 +59,19 @@
 
                 <div class="col-6">
                     <label for="password-confirm" class="w-100">
-                        <input id="password-confirm" type="password" class="input" name="password_confirmation" required
+                        <input id="password-confirm" type="password" class="input" name="password_confirmation" 
                             autocomplete="new-password" minlength="8" maxlength="50" oninput="validatePassword()">
                         <span class="mx-3">Conferma password <span class="text-danger">*</span></span>
                     </label>
                     <strong id="error_password_confirm" class="text-danger" style="font-size: 12px"></strong>
                 </div>
 
-
                 <!-- Restaurant fields -->
                 <div class="col-6">
                     <label for="restaurant_name" class="w-100">
                         <input id="restaurant_name" type="text"
                             class="input @error('restaurant_name') is-invalid @enderror" name="restaurant_name"
-                            value="{{ old('restaurant_name') }}" required autocomplete="restaurant_name" minlength="3"
+                            value="{{ old('restaurant_name') }}"  autocomplete="restaurant_name" minlength="3"
                             maxlength="255">
                         <span class="mx-3">Nome Ristorante <span class="text-danger">*</span></span>
                         @error('restaurant_name')
@@ -85,7 +86,7 @@
                 <div class="col-6">
                     <label for="vat_number" class="w-100">
                         <input id="vat_number" type="number" class="input @error('vat_number') is-invalid @enderror"
-                            name="vat_number" value="{{ old('vat_number') }}" required minlength="11" maxlength="11"
+                            name="vat_number" value="{{ old('vat_number') }}"  minlength="11" maxlength="11"
                             autocomplete="vat_number">
                         <span class="mx-3">Partita IVA <span class="text-danger">*</span></span>
                         @error('vat_number')
@@ -99,7 +100,7 @@
 
                 <label for="address">
                     <input id="address" type="text" class="input @error('address') is-invalid @enderror"
-                        name="address" value="{{ old('address') }}" required minlength="3" maxlength="255"
+                        name="address" value="{{ old('address') }}"  minlength="3" maxlength="255"
                         autocomplete="address">
                     <span class="mx-4">Indirizzo <span class="text-danger">*</span></span>
                     @error('address')
@@ -113,7 +114,7 @@
                 <label for="description">
                     <p class="message mx-3">Descrizione Ristorante</p>
                     <textarea id="description" class="input @error('description') is-invalid @enderror" name="description"
-                        minlength="3" maxlength="255" autocomplete="description" required>{{ old('description') }}</textarea>
+                        minlength="3" maxlength="255" autocomplete="description">{{ old('description') }}</textarea>
                     @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -132,7 +133,7 @@
                             <i class="fa-regular fa-file"></i>
                             Carica immagine
                             <input id="upload_image" type="file" accept="image/*"
-                                class="input py-2  @error('image') is-invalid @enderror" name="image" maxlength="2048"
+                                class="input py-2 @error('image') is-invalid @enderror" name="image" maxlength="2048"
                                 style="display: none;">
                         </label>
                         @error('image')
@@ -220,98 +221,194 @@
         let description = document.getElementById("description");
         let error_description = document.getElementById("error_description");
 
-        let type = document.getElementById("types");
-        let error_type = document.getElementById("error_types");
-
-        // Funzione per la validazione delle checkbox
         let checkboxes = document.querySelectorAll('#checkboxContainer input[type="checkbox"]');
-        let checkedCount = 0;
+        let error_types = document.getElementById("error_types");
 
+        function validateForm(event) {
+            let valid = true;
 
-        // Ensure the validation is checked on form submit as well
-        document.getElementById('button').addEventListener('click', function(event) {
-
-
-            // Name field
-            if (name.value === "") {
-                error_name.innerHTML = "Name is required";
+            if (!name.value) {
+                error_name.innerHTML = "Il nome è obbligatorio.";
+                name.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (name.value.length < 3) {
-                error_name.innerHTML = "Name must be at least 3 characters";
+                error_name.innerHTML = "Il nome deve avere almeno 3 caratteri.";
+                name.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (name.value.length > 255) {
-                error_name.innerHTML = "Name must not exceed 255 characters";
+                error_name.innerHTML = "Il nome deve avere al massimo 255 caratteri.";
+                name.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
+            } else if (!/^[a-zA-Z-']+$/.test(name.value)) {
+                error_name.innerHTML = 'Il nome deve contenere solo lettere nessuno spazio.';
+                name.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_name.innerHTML = "";
             }
 
             // Email field
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (email.value === "") {
-                error_email.innerHTML = "Email is required";
-            } else if (!email.value.includes('@')) {
-                error_email.innerHTML = "Email must be valid (contain '@')";
+                error_email.innerHTML = "L'email è obbligatoria.";
+                email.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
+            } else if (!emailPattern.test(email.value)) {
+                error_email.innerHTML = "L'email non è valida.";
+                email.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_email.innerHTML = "";
             }
 
-
             // Password field
             if (password.value === "") {
-                error_password.innerHTML = "Password is required";
+                error_password.innerHTML = "La password è obbligatoria.";
+                password.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (password.value.length < 8) {
-                error_password.innerHTML = "Password must be at least 8 characters";
-            } else if (name.value.length > 50) {
-                error_password.innerHTML = "Name must not exceed 50 characters";
+                error_password.innerHTML = "La password deve avere almeno 8 caratteri.";
+                password.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
+            } else if (password.value.length > 50) {
+                error_password.innerHTML = "La password deve avere al massimo 50 caratteri.";
+                password.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_password.innerHTML = "";
             }
 
             // Confirm Password field
             if (confirm_password.value === "") {
-                error_password_confirm.innerHTML = "Confirm Password is required";
+                error_password_confirm.innerHTML = "La conferma della password è obbligatoria.";
+                confirm_password.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (password.value !== confirm_password.value) {
-                error_password_confirm.innerHTML = "Passwords don't match";
+                error_password_confirm.innerHTML = "Le password non corrispondono.";
+                confirm_password.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_password_confirm.innerHTML = "";
             }
 
             // Restaurant name field
             if (restaurant_name.value === "") {
-                error_restaurant_name.innerHTML = "Restaurant name is required";
+                error_restaurant_name.innerHTML = "Il nome del ristorante è obbligatorio.";
+                restaurant_name.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (restaurant_name.value.length < 3) {
-                error_restaurant_name.innerHTML = "Restaurant name must be at least 3 characters";
+                error_restaurant_name.innerHTML = "Il nome del ristorante deve avere almeno 3 caratteri.";
+                restaurant_name.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (restaurant_name.value.length > 255) {
-                error_restaurant_name.innerHTML = "Restaurant name must not exceed 255 characters";
+                error_restaurant_name.innerHTML = "Il nome del ristorante deve avere al massimo 255 caratteri.";
+                restaurant_name.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_restaurant_name.innerHTML = "";
             }
 
             // VAT number field
             if (vat_number.value === "") {
-                error_vat_number.innerHTML = "VAT number is required";
-            } else if (vat_number.value.length !== 11) {
-                error_vat_number.innerHTML = "VAT number must be exactly 11 characters";
+                error_vat_number.innerHTML = "La partita IVA è obbligatoria.";
+                vat_number.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
+            } else if (!/^\d{11}$/.test(vat_number.value)) {
+                error_vat_number.innerHTML = "La partita IVA deve essere esattamente di 11 cifre.";
+                vat_number.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_vat_number.innerHTML = "";
             }
 
             // Address field
             if (address.value === "") {
-                error_address.innerHTML = "Address is required";
+                error_address.innerHTML = "L'indirizzo è obbligatorio.";
+                address.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (address.value.length < 3 || address.value.length > 255) {
-                error_address.innerHTML = "Address must be between 3 and 255 characters";
+                error_address.innerHTML = "L'indirizzo deve essere tra 3 e 255 caratteri.";
+                address.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_address.innerHTML = "";
             }
 
             // Description field (optional)
             if (description.value !== "" && description.value.length < 3) {
-                error_description.innerHTML = "Description minimum 3 characters";
+                error_description.innerHTML = "La descrizione deve avere almeno 3 caratteri.";
+                description.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else if (description.value !== "" && description.value.length > 255) {
-                error_description.innerHTML = "Description maximum 255 characters";
+                error_description.innerHTML = "La descrizione deve avere al massimo 255 caratteri.";
+                description.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
                 error_description.innerHTML = "";
             }
 
-
+            // Checkbox validation
+            let checkedCount = 0;
             checkboxes.forEach(function(checkbox) {
                 if (checkbox.checked) {
                     checkedCount++;
@@ -319,27 +416,26 @@
             });
 
             if (checkedCount < 1) {
-                document.getElementById('error_types').innerHTML = "Please select at least one type.";
-                return false;
-
+                error_types.innerHTML = "Seleziona almeno una tipologia.";
+                checkboxes[0].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                valid = false;
             } else {
-                document.getElementById('error_types').innerHTML = "";
-                return true;
+                error_types.innerHTML = "";
             }
 
-            // Aggiungi un ascoltatore per il submit del modulo
-            document.getElementById('yourFormId').addEventListener('submit', function(event) {
-                if (!validateCheckbox()) {
-                    event.preventDefault(); // Blocca l'invio del modulo se la validazione non è superata
-                }
-            });
-
-            if (!this.checkValidity()) {
+            // Prevent form submission if there are validation errors
+            if (!valid) {
                 event.preventDefault();
             }
-        });
+        }
 
+        // Add event listener for form submit
+        document.getElementById('registrationForm').addEventListener('submit', validateForm);
 
+        // Image preview functionality
         const imageInput = document.getElementById("upload_image");
         if (imageInput) {
             imageInput.addEventListener("change", function() {
@@ -364,6 +460,7 @@
             });
         }
     </script>
+
 @endsection
 
 
@@ -372,8 +469,8 @@
 
 
 
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
     .container-img {
         width: 350px !important;
         height: 350px;
@@ -382,6 +479,7 @@
         justify-content: center;
         align-items: center;
     }
+
     .container-btn-file {
         display: flex;
         position: relative;
@@ -538,9 +636,9 @@
         font-weight: 600;
     }
 
-    .form label .input:valid+span {
+    /* .form label .input:valid+span {
         color: green;
-    }
+    } */
 
     .submit {
         border: none;
