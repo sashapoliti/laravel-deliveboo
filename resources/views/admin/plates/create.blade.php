@@ -65,7 +65,7 @@
             <div>
                 <input type="hidden" name="visibility" value="0">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="visibility" id="visibility" value="1" {{ old('visibility') ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="visibility" id="visibility" value="1" {{ old('visibility') ? 'checked' : '' }} checked>
                     <label class="form-check-label" for="visibility">
                         Visibile
                     </label>
