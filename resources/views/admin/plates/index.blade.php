@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Piatti')
+
 @section('content')
     @if (session('message'))
         <div class="alert alert-success mt-3">
@@ -9,11 +11,11 @@
 
     <div class="container">
 
-        {{-- @if ($plates->count() == 0)
+        @if ($plates->count() == 0)
             <div class="d-flex justify-content-center mt-5">
                 <img src="/img/no-plate.png" alt="nessun piatti">
             </div>
-        @else --}}
+        @else
             <div class="my-5 d-flex justify-content-center align-items-center">
                 <h1>Create a new plate</h1>
                 <div class="mx-3 bg-secondary rounded-circle d-flex align-items-center justify-content-center" id="plus">
@@ -21,21 +23,19 @@
                 </div>
             </div>
             <div>
-                <table class="table">
-                    <thead>
-                        <tr class="text-center">
-                            <th scope="col"></th>
-                            <th scope="col">Foto</th>
-                            <th scope="col">nome piatto</th>
-                            <th scope="col">prezzo</th>
-                            <th scope="col">azioni</th>
+                <table class="table text-center align-middle">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">Immagine</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Prezzo</th>
+                            <th scope="col">Azioni</th>
                         </tr>
                     </thead>
-                    <tbody class="table-image text-center">
+                    <tbody>
                         @foreach ($plates as $plate)
-                            <tr class="tabble-image">
-                                <th scope="row"></th>
-                                <td><img src="{{ asset('storage/' . $plate->image) }}" alt=""></td>
+                            <tr class="table-image">
+                                <td><img src="{{ $plate->image ? asset('storage/' . $plate->image) : '/img/placeholder.svg' }}" alt=""></td>
                                 <td><em>{{ $plate->name }}</em></td>
                                 <td>€ {{ $plate->price }} </td>
                                 <td class="d-flex justify-content-center">
@@ -77,14 +77,13 @@
                                                 <path d="M21 6V29" stroke="white" stroke-width="4"></path>
                                             </svg>
                                         </button>
-
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-        {{-- @endif --}}
+        @endif
     </div>
     @include('partials.modal-delete')
 @endsection
