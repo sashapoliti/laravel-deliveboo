@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Ordine ' . $order->id)
+
 @section('content')
     <div class="container mt-5">
         <h1 class="my-3">Ordine</h1>

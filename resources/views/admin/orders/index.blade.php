@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Ordini')
+
 @section('content')
     <div class="container my-5">
         <h1 class="my-3">Ordini</h1>

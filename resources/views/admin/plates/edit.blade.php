@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+
+@section('title', 'Modifica ' . $plate->name)
+
 @section('content')
 <div class="container mt-5 m-auto">
     <div class="d-flex align-items-center">
