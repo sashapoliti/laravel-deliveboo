@@ -15,7 +15,7 @@ class RestaurantController extends Controller
     {
         $types = $request->input('type', []);
     
-        $restaurants = Restaurant::with('plates')
+        $restaurants = Restaurant::with('plates', 'types')
             ->whereHas('types', function ($query) use ($types) {
                 $query->whereIn('type_id', $types);
             });
@@ -58,7 +58,7 @@ class RestaurantController extends Controller
      */
     public function show(string $slug)
     {
-        $restaurant = Restaurant::where('slug', $slug)->with('plates')->first();
+        $restaurant = Restaurant::where('slug', $slug)->with('plates', 'types')->first();
 
         if (!$restaurant) {
             return response()->json(['message' => 'Restaurant not found'], 404);
