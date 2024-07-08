@@ -1,9 +1,11 @@
 @extends('layouts.admin')
 
-@section('content')
-<section class="container m-auto">
+@section('title', 'Nuovo piatto')
 
-    <div class="d-flex align-items-center mt-3">
+@section('content')
+<section class="container mt-5 m-auto">
+
+    {{-- <div class="d-flex align-items-center">
         <a href="{{ route('admin.plates.index') }}" class="my-2">
             <button class="back-button">
                 <div class="back-button-box">
@@ -25,7 +27,7 @@
             </button>
         </a>
         <h1 class="mx-2 mt-1">Crea</h1>
-    </div>
+    </div> --}}
 
     <h2 class="text-center tet-uppercase">Inserisci un nuovo piatto</h2>
     <form class="row g-3 mt-3" action="{{ route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
@@ -44,7 +46,7 @@
         <div class="col-6">
             <label for="price" class="form-label">Prezzo <span class="text-danger">*</span></label>
             <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
-                value="{{ old('price') }}" step="0.01" maxlength="6" minlength="0.01" required>
+                value="{{ old('price') }}" step="0.01" maxlength="6" minlength="0.01" min="0.01" required>
             @error('price')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -61,15 +63,12 @@
 
         <div class="col-12">
             <div>
-                <h5>Seleziona se il prodotto è visibile o meno</h5>
-
-                <div class="my-2">
-                    <input type="radio" name="visibility" id="visibility" value="1" checked class="mx-2">
-                    <label for="visibility">Visibile</label>
-                </div>
-                <div class="my-2">
-                    <input type="radio" name="visibility" id="visibility" value="0" class="mx-2">
-                    <label for="visibility">Non visibile</label>
+                <input type="hidden" name="visibility" value="0">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="visibility" id="visibility" value="1" {{ old('visibility') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="visibility">
+                        Visibile
+                    </label>
                 </div>
             </div>
         </div>

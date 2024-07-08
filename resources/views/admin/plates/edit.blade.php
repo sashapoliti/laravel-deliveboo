@@ -1,8 +1,11 @@
 @extends('layouts.admin')
+
+@section('title', 'Modifica ' . $plate->name)
+
 @section('content')
-<div class="container m-auto">
-    <div class="d-flex align-items-center mt-3">
-        <a href="{{ route('admin.plates.index') }}" class="my-2">
+<div class="container mt-5 m-auto">
+    <div class="d-flex align-items-center">
+        {{-- <a href="{{ route('admin.plates.index') }}" class="my-2">
             <button class="back-button">
                 <div class="back-button-box">
                     <span class="back-button-elem">
@@ -21,8 +24,8 @@
                     </span>
                 </div>
             </button>
-        </a>
-        <h1 class="mx-2 mt-1">Modifica</h1>
+        </a> --}}
+        <h1 {{-- class="mx-2 mt-1" --}}>Modifica {{$plate->name}}</h1>
     </div>
     <form class="row g-3 mt-3" action="{{route('admin.plates.update', $plate->slug)}}" method="POST"
         enctype="multipart/form-data">
@@ -39,8 +42,7 @@
 
         <div class="mb-3 col-6">
             <label for="price" class="form-label">Prezzo <span class="text-danger">*</span></label>
-            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" maxlength="5"
-                minlength="0.01" required name="price" value="{{ old('price', $plate->price) }}">
+            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" maxlength="5" min="0.01" step="0.01" required name="price" value="{{ old('price', $plate->price) }}">
             @error('price')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -56,16 +58,14 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="col-12">
             <div>
-                <h5>Seleziona se il prodotto è visibile o meno</h5>
-                <div class="my-2">
-                    <input type="radio" class="mx-2" name="visibility" value="1" {{ old('visibility', $plate->visibility) == 1 ? 'checked' : '' }}>
-                    <label for="visibility">Visibile</label>
-                </div>
-                <div class="my-2">
-                    <input class="mx-2" type="radio" name="visibility" value="0" {{ old('visibility', $plate->visibility) == 0 ? 'checked' : '' }}>
-                    <label for="visibility">Non visibile</label>
+                <input type="hidden" name="visibility" value="0">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="visibility" id="visibility" value="1" {{ (old('visibility') ? 'checked' : '') || $plate->visibility ? 'checked' : '' }}>
+                    <label class="form-check-label" for="visibility">
+                        Visibile
+                    </label>
                 </div>
             </div>
         </div>
