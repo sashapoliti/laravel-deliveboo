@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-5 m-auto">
     <div class="d-flex align-items-center">
-        <a href="{{ route('admin.plates.index') }}" class="my-2">
+        {{-- <a href="{{ route('admin.plates.index') }}" class="my-2">
             <button class="back-button">
                 <div class="back-button-box">
                     <span class="back-button-elem">
@@ -24,8 +24,8 @@
                     </span>
                 </div>
             </button>
-        </a>
-        <h1 class="mx-2 mt-1">Modifica</h1>
+        </a> --}}
+        <h1 {{-- class="mx-2 mt-1" --}}>Modifica {{$plate->name}}</h1>
     </div>
     <form class="row g-3 mt-3" action="{{route('admin.plates.update', $plate->slug)}}" method="POST"
         enctype="multipart/form-data">
@@ -43,7 +43,7 @@
         <div class="mb-3 col-6">
             <label for="price" class="form-label">Prezzo <span class="text-danger">*</span></label>
             <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" maxlength="5"
-                minlength="0.01" required name="price" value="{{ old('price', $plate->price) }}">
+                minlength="0.01" min="0.01" required name="price" value="{{ old('price', $plate->price) }}">
             @error('price')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

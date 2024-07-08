@@ -63,6 +63,8 @@
 
         <div class="col-12">
             <div>
+                <h5>Visibilità</h5>
+                <input type="hidden" name="visibility" value="0">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="visibility" id="visibility" value="1" {{ old('visibility') ? 'checked' : '' }}>
                     <label class="form-check-label" for="visibility">
