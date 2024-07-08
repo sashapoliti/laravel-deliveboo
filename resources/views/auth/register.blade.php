@@ -29,7 +29,7 @@
                 <div class="col-6">
                     <label for="email" class="w-100">
                         <input id="email" type="email" class="input @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email">
+                            name="email" value="{{ old('email') }}" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autocomplete="email">
                         <span class="mx-3">Indirizzo Email <span class="text-danger">*</span></span>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
