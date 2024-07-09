@@ -40,7 +40,7 @@
         box-shadow: none !important;
 
         .card-header {
-            height: 300px;
+            height: 400px;
             background-size: cover;
             background-position: center;
         }
