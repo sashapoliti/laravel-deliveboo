@@ -105,7 +105,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         {
                             label: 'Guadagni',
                             data: profits,
-                            borderColor: '#69BB01',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Colore rosso con opacità
+                            borderColor: 'rgba(255, 99, 132, 1)', // Colore rosso
+                            borderWidth: 1
                         }
                     ]
                 }
