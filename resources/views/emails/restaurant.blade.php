@@ -58,11 +58,6 @@
                 <li><strong>ID Transazione:</strong> {{ $transactionId }}</li>
             </ul>
             <h2>🍲 Dettagli dei Piatti Ordinati:</h2>
-            <ul>
-                @foreach ($cart as $plate)
-                    <li>{{ $plate['quantity'] }} x {{ $plate['name'] }} - {{ $plate['price'] }} €</li>
-                @endforeach
-            </ul>
         </div>
         <p>Grazie per la vostra attenzione.</p>
     </div>
