@@ -67,4 +67,8 @@
           </div>
       </div>
   </div> 
+<script>
+    const monthlyProfits = @json($monthlyProfits);
+</script>
+
 @endsection

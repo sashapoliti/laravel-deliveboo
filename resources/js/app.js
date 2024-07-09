@@ -73,71 +73,80 @@ deleteSubmitButtons.forEach((button) => {
 
 
 
-(async function() {
-  const data = [
-    { year: 2010, count: 10 },
-    { year: 2011, count: 40 },
-    { year: 2012, count: 15 },
-    { year: 2013, count: 25 },
-    { year: 2014, count: 22 },
-    { year: 2015, count: 30 },
-    { year: 2016, count: 28 },
-  ];
-  
-  new Chart(
-    document.getElementById('guadagni'),
-    {
-      type: 'line',
-      options: {
-        animation: true,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            enabled: false
-          }
-        }
-      },
-      data: {
-        labels: data.map(row => row.year),
-        datasets: [
-          {
-            label: 'guadagni',
-            data: data.map(row => row.count),
-            borderColor: '#69BB01',
-          }
-        ]
-      }
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof monthlyProfits !== 'undefined' && document.getElementById('guadagni')) {
+        const data = monthlyProfits.map(profit => ({
+            yearMonth: `${profit.year}-${String(profit.month).padStart(2, '0')}`,
+            total_profit: profit.total_profit,
+        }));
+
+        const labels = data.map(row => row.yearMonth);
+        const profits = data.map(row => row.total_profit);
+
+        new Chart(
+            document.getElementById('guadagni'),
+            {
+                type: 'bar',
+                options: {
+                    animation: true,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true
+                        }
+                    }
+                },
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Guadagni',
+                            data: profits,
+                            borderColor: '#69BB01',
+                        }
+                    ]
+                }
+            }
+        );
     }
-  );
-  
-})();
-
-document.addEventListener('DOMContentLoaded', function() {
-  const checkboxes = document.querySelectorAll('input[name="types[]"]');
-  const typeHelp = document.getElementById('typeHelp');
-
-  function validateCheckbox() {
-      let isChecked = false;
-      checkboxes.forEach(function(checkbox) {
-          if (checkbox.checked) {
-              isChecked = true;
-          }
-      });
-
-      if (!isChecked) {
-          typeHelp.textContent = 'Seleziona almeno un tipo';
-      } else {
-          typeHelp.textContent = '';
-      }
-  }
-
-  checkboxes.forEach(function(checkbox) {
-      checkbox.addEventListener('change', validateCheckbox);
-  });
-
-  // Validazione iniziale
-  validateCheckbox();
 });
+
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   const checkboxes = document.querySelectorAll('input[name="types[]"]');
+//   const typeHelp = document.getElementById('typeHelp');
+
+//   function validateCheckbox() {
+//       let isChecked = false;
+//       checkboxes.forEach(function(checkbox) {
+//           if (checkbox.checked) {
+//               isChecked = true;
+//           }
+//       });
+
+//       if (!isChecked) {
+//           typeHelp.textContent = 'Seleziona almeno un tipo';
+//       } else {
+//           typeHelp.textContent = '';
+//       }
+//   }
+
+//   checkboxes.forEach(function(checkbox) {
+//       checkbox.addEventListener('change', validateCheckbox);
+//   });
+
+//   // Validazione iniziale
+//   validateCheckbox();
+// });
