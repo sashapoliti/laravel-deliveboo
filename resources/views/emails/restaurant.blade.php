@@ -15,7 +15,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 20px auto;
             background-color: #fff;
             padding: 20px;
@@ -46,14 +46,37 @@
 
         .order-details li {
             margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-details li::before {
+            content: "💁 ";
+            margin-right: 5px;
+        }
+
+        .item-details {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .item-details span {
+            display: inline-block;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>🍽️ Nuovo Pagamento Ricevuto{{ $restaurant_name }}</h1>
-        <p>Gentile Ristorante,</p>
+        <h1>🍽️ Nuovo Pagamento Ricevuto</h1>
+        <p>Gentile Ristorante {{ $restaurant_name }},</p>
         <p>L'utente <strong>{{ $name }} {{ $surname }}</strong> ha effettuato un acquisto.</p>
         <p>Dettagli dell'ordine:</p>
         <div class="order-details">
@@ -67,11 +90,21 @@
                 <li><strong>ID Transazione:</strong> {{ $transactionId }}</li>
             </ul>
             <h2>🍲 Dettagli dei Piatti Ordinati:</h2>
-            @foreach ($cart as $item)
-                <li>{{ $item['product']['name'] }} - {{ $item['quantity'] }} x {{ $item['product']['price'] }} €</li>
-            @endforeach
+            <ul>
+                @foreach ($cart as $item)
+                <li>
+                    <div class="item-details">
+                        <span>{{ $item['product']['name'] }} - {{ $item['quantity'] }} x {{ $item['product']['price'] }} €</span>
+                        <span>Totale: {{ number_format($item['quantity'] * $item['product']['price'], 2) }} €</span>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
         </div>
         <p>Grazie per la vostra attenzione.</p>
+        <div class="footer">
+            <p>&copy; {{ date('Y') }} Il tuo Ristorante. Tutti i diritti riservati.</p>
+        </div>
     </div>
 </body>
 
