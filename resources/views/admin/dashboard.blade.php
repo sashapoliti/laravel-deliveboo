@@ -67,6 +67,7 @@
     </div>
     <script>
         const monthlyData = @json($monthlyData);
+        const startMonth = @json($startMonth);
     </script>
 
 @endsection

@@ -74,17 +74,21 @@ deleteSubmitButtons.forEach((button) => {
 
 
 
-    if (typeof monthlyData !== 'undefined' && document.getElementById('guadagni')) {
-        const generateMonths = (year) => {
-            return Array.from({ length: 12 }, (v, i) => ({
-                yearMonth: `${year}-${String(i + 1).padStart(2, '0')}`,
-                total_profit: 0,
-                order_count: 0
-            }));
+
+    if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && document.getElementById('guadagni')) {
+        const generateMonths = (start, count) => {
+            const startDate = new Date(start);
+            return Array.from({ length: count }, (v, i) => {
+                const date = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
+                return {
+                    yearMonth: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`,
+                    total_profit: 0,
+                    order_count: 0
+                };
+            });
         };
 
-        const currentYear = new Date().getFullYear();
-        const months = generateMonths(currentYear);
+        const months = generateMonths(startMonth, 12);
 
         monthlyData.forEach(data => {
             const index = months.findIndex(month => month.yearMonth === `${data.year}-${String(data.month).padStart(2, '0')}`);
@@ -140,7 +144,6 @@ deleteSubmitButtons.forEach((button) => {
 
 
 
-// document.addEventListener('DOMContentLoaded', function() {
 //   const checkboxes = document.querySelectorAll('input[name="types[]"]');
 //   const typeHelp = document.getElementById('typeHelp');
 
@@ -165,4 +168,3 @@ deleteSubmitButtons.forEach((button) => {
 
 //   // Validazione iniziale
 //   validateCheckbox();
-// });
