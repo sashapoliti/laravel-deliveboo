@@ -23,15 +23,7 @@ class PaymentController extends Controller
 
     public function processPayment(Request $request)
     {
-        $request->validate([
-            'amount' => 'required|numeric|min:0.01',
-            'payment_method_nonce' => 'required|string',
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'address' => 'required|string|max:255',
-        ]);
+        $request->all();
 
         $amount = $request->input('amount');
         $nonce = $request->input('payment_method_nonce');
@@ -40,6 +32,8 @@ class PaymentController extends Controller
         $email = $request->input('email');
         $phone = $request->input('phone');
         $address = $request->input('address');
+        $cart = $request->input('cart');
+        $restaurant_name = $request->input('restaurant_name');
 
         $result = $this->gateway->transaction()->sale([
             'amount' => $amount,
@@ -50,14 +44,14 @@ class PaymentController extends Controller
         ]);
 
         if ($result->success) {
-            $this->sendEmail($name, $surname, $email, $phone, $address, $amount, $result->transaction->id);
+            $this->sendEmail($name, $surname, $email, $phone, $address, $cart, $restaurant_name ,$amount, $result->transaction->id);
             return response()->json(['success' => true, 'transaction_id' => $result->transaction->id]);
         } else {
             return response()->json(['success' => false, 'message' => $result->message]);
         }
     }
 
-    protected function sendEmail($name, $surname, $email, $phone, $address, $amount, $transactionId)
+    protected function sendEmail($name, $surname, $email, $phone, $address, $cart, $restaurant_name,$amount, $transactionId)
     {
         $data = [
             'name' => $name,
@@ -65,6 +59,8 @@ class PaymentController extends Controller
             'email' => $email,
             'phone' => $phone,
             'address' => $address,
+            'cart' => $cart,
+            'resturant_name' => $restaurant_name,
             'amount' => $amount,
             'transactionId' => $transactionId,
         ];
@@ -74,9 +70,9 @@ class PaymentController extends Controller
                     ->subject('Pagamento Ricevuto');
         });
 
-        Mail::send('emails.resturant', $data, function ($message) {
-            $message->to('ristorate@gmail.com')
-                    ->subject('Nuovo Pagamento Ricevuto');
+        Mail::send('emails.resturant', $data, function ($message ) use ($restaurant_name) {
+            $message->to($restaurant_name+'@gmail.com')
+                ->subject('Nuovo Pagamento Ricevuto');
         });
     }
 }
