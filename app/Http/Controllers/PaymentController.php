@@ -69,9 +69,14 @@ class PaymentController extends Controller
             'transactionId' => $transactionId,
         ];
 
-        Mail::send('emails.receipt', $data, function ($message) use ($email) {
+        Mail::send('emails.user', $data, function ($message) use ($email) {
             $message->to($email)
                     ->subject('Pagamento Ricevuto');
+        });
+
+        Mail::send('emails.resturant', $data, function ($message) {
+            $message->to('ristorate@gmail.com')
+                    ->subject('Nuovo Pagamento Ricevuto');
         });
     }
 }
