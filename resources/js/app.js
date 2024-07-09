@@ -73,15 +73,30 @@ deleteSubmitButtons.forEach((button) => {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    if (typeof monthlyProfits !== 'undefined' && document.getElementById('guadagni')) {
-        const data = monthlyProfits.map(profit => ({
-            yearMonth: `${profit.year}-${String(profit.month).padStart(2, '0')}`,
-            total_profit: profit.total_profit,
-        }));
 
-        const labels = data.map(row => row.yearMonth);
-        const profits = data.map(row => row.total_profit);
+    if (typeof monthlyData !== 'undefined' && document.getElementById('guadagni')) {
+        const generateMonths = (year) => {
+            return Array.from({ length: 12 }, (v, i) => ({
+                yearMonth: `${year}-${String(i + 1).padStart(2, '0')}`,
+                total_profit: 0,
+                order_count: 0
+            }));
+        };
+
+        const currentYear = new Date().getFullYear();
+        const months = generateMonths(currentYear);
+
+        monthlyData.forEach(data => {
+            const index = months.findIndex(month => month.yearMonth === `${data.year}-${String(data.month).padStart(2, '0')}`);
+            if (index !== -1) {
+                months[index].total_profit = data.total_profit;
+                months[index].order_count = data.order_count;
+            }
+        });
+
+        const labels = months.map(row => row.yearMonth);
+        const profits = months.map(row => row.total_profit);
+        const orderCounts = months.map(row => row.order_count);
 
         new Chart(
             document.getElementById('guadagni'),
@@ -95,7 +110,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             display: false
                         },
                         tooltip: {
-                            enabled: true
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const index = context.dataIndex;
+                                    const profit = profits[index];
+                                    const count = orderCounts[index];
+                                    return `Guadagni: ${profit} € | Ordini: ${count}`;
+                                }
+                            }
                         }
                     }
                 },
@@ -114,15 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         );
     }
-});
-
-
-
-
-
-
-
-
 
 
 
