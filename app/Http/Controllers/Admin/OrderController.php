@@ -15,8 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         $restaurant = Auth::user()->restaurant;
-        $orders = Order::where('restaurant_id', $restaurant->id)->get();
-        // $orders = Auth::user()->orders()->orderBy('created_at', 'desc')->get();
+        $orders = Order::where('restaurant_id', $restaurant->id)->orderBy('created_at', 'desc')->get();
         
         return view('admin.orders.index', compact('orders'));
     }
