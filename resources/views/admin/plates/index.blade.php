@@ -22,7 +22,7 @@
                 </div>
             </div> --}}
             <div class="my-5">
-                <h1 class="my-3">Piatti</h1>
+                <h1 class="my-3">Piatti ({{ $plates->count() }})</h1>
                 <table class="table text-center align-middle">
                     <thead class="text-center">
                         <tr>
