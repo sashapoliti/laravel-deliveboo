@@ -1,7 +1,7 @@
 <nav id="sidebar" class="navbar-dark">
-    <div class="logo text-center" {{-- style="background-color: white;" --}}>
+    <div class="logo text-center">
         <a href="http://localhost:5174" class="nav-link text-uppercase overflow-hidden">
-            <img class="img-fluid" src="/img/logo-deliveboo.png" alt="logo" style="width: 100px;">
+            <img class="img-fluid" src="/img/logo-deliveboo.png" alt="logo" style="width: 100px; background-color: white; border-radius: 50%; padding: 5px">
         </a>
     </div>
     <div class="user">
