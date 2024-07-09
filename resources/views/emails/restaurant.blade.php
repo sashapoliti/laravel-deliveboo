@@ -103,7 +103,7 @@
         </div>
         <p>Grazie per la vostra attenzione.</p>
         <div class="footer">
-            <p>&copy; {{ date('Y') }} Il tuo Ristorante. Tutti i diritti riservati.</p>
+            <p>&copy; {{ date('Y') }} Munchi <img src="favicon.ico" alt="🍪">. Tutti i diritti riservati.</p>
         </div>
     </div>
 </body>
