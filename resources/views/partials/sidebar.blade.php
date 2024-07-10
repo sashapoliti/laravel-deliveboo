@@ -39,7 +39,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <i class="fa-solid fa-sign-out"></i> {{ __('Logout') }}
+                                <i class="fa-solid fa-sign-out"></i> <span>{{ __('Logout') }}</span>
                             </a>
                         </li>
                     </ul>
