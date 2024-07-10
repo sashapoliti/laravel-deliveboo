@@ -6,7 +6,7 @@
     </div>
     <div class="user">
         <div class="profile">
-            <a class="nav-link d-flex align-items-center collapsed" href="#collapseExample" data-bs-toggle="collapse"
+            <a class="nav-link d-flex align-items-center justify-content-center collapsed" href="#collapseExample" data-bs-toggle="collapse"
                 aria-expanded="false">
                 @auth
                     <img class="rounded-circle profile-picture me-2"
@@ -45,15 +45,15 @@
                     </ul>
                 @else
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a class="nav-link d-flex align-items-center" href="{{ route('login') }}">
-                                <i class="fa-solid fa-arrow-right-to-bracket"></i> {{ __('Login') }}
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i>  <span>{{ __('Login') }}</span>
                             </a>
                         </li>
                         @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a class="nav-link d-flex align-items-center" href="{{ route('register') }}">
-                                    <i class="fa-solid fa-id-card"></i> Registrazione
+                                    <i class="fa-solid fa-id-card"></i> <span>{{ __('Registrati') }}</span>
                                 </a>
                             </li>
                         @endif

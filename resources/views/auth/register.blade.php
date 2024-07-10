@@ -30,8 +30,7 @@
                 <div class="col-6">
                     <label for="email" class="w-100">
                         <input id="email" type="email" class="input @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}"
-                            autocomplete="email">
+                            name="email" value="{{ old('email') }}" autocomplete="email">
                         <span class="mx-3">Indirizzo Email <span class="text-danger">*</span></span>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -169,9 +168,10 @@
                 <div class="col-12 mb-3" id="checkboxContainer">
                     <div class="container">
                         <div class="row">
-                            <h5 class="mb-3 ms-2">Seleziona le tipologie del ristorante <span class="text-danger">*</span> :</h5>
+                            <h5 class="mb-3 ms-2">Seleziona le tipologie del ristorante <span class="text-danger">*</span>
+                                :</h5>
                             @foreach ($types as $type)
-                                <div class="col-3">
+                                <div class="col-5 col-md-4 col-lg-3 ">
                                     <input class="form-check-input custom-checkbox @error('types') is-invalid @enderror"
                                         type="checkbox" value="{{ $type->id }}" name="types[]"
                                         id="type_{{ $type->id }}">
@@ -476,13 +476,31 @@
 
 
 <style lang="scss" scoped>
+
     .container-img {
-        width: 350px !important;
+        width: 350px;
         height: 350px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    @media screen and (max-width: 920px) {
+        .container-img {
+            width: 200px;
+            height: 230px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 200px;
+                height: 200px;
+
+            }
+        }
     }
 
     .container-btn-file {
