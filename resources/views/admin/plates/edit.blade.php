@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-5 m-auto">
     <div class="d-flex align-items-center">
-        {{-- <a href="{{ route('admin.plates.index') }}" class="my-2">
+        <a href="{{ route('admin.plates.index') }}" class="my-2">
             <button class="back-button">
                 <div class="back-button-box">
                     <span class="back-button-elem">
@@ -24,9 +24,10 @@
                     </span>
                 </div>
             </button>
-        </a> --}}
-        <h1 {{-- class="mx-2 mt-1" --}}>Modifica {{$plate->name}}</h1>
+        </a> 
     </div>
+    
+    <h2 class="text-center tet-uppercase">Modifica {{$plate->name}}</h2>
     <form class="row g-3 mt-3" action="{{route('admin.plates.update', $plate->slug)}}" method="POST"
         enctype="multipart/form-data">
         @csrf

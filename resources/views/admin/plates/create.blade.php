@@ -5,7 +5,7 @@
 @section('content')
 <section class="container mt-5 m-auto">
 
-    {{-- <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center">
         <a href="{{ route('admin.plates.index') }}" class="my-2">
             <button class="back-button">
                 <div class="back-button-box">
@@ -26,8 +26,8 @@
                 </div>
             </button>
         </a>
-        <h1 class="mx-2 mt-1">Crea</h1>
-    </div> --}}
+        {{-- <h1 class="mx-2 mt-1">Crea</h1> --}}
+    </div> 
 
     <h2 class="text-center tet-uppercase">Inserisci un nuovo piatto</h2>
     <form class="row g-3 mt-3" action="{{ route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
