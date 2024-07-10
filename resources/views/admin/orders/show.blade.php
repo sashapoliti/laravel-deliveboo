@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h1 class="my-3">Cliente</h1>
+        <h1 class="my-3">Informazioni cliente</h1>
         <ul>
             <li><strong>Nome</strong>: {{ $order->customer_name }}</li>
             <li><strong>Cognome</strong>: {{ $order->customer_surname }}</li>
