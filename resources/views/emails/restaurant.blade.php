@@ -50,7 +50,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        .user::before {
+        .user li::before {
             content: "💁 ";
             margin-right: 5px;
         }
@@ -58,10 +58,6 @@
         .item-details {
             display: flex;
             justify-content: space-between;
-        }
-        .item-details::before {
-            content: "🍽️ ";
-            margin-right: 5px;
         }
 
         .item-details span {

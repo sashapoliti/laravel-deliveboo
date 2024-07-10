@@ -49,11 +49,6 @@
             border-bottom: 1px solid #eee;
         }
 
-        .item-details::before {
-            content: "🍽️ ";
-            margin-right: 5px;
-        }
-
         .item-details {
             display: flex;
             justify-content: space-between;
