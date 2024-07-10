@@ -13,8 +13,8 @@
     <div class="container">
 
         <div class="row mt-5">
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card " style="height: 200px">
+            <div class="col-11 col-md-6 col-lg-4">
+                <div class="card dash-card" >
                     <div class="card-title">
                         <h2 class="m-3">Ordini</h2>
                     </div>
@@ -27,8 +27,8 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card" style="height: 200px">
+            <div class="col-11 col-md-6 col-lg-4">
+                <div class="card dash-card" >
                     <div class="card-title">
                         <h2 class="m-3">Guadagni</h2>
                     </div>
@@ -42,8 +42,8 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card " style="height: 200px; margin-right: -15px">
+            <div class="col-11 col-md-6 col-lg-4">
+                <div class="card dash-card">
                     <div class="card-title">
                         <h2 class="m-3">Attività</h2>
                     </div>
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="mt-5" style="width: 800px">
+            <div class="mt-5" style="width: 1000px">
                 <div style="width: 100%"><canvas id="guadagni"></canvas></div>
             </div>
         </div>

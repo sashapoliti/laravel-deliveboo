@@ -16,6 +16,10 @@ $pagination-active-border-color: grey !default;
 
 //************************** general style **************************
 
+
+
+
+
 h4,
 h5,
 h1,
@@ -313,6 +317,10 @@ a {
     color: $text-cards;
 }
 
+.dash-card {
+    height: 230px;
+    margin-bottom: 20px;
+}
 //************************** carousel **************************
 .body-carousel {
     height: 600px;
