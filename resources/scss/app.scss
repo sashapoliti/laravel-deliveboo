@@ -650,11 +650,6 @@ a {
   }
   
 
-
-
-
-
-
 //button-show
 .cta {
     border: none;
@@ -708,6 +703,43 @@ a {
   }
   
 
+//button-details
+.button-details {
+    cursor: pointer;
+    font-weight: 700;
+    font-family: Helvetica,"sans-serif";
+    transition: all .2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #dbdbdb;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+  }
+  
+  .button-details:hover {
+    background: #969696;
+  }
+  
+  .button-details > svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform .3s ease-in-out;
+  }
+  
+  .button-details:hover svg {
+    transform: translateX(5px);
+  }
+  
+  .button-details:active {
+    transform: scale(0.95);
+  }
+  
+  
+  
+
+
   //plus
 
   #plus {
@@ -733,6 +765,7 @@ a {
             width: 300px;
         }
   }
+  
 
 //   ***********index plate***********
 
