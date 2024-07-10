@@ -132,9 +132,9 @@ deleteSubmitButtons.forEach((button) => {
                         {
                             label: 'Guadagni',
                             data: profits,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Colore rosso con opacità
-                            borderColor: 'rgba(255, 99, 132, 1)', // Colore rosso
-                            borderWidth: 1
+                            backgroundColor: 'rgba(245, 185, 125, 0.7)', // Colore rosso con opacità
+                            borderColor: 'rgb(196, 148, 100)', // Colore rosso
+                            borderWidth: 2
                         }
                     ]
                 }
