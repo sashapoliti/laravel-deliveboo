@@ -71,9 +71,6 @@ deleteSubmitButtons.forEach((button) => {
     });
 });
 
-
-
-
 if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && document.getElementById('guadagni')) {
     const generateMonths = (start, count) => {
         const startDate = new Date(start);
@@ -84,10 +81,10 @@ if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && d
                 total_profit: 0,
                 order_count: 0
             };
-        }).reverse(); // Invertiamo per avere l'ordine corretto nel grafico
+        }).reverse();
     };
 
-    const months = generateMonths(startMonth, 12);
+    const months = generateMonths(new Date(), 12);
 
     monthlyData.forEach(data => {
         const index = months.findIndex(month => month.yearMonth === `${data.year}-${String(data.month).padStart(2, '0')}`);
@@ -131,8 +128,8 @@ if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && d
                     {
                         label: 'Guadagni',
                         data: profits,
-                        backgroundColor: 'rgba(245, 185, 125, 0.7)', // Colore rosso con opacità
-                        borderColor: 'rgb(196, 148, 100)', // Colore rosso
+                        backgroundColor: 'rgba(245, 185, 125, 0.7)', // Colore con opacità
+                        borderColor: 'rgb(196, 148, 100)', // Colore
                         borderWidth: 2
                     }
                 ]
@@ -140,6 +137,8 @@ if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && d
         }
     );
 }
+
+
 
 
 //   const checkboxes = document.querySelectorAll('input[name="types[]"]');

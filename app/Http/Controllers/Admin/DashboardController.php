@@ -17,21 +17,11 @@ class DashboardController extends Controller
         $restaurants = Restaurant::where('user_id', $user->id)->get();
         $orders = Order::where('restaurant_id', $user->restaurant->id)->get();
 
-        // Ottieni il primo ordine
-        $firstOrder = Order::where('restaurant_id', $user->restaurant->id)
-            ->orderBy('created_at', 'asc')
-            ->first();
-
-        if ($firstOrder) {
-            $startMonth = Carbon::parse($firstOrder->created_at)->startOfMonth();
-        } else {
-            $startMonth = Carbon::now()->startOfMonth();
-        }
-
-        $endMonth = $startMonth->copy()->addMonths(11)->endOfMonth();
+        $startMonth = Carbon::now()->startOfMonth(); // Inizio del mese corrente
+        $endMonth = $startMonth->copy()->subMonths(11)->startOfMonth(); // Inizio di 12 mesi fa
 
         $monthlyData = Order::where('restaurant_id', $user->restaurant->id)
-            ->whereBetween('created_at', [$startMonth, $endMonth])
+            ->whereBetween('created_at', [$endMonth, $startMonth->endOfMonth()])
             ->select(
                 DB::raw('YEAR(created_at) as year'),
                 DB::raw('MONTH(created_at) as month'),
@@ -42,9 +32,6 @@ class DashboardController extends Controller
             ->orderBy('year', 'asc')
             ->orderBy('month', 'asc')
             ->get();
-
-        // Invertiamo l'ordine dei dati mensili
-        $monthlyData = $monthlyData->reverse()->values();
 
         return view('admin.dashboard', compact('restaurants', 'orders', 'monthlyData', 'startMonth'));
     }
