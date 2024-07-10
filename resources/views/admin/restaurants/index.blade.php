@@ -58,7 +58,7 @@
                 }
             }
             .badge {
-                background-color: #F5B97D;
+                background-color: #ffb061;
             }
         }
     }

@@ -12,7 +12,7 @@
     <div class="container">
         @if ($plates->count() == 0)
             <div class="d-flex justify-content-center mt-5">
-                <img src="/img/no-plate.png" alt="nessun piatti">
+                <img src="/img/no-plate.png" alt="nessun piatto">
             </div>
         @else
             {{-- <div class=" d-flex justify-content-center align-items-center">

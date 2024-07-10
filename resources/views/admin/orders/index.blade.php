@@ -3,9 +3,13 @@
 @section('title', 'Ordini')
 
 @section('content')
-    <div class="container my-5">
+    <div class="container my-5 ">
         @if ($orders->count() == 0)
-            <h1 class="my-3">Non ci sono ancora Ordini</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-center mt-5">
+                    <img src="/img/no-order.png" alt="nessun ordine">
+                </div>
+            </div>
         @else
             <h1 class="my-3">Ordini ({{ $orders->count() }})</h1>
             <table class="table">
