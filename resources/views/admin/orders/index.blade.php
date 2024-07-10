@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Ordini')
+@section('title', 'Ordini') 
 
 @section('content')
     <div class="container my-5">
@@ -13,7 +13,7 @@
                     <tr>
                         <th scope="col">Cellulare</th>
                         <th scope="col">Totale</th>
-                        <th scope="col">Data & ora</th>
+                        <th scope="col" class="d-none d-md-table-cell">Data & ora</th>
                         <th scope="col">Azioni</th>
                     </tr>
                 </thead>
@@ -22,7 +22,7 @@
                         <tr>
                             <td>{{ $order->customer_phone }}</td>
                             <td>{{ $order->total_price }} €</td>
-                            <td>{{ $order->created_at->format('H:i') }} {{ $order->created_at->format('d/m/Y') }}</td>
+                            <td class="d-none d-md-table-cell">{{ $order->created_at->format('H:i') }} {{ $order->created_at->format('d/m/Y') }}</td>
                             <td><a href="{{ route('admin.orders.show', $order->id) }}">Dettagli</a></td>
                         </tr>
                     @endforeach
@@ -31,3 +31,4 @@
         @endif
     </div>
 @endsection
+

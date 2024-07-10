@@ -214,11 +214,7 @@ a {
             }
         }
     }
-    @media screen and (max-width: 768px) {
-        #sidebar {
-            width: 80px;
-        }
-    }
+ 
 
     /* main content */
     #content {
@@ -532,7 +528,7 @@ a {
 
 @media screen and (max-width: 900px) {
     #sidebar {
-        width: 70px;
+        width: 80px  !important;
 
         span {
             display: none;

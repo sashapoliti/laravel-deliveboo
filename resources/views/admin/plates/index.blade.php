@@ -29,7 +29,7 @@
                             <th scope="col">Immagine</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Prezzo</th>
-                            <th scope="col">Visibilità</th>	
+                            <th scope="col"  class="d-none d-md-table-cell">Visibilità</th>	
                             <th scope="col">Azioni</th>
                         </tr>
                     </thead>
@@ -40,7 +40,7 @@
                                         alt=""></td>
                                 <td><em>{{ $plate->name }}</em></td>
                                 <td>€ {{ $plate->price }} </td>
-                                <td>{{ $plate->visibility == 1 ? 'Visibile' : 'Non visibile' }}</td>
+                                <td class="d-none d-md-table-cell">{{ $plate->visibility == 1 ? 'Visibile' : 'Non visibile' }}</td>
                                 <td class="d-flex justify-content-center">
 
                                     <a href="{{ route('admin.plates.edit', $plate->slug) }}">
