@@ -50,7 +50,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        .order-details li::before {
+        .user::before {
             content: "💁 ";
             margin-right: 5px;
         }
@@ -59,10 +59,15 @@
             display: flex;
             justify-content: space-between;
         }
+        .item-details::before {
+            content: "🍽️ ";
+            margin-right: 5px;
+        }
 
         .item-details span {
             display: inline-block;
         }
+       
 
         .footer {
             margin-top: 20px;
@@ -80,7 +85,7 @@
         <p>L'utente <strong>{{ $name }} {{ $surname }}</strong> ha effettuato un acquisto.</p>
         <p>Dettagli dell'ordine:</p>
         <div class="order-details">
-            <ul>
+            <ul class="user">
                 <li><strong>Nome:</strong> {{ $name }}</li>
                 <li><strong>Cognome:</strong> {{ $surname }}</li>
                 <li><strong>Email:</strong> {{ $email }}</li>

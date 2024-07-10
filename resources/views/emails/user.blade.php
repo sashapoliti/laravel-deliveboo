@@ -49,7 +49,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        .order-details li::before {
+        .item-details::before {
             content: "🍽️ ";
             margin-right: 5px;
         }
