@@ -74,74 +74,72 @@ deleteSubmitButtons.forEach((button) => {
 
 
 
+if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && document.getElementById('guadagni')) {
+    const generateMonths = (start, count) => {
+        const startDate = new Date(start);
+        return Array.from({ length: count }, (v, i) => {
+            const date = new Date(startDate.getFullYear(), startDate.getMonth() - i, 1);
+            return {
+                yearMonth: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`,
+                total_profit: 0,
+                order_count: 0
+            };
+        }).reverse(); // Invertiamo per avere l'ordine corretto nel grafico
+    };
 
-    if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && document.getElementById('guadagni')) {
-        const generateMonths = (start, count) => {
-            const startDate = new Date(start);
-            return Array.from({ length: count }, (v, i) => {
-                const date = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
-                return {
-                    yearMonth: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`,
-                    total_profit: 0,
-                    order_count: 0
-                };
-            });
-        };
+    const months = generateMonths(startMonth, 12);
 
-        const months = generateMonths(startMonth, 12);
+    monthlyData.forEach(data => {
+        const index = months.findIndex(month => month.yearMonth === `${data.year}-${String(data.month).padStart(2, '0')}`);
+        if (index !== -1) {
+            months[index].total_profit = data.total_profit;
+            months[index].order_count = data.order_count;
+        }
+    });
 
-        monthlyData.forEach(data => {
-            const index = months.findIndex(month => month.yearMonth === `${data.year}-${String(data.month).padStart(2, '0')}`);
-            if (index !== -1) {
-                months[index].total_profit = data.total_profit;
-                months[index].order_count = data.order_count;
-            }
-        });
+    const labels = months.map(row => row.yearMonth);
+    const profits = months.map(row => row.total_profit);
+    const orderCounts = months.map(row => row.order_count);
 
-        const labels = months.map(row => row.yearMonth);
-        const profits = months.map(row => row.total_profit);
-        const orderCounts = months.map(row => row.order_count);
-
-        new Chart(
-            document.getElementById('guadagni'),
-            {
-                type: 'bar',
-                options: {
-                    animation: true,
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            enabled: true,
-                            callbacks: {
-                                label: function(context) {
-                                    const index = context.dataIndex;
-                                    const profit = profits[index];
-                                    const count = orderCounts[index];
-                                    return `Guadagni: ${profit} € | Ordini: ${count}`;
-                                }
+    new Chart(
+        document.getElementById('guadagni'),
+        {
+            type: 'bar',
+            options: {
+                animation: true,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function(context) {
+                                const index = context.dataIndex;
+                                const profit = profits[index];
+                                const count = orderCounts[index];
+                                return `Guadagni: ${profit} € | Ordini: ${count}`;
                             }
                         }
                     }
-                },
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Guadagni',
-                            data: profits,
-                            backgroundColor: 'rgba(245, 185, 125, 0.7)', // Colore rosso con opacità
-                            borderColor: 'rgb(196, 148, 100)', // Colore rosso
-                            borderWidth: 2
-                        }
-                    ]
                 }
+            },
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Guadagni',
+                        data: profits,
+                        backgroundColor: 'rgba(245, 185, 125, 0.7)', // Colore rosso con opacità
+                        borderColor: 'rgb(196, 148, 100)', // Colore rosso
+                        borderWidth: 2
+                    }
+                ]
             }
-        );
-    }
-
+        }
+    );
+}
 
 
 //   const checkboxes = document.querySelectorAll('input[name="types[]"]');

@@ -43,7 +43,9 @@ class DashboardController extends Controller
             ->orderBy('month', 'asc')
             ->get();
 
+        // Invertiamo l'ordine dei dati mensili
+        $monthlyData = $monthlyData->reverse()->values();
+
         return view('admin.dashboard', compact('restaurants', 'orders', 'monthlyData', 'startMonth'));
     }
 }
-
