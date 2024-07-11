@@ -12,27 +12,33 @@ class RestaurantController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        $types = $request->input('type', []);
+{
+    $types = $request->input('type', []);
+    $perPage = 5; // Numero di ristoranti per pagina
+
+    $restaurants = Restaurant::with('plates', 'types')
+        ->whereHas('types', function ($query) use ($types) {
+            $query->whereIn('type_id', $types);
+        });
+
+    $restaurants = $restaurants->withCount([
+        'types' => function ($query) use ($types) {
+            $query->whereIn('type_id', $types);
+        }
+    ])->having('types_count', '=', count($types))
+    ->paginate($perPage);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Restaurants retrieved successfully',
+        'results' => $restaurants->items(),
+        'current_page' => $restaurants->currentPage(),
+        'last_page' => $restaurants->lastPage(),
+        'total' => $restaurants->total(),
+    ], 200);
+}
+
     
-        $restaurants = Restaurant::with('plates', 'types')
-            ->whereHas('types', function ($query) use ($types) {
-                $query->whereIn('type_id', $types);
-            });
-    
-        $restaurants = $restaurants->withCount([
-            'types' => function ($query) use ($types) {
-                $query->whereIn('type_id', $types);
-            }
-        ])->having('types_count', '=', count($types))
-        ->get();
-    
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Restaurants retrieved successfully',
-            'results' => $restaurants,
-        ], 200);
-    }
 
     
     
