@@ -14,7 +14,7 @@ class RestaurantController extends Controller
     public function index(Request $request)
 {
     $types = $request->input('type', []);
-    $perPage = 5; // Numero di ristoranti per pagina
+    $perPage = 12; // Numero di ristoranti per pagina
 
     $restaurants = Restaurant::with('plates', 'types')
         ->whereHas('types', function ($query) use ($types) {
