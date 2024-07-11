@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
             'slug' => Restaurant::generateSlug($request->restaurant_name),
             'address' => $request->address,
             'vat_number' => $request->vat_number,
+            'description' => $request->description,
             'user_id' => $user->id,
         ];
 
