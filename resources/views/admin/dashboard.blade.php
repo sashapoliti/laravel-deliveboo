@@ -14,7 +14,7 @@
 
         <div class="row mt-5">
             <div class="col-11 col-md-6 col-lg-4">
-                <div class="card dash-card" >
+                <div class="card dash-card">
                     <div class="card-title">
                         <h2 class="m-3">Ordini</h2>
                     </div>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-11 col-md-6 col-lg-4">
-                <div class="card dash-card" >
+                <div class="card dash-card">
                     <div class="card-title">
                         <h2 class="m-3">Guadagni</h2>
                     </div>
@@ -59,23 +59,24 @@
                     </div>
                 </div>
             </div>
-              <div class="mt-5" style="width: 1000px">
-            <h2 class="ms-3">Guadagni mensili</h2>
-            <div class="mt-3">
-                <div style="width: 100%"><canvas id="guadagni"></canvas></div>
-            </div>
+            <div class="mt-5 d-flex flex-wrap">
+                <div class="graph p-2" style="width: 50%; min-width: 300px">
+                    <h2 class="ms-3">Guadagni mensili</h2>
+                    <div class="mt-3">
+                        <div style="width: 100%"><canvas id="guadagni"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="graph p-2" style="width: 50%; min-width: 300px">
+                    <h2 class="ms-3">Ordini mensili</h2>
+                    <div class="mt-3">
+                        <div style="width: 100%"><canvas id="ordersChart"></canvas></div>
+                    </div>
+                </div>
+            </div>  
         </div>
-    
-        <div class="mt-5" style="width: 1000px">
-            <h2 class="ms-3">Ordini mensili</h2>
-            <div class="mt-3">
-                <div style="width: 100%"><canvas id="ordersChart"></canvas></div>
-            </div>
-        </div>
-           
-        </div>
-      
-      
+
+
     </div>
     <script>
         const monthlyData = @json($monthlyData);
@@ -84,3 +85,12 @@
     </script>
 
 @endsection
+
+<style lang="scss" scoped>
+@media screen and (max-width: 1300px) {
+   .graph {
+       width: 100% !important;
+       min-width: 0 !important;
+   } 
+}
+</style>
