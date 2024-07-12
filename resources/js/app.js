@@ -193,14 +193,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 datasets: [{
                     label: 'Number of Orders',
                     data: data,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    fill: true,
-                    tension: 0.4, // smooth the line
-                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+                    borderColor: 'rgba(90, 192, 192, 1)',
+                    backgroundColor: 'rgba(80, 192, 192, 0.3)',
+                    borderWidth: 2,
+                    // fill: true,
+                    // tension: 0.4, // smooth the line
+                    // pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    // pointBorderColor: '#fff',
+                    // pointHoverBackgroundColor: '#fff',
+                    // pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
                 }]
             },
             options: {

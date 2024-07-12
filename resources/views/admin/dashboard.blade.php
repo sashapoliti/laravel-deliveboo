@@ -61,12 +61,20 @@
             </div>
            
         </div>
-        <div class="mt-5" style="width: 1000px">
-            <div style="width: 100%"><canvas id="guadagni"></canvas></div>
+        <div class="mt-5">
+            <h2 class="ms-3">Guadagni mensili</h2>
+            <div class="mt-3" style="width: 1000px">
+                <div style="width: 100%"><canvas id="guadagni"></canvas></div>
+            </div>
         </div>
-        <div class="mt-5" style="width: 1000px">
-            <div style="width: 100%"><canvas id="ordersChart"></canvas></div>
+    
+        <div class="mt-5">
+            <h2 class="ms-3">Ordini mensili</h2>
+            <div class="mt-3" style="width: 1000px">
+                <div style="width: 100%"><canvas id="ordersChart"></canvas></div>
+            </div>
         </div>
+      
     </div>
     <script>
         const monthlyData = @json($monthlyData);
