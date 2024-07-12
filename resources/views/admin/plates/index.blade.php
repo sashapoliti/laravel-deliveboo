@@ -32,7 +32,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Prezzo</th>
                             <th scope="col" class="d-none d-md-table-cell">Visibilità</th>
-                            <th scope="col"></th>
+                            <th scope="col"  class="col-1"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,7 +44,7 @@
                                 <td>€ {{ $plate->price }} </td>
                                 <td class="d-none d-md-table-cell">
                                     {{ $plate->visibility == 1 ? 'Visibile' : 'Non visibile' }}</td>
-                                <td class="d-flex justify-content-end">
+                                <td class=" d-flex col-auto">
 
                                     <a href="{{ route('admin.plates.edit', $plate->slug) }}">
                                         <button class="editBtn" title="Modifica">
