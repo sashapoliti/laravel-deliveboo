@@ -33,7 +33,7 @@
                         <h2 class="m-3">Guadagni</h2>
                     </div>
                     <div class="card-body d-flex justify-content-between align-items-center">
-                        <h1 class="card-title">{{ $totalEarnings }} €</h1>
+                        <h1 class="card-title">{{ $totalEarnings }},00 €</h1>
                         <div class="mx-2 d-flex mb-3">
                             <i class="fa-solid fa-hand-holding-dollar"
                                 style="font-size: 50px ; color: rgb(0, 0, 0, 0.5)"></i>
@@ -59,21 +59,22 @@
                     </div>
                 </div>
             </div>
-           
-        </div>
-        <div class="mt-5">
+              <div class="mt-5" style="width: 1000px">
             <h2 class="ms-3">Guadagni mensili</h2>
-            <div class="mt-3" style="width: 1000px">
+            <div class="mt-3">
                 <div style="width: 100%"><canvas id="guadagni"></canvas></div>
             </div>
         </div>
     
-        <div class="mt-5">
+        <div class="mt-5" style="width: 1000px">
             <h2 class="ms-3">Ordini mensili</h2>
-            <div class="mt-3" style="width: 1000px">
+            <div class="mt-3">
                 <div style="width: 100%"><canvas id="ordersChart"></canvas></div>
             </div>
         </div>
+           
+        </div>
+      
       
     </div>
     <script>
