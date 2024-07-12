@@ -77,7 +77,7 @@
 <body>
     <div class="container">
         <h1>🍽️ Nuovo Pagamento Ricevuto</h1>
-        <p>Gentile {{ $restaurant_name }},</p>
+        <p>Gentile <strong>{{ $restaurant_name }}</strong></p>
         <p>L'utente <strong>{{ $name }} {{ $surname }}</strong> ha effettuato un acquisto.</p>
         <p>Dettagli dell'ordine:</p>
         <div class="order-details">
