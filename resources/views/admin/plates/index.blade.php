@@ -5,7 +5,7 @@
 @section('content')
     @if (session('message'))
         <div class="container">
-            <div class=" alert alert-success mt-3">
+            <div class=" alert mt-3 alert-custom">
                 {!! html_entity_decode(session('message')) !!}
             </div>
         </div>
@@ -132,5 +132,9 @@
         &:hover::before {
             width: 100%;
         }
+    }
+    .alert-custom {
+        background-color: #e0a0607e; 
+        border: 1px solid #e0a060"
     }
 </style>

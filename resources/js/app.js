@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Number of Orders',
+                    label: 'Ordini',
                     data: data,
                     borderColor: 'rgba(90, 192, 192, 1)',
                     backgroundColor: 'rgba(80, 192, 192, 0.3)',
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     label += ': ';
                                 }
                                 label += context.parsed.y;
-                                return label + ' orders';
+                                return label ;
                             }
                         }
                     }
