@@ -23,7 +23,7 @@
         }
 
         h1 {
-            color: #007BFF;
+            color: #ffb061;
         }
 
         p {

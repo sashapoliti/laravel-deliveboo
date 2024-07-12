@@ -24,7 +24,7 @@
         }
 
         h1 {
-            color: #007BFF;
+            color:#ffb061;
         }
 
         p {
@@ -76,7 +76,7 @@
 
 <body>
     <div class="container">
-        <h1>🍽️ Nuovo Pagamento Ricevuto</h1>
+        <h1>Nuovo Pagamento Ricevuto! 🎉</h1>
         <p>Gentile <strong>{{ $restaurant_name }}</strong></p>
         <p>L'utente <strong>{{ $name }} {{ $surname }}</strong> ha effettuato un acquisto.</p>
         <p>Dettagli dell'ordine:</p>
