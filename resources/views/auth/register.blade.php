@@ -253,8 +253,8 @@
                     block: 'center'
                 });
                 valid = false;
-            } else if (!/^[a-zA-Z-']+$/.test(name.value)) {
-                error_name.innerHTML = 'Il nome deve contenere solo lettere nessuno spazio.';
+            } else if (!/^[a-zA-Z\s-']+$/.test(name.value))  {
+                error_name.innerHTML = 'Il nome deve contenere solo lettere.';
                 name.scrollIntoView({
                     behavior: 'smooth',
                     block: 'center'
