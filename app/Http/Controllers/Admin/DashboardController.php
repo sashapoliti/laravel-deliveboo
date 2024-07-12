@@ -33,6 +33,18 @@ class DashboardController extends Controller
             ->orderBy('month', 'asc')
             ->get();
 
-        return view('admin.dashboard', compact('restaurants', 'orders', 'monthlyData', 'startMonth'));
+            $orderCounts = Order::where('restaurant_id', $user->restaurant->id)
+            ->whereBetween('created_at', [$endMonth, $startMonth->endOfMonth()])
+            ->select(
+                DB::raw('YEAR(created_at) as year'),
+                DB::raw('MONTH(created_at) as month'),
+                DB::raw('COUNT(*) as order_count')
+            )
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
+
+        return view('admin.dashboard', compact('restaurants', 'orders', 'monthlyData', 'orderCounts', 'startMonth'));
     }
 }

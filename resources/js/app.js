@@ -137,7 +137,77 @@ if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && d
         }
     );
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('ordersChart').getContext('2d');
+    const labels = orderCounts.map(data => `${data.month}/${data.year}`);
+    const data = orderCounts.map(data => data.order_count);
 
+    const ordersChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Number of Orders',
+                data: data,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                // tension: 0.4, // smooth the line
+                pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+            }]
+        },
+        options: {
+            animation: true,
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false, // posizione della legenda
+                },
+                tooltip: {
+                    enabled: true,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.parsed.y;
+                            return label + ' orders';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    // title: {
+                    //     display: true,
+                    //     text: 'Month/Year'
+                    // },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        // display: true,
+                        // text: 'Number of Orders'
+                    },
+                    grid: {
+                        color: 'rgba(200, 200, 200, 0.2)'
+                    }
+                }
+            },
+            // animation: {
+            //     duration: 1000,
+            //     easing: 'easeInOutQuart'
+            // }
+        }
+    });
+});
 
 
 
