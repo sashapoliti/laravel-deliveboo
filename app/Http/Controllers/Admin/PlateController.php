@@ -67,7 +67,7 @@ class PlateController extends Controller
         }
 
         $newPlate = Plate::create($form_data);
-        return redirect()->route('admin.plates.index')->with('message', 'Il piatto ' . $newPlate->name . ' è stato <b>creato</b> correttamente.');
+        return redirect()->route('admin.plates.index')->with('message', 'Il piatto ' . ` <b>$newPlate->name</b>` . ' è stato <b>creato</b> correttamente.');
     }
 
     /**
@@ -127,7 +127,7 @@ class PlateController extends Controller
         }
 
         $plate->update($form_data);
-        return redirect()->route('admin.plates.index')->with('message', $plate->name . ' è stato modificato');
+        return redirect()->route('admin.plates.index')->with('message', 'Il piatto ' . `<b>$plate->name</b>` . ' è stato <b>modificato</b> correttamente. ');
     }
 
     /**
@@ -146,7 +146,7 @@ class PlateController extends Controller
         }
 
         $plate->delete();
-        return redirect()->route('admin.plates.index')->with('message', 'Il piatto ' . $plate->name . ' è stato <b>eliminato</b> correttamente.');
+        return redirect()->route('admin.plates.index')->with('message', 'Il piatto ' . `<b>$plate->name</b>` . ' è stato <b>eliminato</b> correttamente.');
     }
 
     /**
