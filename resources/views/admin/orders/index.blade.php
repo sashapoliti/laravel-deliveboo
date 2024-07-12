@@ -12,23 +12,27 @@
             </div>
         @else
             <h1 class="my-3">Ordini ({{ $orders->count() }})</h1>
-            <table class="table">
+            <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th scope="col">Cellulare</th>
+                        <th scope="col">Cliente</th>
                         <th scope="col">Totale</th>
-                        <th scope="col" class="d-none d-md-table-cell">Data & ora</th>
-                        <th scope="col">Azioni</th>
+                        <th scope="col" class="d-none d-md-table-cell">Ora & data</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($orders as $order)
                         <tr>
-                            <td>{{ $order->customer_phone }}</td>
+                            <td>
+                                {{ $order->customer_name }} {{ $order->customer_surname }}<br>
+                                <small class="text-muted">({{ $order->customer_phone }})</small>
+                            </td>
                             <td>{{ $order->total_price }} €</td>
                             <td class="d-none d-md-table-cell">{{ $order->created_at->format('H:i') }}
                                 {{ $order->created_at->format('d/m/Y') }}</td>
-                            <td><a href="{{ route('admin.orders.show', $order->id) }}">
+                            <td class="d-flex justify-content-end">
+                                <a href="{{ route('admin.orders.show', $order->id) }}">
                                     <button class="button-details">
                                         <span>Dettagli</span>
                                         <svg width="34" height="34" viewBox="0 0 74 74" fill="none"
@@ -40,7 +44,6 @@
                                                 fill="black"></path>
                                         </svg>
                                     </button>
-
                                 </a>
                             </td>
                         </tr>

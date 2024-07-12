@@ -4,7 +4,7 @@
 
 @section('content')
     
-    <div class="container mt-5 m-auto">
+    <div class="container my-5 m-auto">
         <div class="d-flex align-items-center">
             <a href="{{ route('admin.orders.index') }}">
                 <button class="back-button ">
