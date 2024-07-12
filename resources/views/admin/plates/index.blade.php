@@ -4,8 +4,10 @@
 
 @section('content')
     @if (session('message'))
-        <div class="alert alert-success mt-3">
-            {{ session('message') }}
+        <div class="container">
+            <div class=" alert alert-success mt-3">
+                {!! html_entity_decode(session('message')) !!}
+            </div>
         </div>
     @endif
 
@@ -29,8 +31,8 @@
                             <th scope="col">Immagine</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Prezzo</th>
-                            <th scope="col"  class="d-none d-md-table-cell">Visibilità</th>	
-                            <th scope="col">Azioni</th>
+                            <th scope="col" class="d-none d-md-table-cell">Visibilità</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,8 +42,9 @@
                                         alt=""></td>
                                 <td><em>{{ $plate->name }}</em></td>
                                 <td>€ {{ $plate->price }} </td>
-                                <td class="d-none d-md-table-cell">{{ $plate->visibility == 1 ? 'Visibile' : 'Non visibile' }}</td>
-                                <td class="d-flex justify-content-center">
+                                <td class="d-none d-md-table-cell">
+                                    {{ $plate->visibility == 1 ? 'Visibile' : 'Non visibile' }}</td>
+                                <td class="d-flex justify-content-end">
 
                                     <a href="{{ route('admin.plates.edit', $plate->slug) }}">
                                         <button class="editBtn" title="Modifica">
