@@ -3,11 +3,11 @@
 @section('title', 'Modifica ' . $plate->name)
 
 @section('content')
-    <div class="container mt-5 m-auto">
+    <div class="container my-5 m-auto">
         <div class="d-flex align-items-center">
-            <a href="{{ route('admin.plates.index') }}" class="my-2">
+            <a href="{{ route('admin.plates.index') }}">
                 <button class="back-button">
-                    <div class="back-button-box">
+                    <div class="back-button-box buttonpazzo">
                         <span class="back-button-elem">
                             <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -103,6 +103,12 @@
 
 
 <style lang="scss" scoped>
+    .back-button-box.buttonpazzo {
+    display: flex;
+    position: absolute;
+    top: -5px;
+    left: 0;
+}
     .custom-checkbox:checked {
         background-color: #307750 !important;
         border-color: #307750 !important;
