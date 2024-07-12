@@ -32,7 +32,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Prezzo</th>
                             <th scope="col" class="d-none d-md-table-cell">Visibilità</th>
-                            <th scope="col"  class="col-1"></th>
+                            <th scope="col" class="col-1"></th>
                         </tr>
                     </thead>
                     <tbody>
