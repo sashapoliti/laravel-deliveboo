@@ -35,7 +35,6 @@
                 <li><strong>Email</strong>: {{ $order->customer_email }}</li>
                 <li><strong>Cellulare</strong>: {{ $order->customer_phone }}</li>
                 <li><strong>Indirizzo</strong>: {{ $order->customer_address }}</li>
-                <li><strong>Totale</strong>: {{ $order->total_price }} €</li>
                 <li><strong>Data ordine</strong>: {{ $order->created_at->format('H:i') }}
                     {{ $order->created_at->format('d/m/Y') }}</li>
             </ul>
@@ -58,6 +57,11 @@
                         <td>{{ $plate->pivot->price }} €</td>
                     </tr>
                 @endforeach
+                    <tr>
+                        <td></td>
+                        <td><strong>Totale</strong></td>
+                        <td><strong>{{ $order->total_price }} €</strong></td>
+                    </tr>
             </tbody>
         </table>
     </div>
