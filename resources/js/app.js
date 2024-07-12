@@ -70,7 +70,6 @@ deleteSubmitButtons.forEach((button) => {
         });
     });
 });
-
 document.addEventListener('DOMContentLoaded', function () {
     if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && document.getElementById('guadagni')) {
         const generateMonths = (start, count) => {
@@ -159,19 +158,36 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         );
     }
-});
 
-document.addEventListener('DOMContentLoaded', function () {
     if (typeof orderCounts !== 'undefined' && document.getElementById('ordersChart')) {
-        const ctx = document.getElementById('ordersChart').getContext('2d');
-        const labels = orderCounts.map(data => {
-            const month = data.month < 10 ? `0${data.month}` : data.month;
-            return `${month}/${data.year}`;
+        const generateMonths = (start, count) => {
+            const startDate = new Date(start);
+            return Array.from({ length: count }, (v, i) => {
+                const date = new Date(startDate.getFullYear(), startDate.getMonth() - i, 1);
+                return {
+                    yearMonth: `${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`,
+                    total_profit: 0,
+                    order_count: 0
+                };
+            }).reverse();
+        };
+
+        const months = generateMonths(new Date(), 12);
+
+        orderCounts.forEach(data => {
+            const index = months.findIndex(month => month.yearMonth === `${String(data.month).padStart(2, '0')}/${data.year}`);
+            if (index !== -1) {
+                months[index].order_count = data.order_count;
+            }
         });
-        const data = orderCounts.map(data => data.order_count);
+
+        const labels = months.map(row => row.yearMonth);
+        const data = months.map(row => row.order_count);
+
+        const ctx = document.getElementById('ordersChart').getContext('2d');
 
         const ordersChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
