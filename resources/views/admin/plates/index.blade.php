@@ -134,7 +134,7 @@
         }
     }
     .alert-custom {
-        background-color: #e0a0607e; 
-        border: 1px solid #e0a060"
+        background-color: #f1b87e9c !important; 
+        border: 1px solid #e0a060 !important;
     }
 </style>
