@@ -91,13 +91,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const index = months.findIndex(month => month.yearMonth === `${String(data.month).padStart(2, '0')}/${data.year}`);
             if (index !== -1) {
                 months[index].total_profit = data.total_profit;
-                months[index].order_count = data.order_count;
+                // months[index].order_count = data.order_count;
             }
         });
 
         const labels = months.map(row => row.yearMonth);
         const profits = months.map(row => row.total_profit);
-        const orderCounts = months.map(row => row.order_count);
+        // const orderCounts = months.map(row => row.order_count);
 
         new Chart(
             document.getElementById('guadagni'),
@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 label: function(context) {
                                     const index = context.dataIndex;
                                     const profit = profits[index];
-                                    const count = orderCounts[index];
-                                    return `Guadagni: ${profit} € \nOrdini: ${count}`;
+                                    // const count = orderCounts[index];
+                                    return `Guadagni: ${profit} € `;
                                 }
                             }
                         }
