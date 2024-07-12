@@ -18,7 +18,7 @@
                         <th scope="col">Cliente</th>
                         <th scope="col">Totale</th>
                         <th scope="col" class="d-none d-md-table-cell">Ora & data</th>
-                        <th scope="col"></th>
+                        <th scope="col" class="col-1"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                             <td>{{ $order->total_price }} €</td>
                             <td class="d-none d-md-table-cell">{{ $order->created_at->format('H:i') }}
                                 {{ $order->created_at->format('d/m/Y') }}</td>
-                            <td class="d-flex justify-content-end">
+                            <td class="d-flex col-auto">
                                 <a href="{{ route('admin.orders.show', $order->id) }}">
                                     <button class="button-details">
                                         <span>Dettagli</span>
