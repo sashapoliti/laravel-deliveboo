@@ -71,37 +71,122 @@ deleteSubmitButtons.forEach((button) => {
     });
 });
 
-if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && document.getElementById('guadagni')) {
-    const generateMonths = (start, count) => {
-        const startDate = new Date(start);
-        return Array.from({ length: count }, (v, i) => {
-            const date = new Date(startDate.getFullYear(), startDate.getMonth() - i, 1);
-            return {
-                yearMonth: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`,
-                total_profit: 0,
-                order_count: 0
-            };
-        }).reverse();
-    };
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && document.getElementById('guadagni')) {
+        const generateMonths = (start, count) => {
+            const startDate = new Date(start);
+            return Array.from({ length: count }, (v, i) => {
+                const date = new Date(startDate.getFullYear(), startDate.getMonth() - i, 1);
+                return {
+                    yearMonth: `${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`,
+                    total_profit: 0,
+                    order_count: 0
+                };
+            }).reverse();
+        };
 
-    const months = generateMonths(new Date(), 12);
+        const months = generateMonths(new Date(), 12);
 
-    monthlyData.forEach(data => {
-        const index = months.findIndex(month => month.yearMonth === `${data.year}-${String(data.month).padStart(2, '0')}`);
-        if (index !== -1) {
-            months[index].total_profit = data.total_profit;
-            months[index].order_count = data.order_count;
-        }
-    });
+        monthlyData.forEach(data => {
+            const index = months.findIndex(month => month.yearMonth === `${String(data.month).padStart(2, '0')}/${data.year}`);
+            if (index !== -1) {
+                months[index].total_profit = data.total_profit;
+                months[index].order_count = data.order_count;
+            }
+        });
 
-    const labels = months.map(row => row.yearMonth);
-    const profits = months.map(row => row.total_profit);
-    const orderCounts = months.map(row => row.order_count);
+        const labels = months.map(row => row.yearMonth);
+        const profits = months.map(row => row.total_profit);
+        const orderCounts = months.map(row => row.order_count);
 
-    new Chart(
-        document.getElementById('guadagni'),
-        {
-            type: 'bar',
+        new Chart(
+            document.getElementById('guadagni'),
+            {
+                type: 'bar',
+                options: {
+                    animation: true,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const index = context.dataIndex;
+                                    const profit = profits[index];
+                                    const count = orderCounts[index];
+                                    return `Guadagni: ${profit} € \nOrdini: ${count}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                // display: true,
+                                // text: 'Mese/Anno'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                // display: true,
+                                // text: 'Valori'
+                            },
+                            grid: {
+                                color: 'rgba(200, 200, 200, 0.2)'
+                            }
+                        }
+                    }
+                },
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Guadagni',
+                            data: profits,
+                            backgroundColor: 'rgba(245, 185, 125, 0.7)', // Colore con opacità
+                            borderColor: 'rgb(196, 148, 100)', // Colore
+                            borderWidth: 2
+                        }
+                    ]
+                }
+            }
+        );
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof orderCounts !== 'undefined' && document.getElementById('ordersChart')) {
+        const ctx = document.getElementById('ordersChart').getContext('2d');
+        const labels = orderCounts.map(data => {
+            const month = data.month < 10 ? `0${data.month}` : data.month;
+            return `${month}/${data.year}`;
+        });
+        const data = orderCounts.map(data => data.order_count);
+
+        const ordersChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Orders',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                    tension: 0.4, // smooth the line
+                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+                }]
+            },
             options: {
                 animation: true,
                 responsive: true,
@@ -113,101 +198,46 @@ if (typeof monthlyData !== 'undefined' && typeof startMonth !== 'undefined' && d
                         enabled: true,
                         callbacks: {
                             label: function(context) {
-                                const index = context.dataIndex;
-                                const profit = profits[index];
-                                const count = orderCounts[index];
-                                return `Guadagni: ${profit} € | Ordini: ${count}`;
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.parsed.y;
+                                return label + ' orders';
                             }
                         }
                     }
-                }
-            },
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Guadagni',
-                        data: profits,
-                        backgroundColor: 'rgba(245, 185, 125, 0.7)', // Colore con opacità
-                        borderColor: 'rgb(196, 148, 100)', // Colore
-                        borderWidth: 2
-                    }
-                ]
-            }
-        }
-    );
-}
-document.addEventListener('DOMContentLoaded', function () {
-    const ctx = document.getElementById('ordersChart').getContext('2d');
-    const labels = orderCounts.map(data => `${data.month}/${data.year}`);
-    const data = orderCounts.map(data => data.order_count);
-
-    const ordersChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Number of Orders',
-                data: data,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                // tension: 0.4, // smooth the line
-                pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
-            }]
-        },
-        options: {
-            animation: true,
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false, // posizione della legenda
                 },
-                tooltip: {
-                    enabled: true,
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            label += context.parsed.y;
-                            return label + ' orders';
+                scales: {
+                    x: {
+                        // title: {
+                        //     display: true,
+                        //     text: 'Month/Year'
+                        // },
+                        grid: {
+                            display: false
                         }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    // title: {
-                    //     display: true,
-                    //     text: 'Month/Year'
-                    // },
-                    grid: {
-                        display: false
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        // display: true,
-                        // text: 'Number of Orders'
                     },
-                    grid: {
-                        color: 'rgba(200, 200, 200, 0.2)'
+                    y: {
+                        beginAtZero: true,
+                        // title: {
+                        //     display: true,
+                        //     text: 'Number of Orders'
+                        // },
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)'
+                        }
                     }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeInOutQuart'
                 }
-            },
-            // animation: {
-            //     duration: 1000,
-            //     easing: 'easeInOutQuart'
-            // }
-        }
-    });
+            }
+        });
+    }
 });
+
 
 
 
