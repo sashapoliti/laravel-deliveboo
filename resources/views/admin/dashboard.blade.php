@@ -61,14 +61,20 @@
             </div>
             <div class="mt-5 d-flex flex-wrap">
                 <div class="graph p-2" style="width: 50%; min-width: 300px">
-                    <h2 class="ms-3">Guadagni mensili</h2>
+                    <div class="ms-3">
+                        <h2>Guadagni mensili</h2>
+                        <small class="ms-2">(Ultimi 12 mesi)</small>
+                    </div>
                     <div class="mt-3">
                         <div style="width: 100%"><canvas id="guadagni"></canvas></div>
                     </div>
                 </div>
 
                 <div class="graph p-2" style="width: 50%; min-width: 300px">
-                    <h2 class="ms-3">Ordini mensili</h2>
+                    <div class="ms-3">
+                        <h2>Ordini mensili</h2>
+                        <small class="ms-2">(Ultimi 12 mesi)</small>
+                    </div>
                     <div class="mt-3">
                         <div style="width: 100%"><canvas id="ordersChart"></canvas></div>
                     </div>
